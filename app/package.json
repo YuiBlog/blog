@@ -1,0 +1,13 @@
+{
+  "name": "yui",
+  "version": "0.1.0",
+  "description": "Personal blog software on Google Firebase.",
+  "repository": "https://github.com/mika-f/blog.mochizuki.moe",
+  "author": "Mikazuki <mikazuki_fuyuno@outlook.com>",
+  "license": "MIT",
+  "workspaces": [
+    "app",
+    "functions"
+  ],
+  "private": true
+}
