@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "build": "yarn workspaces run build",
-    "postbuild": "rm -rf client && mkdir client && cp -R app/static/. client && cp -R functions/lib/.nuxt/dist client/assets",
+    "postbuild": "rm -rf client && mkdir client && cp -R app/static/. client && cp -R functions/lib/.nuxt/dist/client client/assets",
     "clean": "rm -rf functions/lib",
     "dev": "yarn run run-p dev:app dev:functions",
     "dev:app": "cd app && yarn run dev",
