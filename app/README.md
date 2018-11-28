@@ -1,3 +1,24 @@
 # blog.mochizuki.moe - "Yui"
 
 Personal blog software on Google Firebase.
+
+
+## Build
+
+```bash
+# install dependencies
+$ yarn
+
+# serve
+$ yarn run dev
+
+# build for production
+$ yarn run build
+```
+
+
+## Deploy to Firebase
+
+```
+$ yarn run deploy
+```
