@@ -6,13 +6,10 @@
     "build": "yarn workspaces run build",
     "postbuild": "rm -rf client && mkdir client && cp -R app/static/. client && cp -R functions/lib/.nuxt/dist/client client/assets",
     "clean": "rm -rf functions/lib",
-    "dev": "yarn run run-p dev:app dev:functions",
+    "dev": "yarn run dev:app",
     "dev:app": "cd app && yarn run dev",
     "dev:functions": "cd functions && yarn run dev",
-    "deploy": "firebase deploy",
-    "start": "yarn run run-p start:app start:functions",
-    "start:app": "cd app && yarn run start",
-    "start:functions": "cd functions && yarn run functions"
+    "deploy": "firebase deploy"
   },
   "description": "Personal blog software on Google Firebase.",
   "repository": "https://github.com/mika-f/blog.mochizuki.moe",
