@@ -1,26 +1,18 @@
-<template>
-  <section class="container">
-    <div>
-      <logo/>
-      <h1 class="title">
-        yui
-      </h1>
-      <h2 class="subtitle">
-        Personal blog software on Google Firebase.
-      </h2>
-      <div class="links">
-        <a
-          href="https://nuxtjs.org/"
-          target="_blank"
-          class="button--green">Documentation</a>
-        <a
-          href="https://github.com/nuxt/nuxt.js"
-          target="_blank"
-          class="button--grey">GitHub</a>
-      </div>
-    </div>
-  </section>
+<template lang="pug">
+  section.container
+    div
+      logo
+      h1.title
+        | yui
+      
+      h2.subtitle
+        | Personal blog software on Google Firebase
+
+      .links
+        a.button--green(href="https://nuxtjs.org" target="_blank") Documentation
+        a.button--grey(href="https://github.com/nuxt/nuxt.js" target="_blank") GitHub
 </template>
+
 
 <script>
 import Logo from '~/components/Logo.vue'
@@ -33,13 +25,11 @@ export default {
 </script>
 
 <style>
-
 /* Sample `apply` at-rules with Tailwind CSS
 .container {
   @apply min-h-screen flex justify-center items-center text-center mx-auto;
 }
 */
-
 
 .container {
   min-height: 100vh;

@@ -1,8 +1,8 @@
-<template>
-  <div>
-    <nuxt/>
-  </div>
+<template lang="pug">
+  div
+    nuxt
 </template>
+
 
 <style>
 html {
