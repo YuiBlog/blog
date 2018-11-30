@@ -9,12 +9,16 @@
   },
   "dependencies": {
     "cross-env": "^5.2.0",
+    "marked": "^0.5.2",
     "nuxt": "^2.0.0",
     "nuxt-class-component": "^1.2.1",
     "nuxt-property-decorator": "^1.2.0",
+    "prismjs": "^1.15.0",
     "vuex-class": "^0.3.1"
   },
   "devDependencies": {
+    "@types/marked": "^0.4.2",
+    "@types/prismjs": "^1.9.0",
     "autoprefixer": "^8.6.4",
     "eslint-config-prettier": "^3.1.0",
     "eslint-plugin-prettier": "2.6.2",
@@ -25,8 +29,8 @@
     "pug-plain-loader": "^1.0.0",
     "sass-loader": "^7.1.0",
     "tailwindcss": "~0.6.6",
-    "tsconfig-paths-webpack-plugin": "^3.2.0",
     "ts-loader": "^5.3.1",
+    "tsconfig-paths-webpack-plugin": "^3.2.0",
     "typescript": "^3.2.1"
   }
 }
