@@ -1,1 +1,5 @@
-./app/.prettierrc
+{
+  "printWidth": 120,
+  "singleQuote": false,
+  "bracketSpacing": true,
+}

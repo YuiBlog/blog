@@ -4,11 +4,14 @@
   "private": true,
   "scripts": {
     "build": "yarn workspaces run build",
-    "postbuild": "rm -rf client && mkdir client && cp -R app/static/. client && cp -R functions/lib/.nuxt/dist/client client/assets",
-    "clean": "rm -rf functions/lib",
+    "postbuild": "rm -rf dist && mkdir dist && yarn run copy",
+    "copy": "yarn run copy:client && yarn run copy:server",
+    "copy:client": "cp -R app/static/. dist/client && cp -R app/.nuxt/dist/client dist/client/assets",
+    "copy:server": "cp -R functions dist/server && cp -R app/.nuxt/ dist/server/lib/",
+    "clean": "rm -rf dist app/.nuxt functions/lib",
     "dev": "yarn run dev:app",
-    "dev:app": "cd app && yarn run dev",
-    "dev:functions": "cd functions && yarn run dev",
+    "dev:app": "yarn --cwd app dev",
+    "dev:functions": "yarn --cwd functions dev",
     "deploy": "firebase deploy"
   },
   "description": "Personal blog software on Google Firebase.",
@@ -16,7 +19,10 @@
   "author": "Mikazuki <mikazuki_fuyuno@outlook.com>",
   "license": "MIT",
   "devDependencies": {
-    "npm-run-all": "^4.1.5"
+    "npm-run-all": "^4.1.5",
+    "tslint": "^5.11.0",
+    "tslint-config-prettier": "^1.17.0",
+    "tslint-plugin-prettier": "^2.0.1"
   },
   "workspaces": [
     "app",

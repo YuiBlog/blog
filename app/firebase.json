@@ -5,10 +5,10 @@
   },
   "functions": {
     "predeploy": [],
-    "source": "functions"
+    "source": "dist/server"
   },
   "hosting": {
-    "public": "client",
+    "public": "dist/client",
     "ignore": [
       "firebase.json",
       "**/.*",

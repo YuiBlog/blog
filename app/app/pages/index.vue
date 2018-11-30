@@ -13,15 +13,17 @@
         a.button--grey(href="https://github.com/nuxt/nuxt.js" target="_blank") GitHub
 </template>
 
+<script lang="ts">
+import { Component, Vue } from "nuxt-property-decorator";
 
-<script>
-import Logo from '~/components/Logo.vue'
+import Logo from "../components/Logo.vue";
 
-export default {
+@Component({
   components: {
     Logo
   }
-}
+})
+export default class extends Vue {}
 </script>
 
 <style>
@@ -40,8 +42,8 @@ export default {
 }
 
 .title {
-  font-family: 'Quicksand', 'Source Sans Pro', -apple-system, BlinkMacSystemFont,
-    'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  font-family: "Quicksand", "Source Sans Pro", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue",
+    Arial, sans-serif;
   display: block;
   font-weight: 300;
   font-size: 100px;

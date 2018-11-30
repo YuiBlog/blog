@@ -1,8 +1,10 @@
 const pkg = require('./package')
 
 module.exports = {
-  buildDir: "../functions/lib/.nuxt",
   mode: 'universal',
+
+  // for yarn workspace
+  modulesDir: ["../node_modules"],
 
   /*
   ** Headers of the page
@@ -10,19 +12,19 @@ module.exports = {
   head: {
     title: pkg.name,
     meta: [
-      { charset: 'utf-8' },
-      { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: pkg.description }
+      {charset: 'utf-8'},
+      {name: 'viewport', content: 'width=device-width, initial-scale=1'},
+      {hid: 'description', name: 'description', content: pkg.description}
     ],
     link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
+      {rel: 'icon', type: 'image/x-icon', href: '/favicon.ico'}
     ]
   },
 
   /*
   ** Customize the progress-bar color
   */
-  loading: { color: '#fff' },
+  loading: {color: '#fff'},
 
   /*
   ** Global CSS
@@ -41,6 +43,7 @@ module.exports = {
   ** Nuxt.js modules
   */
   modules: [
+    "~/modules/typescript.js"
   ],
 
   /*
