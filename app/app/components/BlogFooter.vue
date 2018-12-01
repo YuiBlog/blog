@@ -7,4 +7,8 @@
           br
           | Powered by 
           a.text-white.link(href="https://github.com/mika-f/blog.mochizuki.moe" target="_blank") Yui
+          | .
+          | The source code is licensed 
+          a.text-white.link(href="http://opensource.org/licenses/mit-license.php" target="_blank") MIT
+          | .
 </template>
