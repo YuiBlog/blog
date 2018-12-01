@@ -1,7 +1,7 @@
 <template lang="pug">
   .pt-5.pb-10
     .py-5
-      nuxt-link.no-underline.text-black(class="hover:underline" to="/")
+      nuxt-link.link.text-black(to="/")
         h1 みかづきメモ
     
     small.text-grey-darker

@@ -3,8 +3,8 @@
     .py-5
       p.text-white.text-center
         small
-          nuxt-link.text-white.no-underline(class="hover:underline" to="/") みかづきメモ
+          nuxt-link.link.text-white(to="/") みかづきメモ
           br
           | Powered by 
-          a.text-white.no-underline(class="hover:underline" href="https://github.com/mika-f/blog.mochizuki.moe") Yui
+          a.text-white.link(href="https://github.com/mika-f/blog.mochizuki.moe" target="_blank") Yui
 </template>
