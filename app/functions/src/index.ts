@@ -12,15 +12,14 @@ const nuxt = new Nuxt({
   }
 });
 
-function handleRequest(req, res) {
-  res.set("Cache-Control", "public, max-age=600, s-maxage=1200");
-  return new Promise((resolve, reject) => {
-    nuxt.render(req, res, (promise) => {
-      promise.then(resolve).catch(reject);
-    });
-  });
+async function handleRequest(req, res) {
+  res.set("Cache-Control", "public, max-age=300, s-maxage=600");
+  return await nuxt.render(req, res);
 }
 
 app.use(handleRequest);
 
-export const render = functions.https.onRequest(app);
+export const render = functions.runWith({
+  memory: "256MB",
+  timeoutSeconds: 10
+}).https.onRequest(app);
