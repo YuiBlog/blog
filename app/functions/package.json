@@ -10,7 +10,7 @@
   "main": "lib/index.js",
   "dependencies": {
     "express": "^4.16.4",
-    "firebase-admin": "~6.0.0",
+    "firebase-admin": "^6.3.0",
     "firebase-functions": "^2.1.0",
     "marked": "^0.5.2",
     "nuxt": "^2.3.4",
