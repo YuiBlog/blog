@@ -1,7 +1,7 @@
 <template lang="pug">
   .min-h-screen.flex.flex-col
     blog-header
-    .flex-1
+    .flex-1.px-2(class="sm:px-0")
       .container.mx-auto
         blog-title
         nuxt
