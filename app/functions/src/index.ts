@@ -13,7 +13,8 @@ const nuxt = new Nuxt({
 });
 
 async function handleRequest(req, res) {
-  res.set("Cache-Control", "public, max-age=300, s-maxage=600");
+  // Hosting Cache is dead
+  // res.set("Cache-Control", "public, max-age=300, s-maxage=600");
   return await nuxt.render(req, res);
 }
 
