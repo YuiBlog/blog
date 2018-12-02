@@ -1,7 +1,7 @@
 <template lang="pug">
-  blog-parts(title="月間アーカイブ")
+  blog-parts(title="管理コンソール")
+    img(src="https://static.mochizuki.moe/busy_banner.png")
 </template>
-
 
 <script lang="ts">
 import { Component, Vue } from "nuxt-property-decorator";

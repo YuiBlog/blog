@@ -6,7 +6,7 @@
 <script lang="ts">
 import { Component, Vue } from "nuxt-property-decorator";
 
-import BlogParts from "presentationals/BlogParts.vue";
+import BlogParts from "components/presentationals/BlogParts.vue";
 
 @Component({
   components: {

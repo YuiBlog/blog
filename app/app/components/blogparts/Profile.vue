@@ -11,8 +11,8 @@
 <script lang="ts">
 import { Component, Vue } from "nuxt-property-decorator";
 
-import Avatar from "presentationals/Avatar.vue";
-import BlogParts from "presentationals/BlogParts.vue";
+import Avatar from "components/presentationals/Avatar.vue";
+import BlogParts from "components/presentationals/BlogParts.vue";
 
 @Component({
   components: {
