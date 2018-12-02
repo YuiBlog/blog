@@ -11,6 +11,7 @@
   "dependencies": {
     "axios": "^0.18.0",
     "cors": "^2.8.5",
+    "dayjs": "^1.7.7",
     "express": "^4.16.4",
     "firebase-admin": "^6.3.0",
     "firebase-functions": "^2.1.0",

@@ -9,7 +9,9 @@
 </template>
 
 <script lang="ts">
+import dayjs from "dayjs";
 import { Component, Prop, Vue } from "nuxt-property-decorator";
+
 import { Entry } from "models/entry";
 
 @Component
@@ -19,7 +21,7 @@ export default class extends Vue {
 
   public get date(): string {
     const date = new Date(this.entry.created_at._seconds * 1000 + 3600 * 9 * 1000);
-    return `${date.getFullYear()}/${date.getMonth() + 1}/${date.getDay() <= 9 ? `0${date.getDay()}` : date.getDay()}`;
+    return dayjs(date).format("YYYY/MM");
   }
 
   public get url(): string {
