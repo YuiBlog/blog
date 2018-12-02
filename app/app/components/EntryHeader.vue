@@ -1,7 +1,7 @@
 <template lang="pug">
   div
-    p.leading-normal
-      small {{date}}
+    p.leading-normal.pb-1
+      small {{formatDate("YYYY/MM/DD")}}
 
     h2
       nuxt-link.link.text-black(:to="url")
@@ -19,17 +19,17 @@ export default class extends Vue {
   @Prop({ required: true })
   public entry!: Entry;
 
-  public get date(): string {
-    const date = new Date(this.entry.created_at._seconds * 1000 + 3600 * 9 * 1000);
-    return dayjs(date).format("YYYY/MM");
-  }
-
   public get url(): string {
-    return `/entry/${this.date}/${this.entry.slug}`;
+    return `/entry/${this.formatDate("YYYY/MM")}/${this.entry.slug}`;
   }
 
   public get title(): string {
     return this.entry.title;
+  }
+
+  public formatDate(format: string): string {
+    const date = new Date(this.entry.created_at._seconds * 1000 + 3600 * 9 * 1000);
+    return dayjs(date).format(format);
   }
 }
 </script>

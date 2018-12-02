@@ -1,5 +1,5 @@
 <template lang="pug">
-  .pt-5.pb-10
+  .pb-10
     entry-header(:entry="entry")
 
     markdown-renderer(:markdown="body")
