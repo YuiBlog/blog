@@ -1,24 +1,12 @@
-import * as cors from "cors";
 import * as express from "express";
 import * as firebase from "firebase-admin";
 import * as functions from 'firebase-functions';
 
-firebase.initializeApp();
-firebase.firestore().settings({
-  timestampsInSnapshots: true
-});
+import "../bootstrap/initialize";
 
 const app = express();
 
-const corsConfig: cors.CorsOptions = {
-  origin: "*",
-  maxAge: 36000,
-  credentials: true
-};
-
-app.options("*", cors(corsConfig));
-
-app.get("/api/entries", cors(corsConfig), async (req, res) => {
+app.get("/api/entries", async (req, res) => {
   const entries = [];
   const collection = await firebase.firestore()
     .collection("entries")
@@ -38,7 +26,7 @@ app.get("/api/entries", cors(corsConfig), async (req, res) => {
   return;
 });
 
-app.get("/api/entries/:yyyy/:mm/:slug", cors(corsConfig), async (req, res) => {
+app.get("/api/entries/:yyyy/:mm/:slug", async (req, res) => {
   let entry: any = null;
   const collection = await firebase.firestore()
     .collection("entries")
