@@ -1,3 +1,4 @@
+import * as cors from "cors";
 import * as express from "express";
 import * as firebase from "firebase-admin";
 import * as functions from 'firebase-functions';
@@ -5,8 +6,14 @@ import * as functions from 'firebase-functions';
 import "../bootstrap/initialize";
 
 const app = express();
+const corsOptions: cors.CorsOptions = {
+  origin: "*",
+  maxAge: 36000
+};
 
-app.get("/api/entries", async (req, res) => {
+app.options("*", cors(corsOptions));
+
+app.get("/api/entries", cors(corsOptions), async (req, res) => {
   const entries = [];
   const collection = await firebase.firestore()
     .collection("entries")
@@ -26,7 +33,7 @@ app.get("/api/entries", async (req, res) => {
   return;
 });
 
-app.get("/api/entries/:yyyy/:mm/:slug", async (req, res) => {
+app.get("/api/entries/:yyyy/:mm/:slug", cors(corsOptions), async (req, res) => {
   let entry: any = null;
   const collection = await firebase.firestore()
     .collection("entries")
