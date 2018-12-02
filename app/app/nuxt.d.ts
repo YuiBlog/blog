@@ -2,13 +2,6 @@ import Vue from "vue";
 import VueRouter from "vue-router";
 import { Request } from "express";
 
-import * as firebase from "firebase-admin";
-
-declare module "vue/types/vue" {
-  interface Vue {
-    $firebase: typeof firebase;
-  }
-}
 // https://nuxtjs.org/api/context
 export declare class Context {
   app: Vue;

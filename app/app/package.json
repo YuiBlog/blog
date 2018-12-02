@@ -8,8 +8,8 @@
     "start": "nuxt start"
   },
   "dependencies": {
+    "axios": "^0.18.0",
     "cross-env": "^5.2.0",
-    "firebase-admin": "^6.3.0",
     "marked": "^0.5.2",
     "nuxt": "^2.0.0",
     "nuxt-class-component": "^1.2.1",

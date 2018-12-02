@@ -20,8 +20,12 @@
         "destination": "/assets/"
       },
       {
+        "source": "/api/**",
+        "function": "https-api"
+      },
+      {
         "source": "**",
-        "function": "render"
+        "function": "https-render"
       }
     ]
   },

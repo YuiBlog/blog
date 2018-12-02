@@ -31,13 +31,13 @@ module.exports = {
   */
   css: [
     "~/assets/css/tailwind.css",
+    "~/assets/css/prismjs.css",
   ],
 
   /*
   ** Plugins to load before mounting the App
   */
   plugins: [
-    {src: "~/plugins/firebase.ts", ssr: true}
   ],
 
   /*

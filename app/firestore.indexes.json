@@ -1,14 +1,17 @@
 {
-  // Example:
-  //
-  // "indexes": [
-  //   {
-  //     "collectionId": "widgets",
-  //     "fields": [
-  //       { "fieldPath": "foo", "mode": "ASCENDING" },
-  //       { "fieldPath": "bar", "mode": "DESCENDING" }
-  //     ]
-  //   }
-  // ]
-  "indexes": []
+  "indexes": [
+    {
+      "collectionId": "entries",
+      "fields": [
+        {
+          "fieldPath": "slug",
+          "mode": "ASCENDING"
+        },
+        {
+          "fieldPath": "created_at",
+          "mode": "ASCENDING"
+        }
+      ]
+    }
+  ]
 }
