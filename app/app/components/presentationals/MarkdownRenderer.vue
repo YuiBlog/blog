@@ -17,6 +17,7 @@ import "prismjs/components/prism-nginx";
 import "prismjs/components/prism-perl";
 import "prismjs/components/prism-pug";
 import "prismjs/components/prism-python";
+import "prismjs/components/prism-javascript";
 import "prismjs/components/prism-tsx";
 import "prismjs/components/prism-jsx";
 import "prismjs/components/prism-ruby";
@@ -41,7 +42,9 @@ export default class extends Vue {
     Marked.setOptions({
       gfm: true,
       highlight: (code, lang) => {
-        return Prism.languages[lang] ? Prism.highlight(code, Prism.languages[lang]) : code;
+        return Prism.languages[lang]
+          ? Prism.highlight(code, Prism.languages[lang])
+          : `<pre class="language-plain"><code class="language-plain">${code}</code></pre>`;
       }
     });
   }
@@ -50,7 +53,7 @@ export default class extends Vue {
   public markdown!: string;
 
   public get asHtmlDocument(): string {
-    return Marked.parse(this.markdown, { renderer: this.renderer });
+    return Marked.parse(this.markdown.replace(/\\n/g, "\n"), { renderer: this.renderer });
   }
 }
 </script>
