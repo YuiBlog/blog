@@ -23,6 +23,12 @@ import { Entry } from "shared/models/entry";
 export default class extends Vue {
   public entry!: Entry;
 
+  public head(): any {
+    return {
+      title: this.entry.title
+    };
+  }
+
   public async asyncData({ app, params }: Context): Promise<any> {
     const { year, month, id } = params;
     let entry!: Entry;
