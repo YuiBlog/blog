@@ -32,3 +32,9 @@ export default class extends Vue {
   public async asyncData({}): Promise<void> {}
 }
 </script>
+
+<style>
+.nuxt-progress {
+  background-color: #38c172;
+}
+</style>
