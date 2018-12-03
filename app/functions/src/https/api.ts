@@ -2,7 +2,6 @@ import * as cors from "cors";
 import * as express from "express";
 import * as functions from 'firebase-functions';
 
-import "../bootstrap/initialize";
 import * as query from "../shared/query";
 
 const app = express();
@@ -34,7 +33,7 @@ app.get("/api/entries/:yyyy/:mm/:slug", cors(corsOptions), async (req, res) => {
   res.status(200).send(entry);
 });
 
-export const api = functions.runWith({
+module.exports = functions.runWith({
   memory: "256MB",
   timeoutSeconds: 10
 }).https.onRequest(app);

@@ -20,7 +20,7 @@ async function handleRequest(req, res) {
 
 app.use(handleRequest);
 
-export const render = functions.runWith({
+module.exports = functions.runWith({
   memory: "256MB",
   timeoutSeconds: 20
 }).https.onRequest(app);
