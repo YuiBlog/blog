@@ -1,5 +1,5 @@
 <template lang="pug">
-  blog-parts(title="月間アーカイブ")
+  blog-parts(title="月別アーカイブ")
 </template>
 
 

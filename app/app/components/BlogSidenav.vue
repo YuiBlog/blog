@@ -1,7 +1,7 @@
 <template lang="pug">
   div
     profile
-    entry
+    latest
     archive
     category
     happy-busy
@@ -14,7 +14,7 @@ import { Component, Vue } from "nuxt-property-decorator";
 import Admin from "components/blogparts/Admin.vue";
 import Archive from "components/blogparts/Archive.vue";
 import Category from "components/blogparts/Category.vue";
-import Entry from "components/blogparts/Entry.vue";
+import Latest from "components/blogparts/Latest.vue";
 import HappyBusy from "components/blogparts/HappyBusy.vue";
 import Profile from "components/blogparts/Profile.vue";
 
@@ -23,7 +23,7 @@ import Profile from "components/blogparts/Profile.vue";
     Admin,
     Archive,
     Category,
-    Entry,
+    Latest,
     HappyBusy,
     Profile
   }
