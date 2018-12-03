@@ -1,5 +1,6 @@
 <template lang="pug">
   blog-parts(title="月別アーカイブ")
+    img(src="https://static.mochizuki.moe/busy_banner.png")
 </template>
 
 
