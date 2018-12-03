@@ -4,6 +4,7 @@ import * as firebase from "firebase-admin";
 import * as functions from 'firebase-functions';
 
 import "../bootstrap/initialize";
+import * as query from "../shared/entry";
 
 const app = express();
 const corsOptions: cors.CorsOptions = {
@@ -14,42 +15,17 @@ const corsOptions: cors.CorsOptions = {
 app.options("*", cors(corsOptions));
 
 app.get("/api/entries", cors(corsOptions), async (req, res) => {
-  const entries = [];
-  const collection = await firebase.firestore()
-    .collection("entries")
-    .orderBy("created_at", "desc")
-    .limit(21)
-    .get();
-  collection.forEach(entry => {
-    entries.push(entry.data());
-  });
+  const entries = await query.list(0);
 
   res.set("Cache-Control", "public, max-age=60, s-maxage=300");
-  res.status(200).send({
-    entries,
-    hasNext: entries.length > 20,
-  });
-
-  return;
+  res.status(200).send(entries);
 });
 
 app.get("/api/entries/:yyyy/:mm/:slug", cors(corsOptions), async (req, res) => {
-  let entry: any = null;
-  const collection = await firebase.firestore()
-    .collection("entries")
-    .where("created_at", ">=", new Date(req.params.yyyy, req.params.mm - 1))
-    .where("created_at", "<", new Date(req.params.yyyy, req.params.mm))
-    .where("slug", "==", req.params.slug)
-    .limit(1)
-    .get();
-
-  collection.forEach(w => {
-    entry = w.data();
-  });
+  const entry = await query.show(req.params.yyyy, req.params.mm, req.params.slug);
 
   res.set("Cache-Control", "public, max-age=60, s-maxage=300");
   res.status(200).send(entry);
-  return;
 });
 
 export const api = functions.runWith({

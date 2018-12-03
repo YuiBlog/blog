@@ -12,7 +12,7 @@ import { Component, Vue } from "nuxt-property-decorator";
 
 import EntryHeader from "components/EntryHeader.vue";
 import MarkdownRenderer from "components/presentationals/MarkdownRenderer.vue";
-import { Entry } from "models/entry";
+import { Entry } from "shared/models/entry";
 
 @Component({
   components: {
@@ -23,9 +23,14 @@ import { Entry } from "models/entry";
 export default class extends Vue {
   public entry!: Entry;
 
-  public async asyncData({ params }: Context): Promise<any> {
+  public async asyncData({ app, params }: Context): Promise<any> {
     const { year, month, id } = params;
-    const entry = await axios.get(`https://blog.mochizuki.moe/api/entries/${year}/${month}/${id}`).then(w => w.data);
+    let entry!: Entry;
+    if (process.server) {
+      entry = await app.$firebase.entry.show(year, month, id);
+    } else {
+      entry = await axios.get(`https://blog.mochizuki.moe/api/entries/${year}/${month}/${id}`).then(w => w.data);
+    }
     return { entry };
   }
 

@@ -11,7 +11,7 @@
 import dayjs from "dayjs";
 import { Component, Prop, Vue } from "nuxt-property-decorator";
 
-import { Entry } from "models/entry";
+import { Entry } from "shared/models/entry";
 
 import EntryHeader from "components/EntryHeader.vue";
 import MarkdownRenderer from "components/presentationals/MarkdownRenderer.vue";

@@ -3,7 +3,13 @@ export interface Entry {
   title: string;
   body: string;
   created_at: {
-    seconds: number;
     _seconds: number;
   };
+}
+
+export interface Entries {
+  entries: Entry[];
+  offset: number;
+  hasPrev: boolean;
+  hasNext: boolean;
 }

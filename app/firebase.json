@@ -5,7 +5,13 @@
   },
   "functions": {
     "predeploy": [],
-    "source": "dist/server"
+    "source": "dist/server",
+    "ignore": [
+      "*.log",
+      "tsconfig.json",
+      "**/src/**",
+      "**/node_modules/**"
+    ]
   },
   "hosting": {
     "public": "dist/client",

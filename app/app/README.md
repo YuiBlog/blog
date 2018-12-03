@@ -1,4 +1,4 @@
-# yui
+# Yui
 
 > Personal blog software on Google Firebase.
 

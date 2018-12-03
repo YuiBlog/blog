@@ -11,7 +11,7 @@ import { Component, Vue } from "nuxt-property-decorator";
 
 import EntryOverview from "components/EntryOverview.vue";
 import MarkdownRenderer from "components/presentationals/MarkdownRenderer.vue";
-import { Entry } from "models/entry";
+import { Entry, Entries } from "shared/models/entry";
 
 @Component({
   components: {
@@ -22,9 +22,12 @@ import { Entry } from "models/entry";
 export default class extends Vue {
   public entries!: string;
 
-  public async asyncData({ app }: Context): Promise<any> {
-    const response = await axios.get("https://blog.mochizuki.moe/api/entries").then(w => w.data);
-    return response;
+  public async asyncData({ app }: Context): Promise<Entries> {
+    if (process.server) {
+      return await app.$firebase.entry.list(0);
+    } else {
+      return await axios.get("https://blog.mochizuki.moe/api/entries").then(w => w.data);
+    }
   }
 }
 </script>

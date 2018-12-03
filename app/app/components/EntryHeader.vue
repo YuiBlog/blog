@@ -12,7 +12,7 @@
 import dayjs from "dayjs";
 import { Component, Prop, Vue } from "nuxt-property-decorator";
 
-import { Entry } from "models/entry";
+import { Entry } from "shared/models/entry";
 
 @Component
 export default class extends Vue {
