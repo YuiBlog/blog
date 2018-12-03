@@ -1,7 +1,7 @@
 import * as firebase from "firebase-admin";
 
 export function initializeAppWithProjectId() {
-  if (firebase.app.length != 0) {
+  if (firebase.apps.length) {
     return;
   }
 
@@ -14,7 +14,7 @@ export function initializeAppWithProjectId() {
 }
 
 export function initializeApp() {
-  if (firebase.app.length != 0) {
+  if (firebase.apps.length) {
     return;
   }
 
