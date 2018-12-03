@@ -38,7 +38,9 @@ const getters: DefineGetters<IGetters, IState> = {
 
 const mutations: DefineMutations<IMutations, IState> = {
   setLatestEntries(state, { entries }) {
-    state.latestEntries = entries;
+    state.latestEntries = entries.map(w => {
+      return Object.assign(w, { body: null });
+    });
   }
 };
 
