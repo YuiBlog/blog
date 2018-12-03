@@ -13,6 +13,13 @@ const corsOptions: cors.CorsOptions = {
 
 app.options("*", cors(corsOptions));
 
+app.get("/api/categories", cors(corsOptions), async (req, res) => {
+  const categories = await query.category.all();
+
+  res.set("Cache-Control", "public, max-age=60, s-maxage=300");
+  res.status(200).send(categories);
+});
+
 app.get("/api/entries", cors(corsOptions), async (req, res) => {
   const entries = await query.entry.list(0);
 

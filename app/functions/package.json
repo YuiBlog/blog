@@ -15,6 +15,7 @@
     "express": "^4.16.4",
     "firebase-admin": "^6.3.0",
     "firebase-functions": "^2.1.0",
+    "lodash": "^4.17.11",
     "marked": "^0.5.2",
     "nuxt": "^2.3.4",
     "nuxt-class-component": "^1.2.1",
@@ -25,6 +26,7 @@
   },
   "devDependencies": {
     "@types/cors": "^2.8.4",
+    "@types/lodash": "^4.14.118",
     "tslint": "~5.8.0",
     "typescript": "~2.8.3"
   },

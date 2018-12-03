@@ -5,6 +5,7 @@ export interface Entry {
   created_at: {
     _seconds: number;
   };
+  categories: string[];
 }
 
 export interface Entries {
