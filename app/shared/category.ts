@@ -7,7 +7,7 @@ export async function all(): Promise<Category[]> {
   const collection = await firebase.firestore()
     .collection("categories")
     .where("count", ">", 0)
-    .orderBy("count", "asc")
+    .orderBy("count", "desc")
     .get();
   collection.forEach(category => categories.push(category.data() as Category));
 
