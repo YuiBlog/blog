@@ -23,7 +23,7 @@ export default class extends Vue {
   public entries!: Entry[];
 
   public url(entry: Entry): string {
-    const date = new Date(entry.created_at._seconds * 1000 + 3600 * 9 * 1000);
+    const date = new Date(entry.created_at._seconds * 1000);
     return `/entry/${dayjs(date).format("YYYY/MM")}/${entry.slug}`;
   }
 }
