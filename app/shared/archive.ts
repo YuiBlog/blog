@@ -10,5 +10,5 @@ export async function all(): Promise<Archive[]> {
     .get();
   collection.forEach(archive => archives.push(archive.data() as Archive));
 
-  return archives;
+  return archives.sort((a, b) => a > b ? 1 : (a < b ? -1 : 0));
 }
