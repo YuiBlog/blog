@@ -11,7 +11,7 @@ module.exports = functions.runWith({
   const entry = snapshot.data() as Entry;
 
   // archive
-  await decrementArchiveCount(new Date(entry.created_at._seconds));
+  await decrementArchiveCount(new Date(entry.created_at._seconds * 1000));
 
   // category
   for (let category of entry.categories) {

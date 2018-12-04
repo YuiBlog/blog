@@ -14,8 +14,8 @@ module.exports = functions.runWith({
 
   // archive
   if (before.created_at._seconds !== after.created_at._seconds) {
-    await decrementArchiveCount(new Date(before.created_at._seconds));
-    await incrementArchiveCount(new Date(after.created_at._seconds));
+    await decrementArchiveCount(new Date(before.created_at._seconds * 1000));
+    await incrementArchiveCount(new Date(after.created_at._seconds * 1000));
   }
 
   // category
