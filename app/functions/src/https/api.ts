@@ -30,6 +30,12 @@ app.get("/api/categories", cors(corsOptions), async (req, res) => {
   pack(res, categories);
 });
 
+app.get("/api/categories/:category", cors(corsOptions), async (req, res) => {
+  const entries = await query.category.entries(req.params.category, 0);
+
+  pack(res, entries);
+});
+
 app.get("/api/entries", cors(corsOptions), async (req, res) => {
   const entries = await query.entry.list(0);
 

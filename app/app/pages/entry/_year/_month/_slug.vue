@@ -30,12 +30,12 @@ export default class extends Vue {
   }
 
   public async asyncData({ app, params }: Context): Promise<any> {
-    const { year, month, id } = params;
+    const { year, month, slug } = params;
     let entry!: Entry;
     if (process.server) {
-      entry = await app.$firebase.entry.show(year, month, id);
+      entry = await app.$firebase.entry.show(year, month, slug);
     } else {
-      entry = await axios.get(`https://blog.mochizuki.moe/api/entries/${year}/${month}/${id}`).then(w => w.data);
+      entry = await axios.get(`https://blog.mochizuki.moe/api/entries/${year}/${month}/${slug}`).then(w => w.data);
     }
     return { entry };
   }

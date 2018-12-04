@@ -5,6 +5,8 @@ import { Entry } from "../shared/models/entry";
 import { decrementArchiveCount, incrementArchiveCount } from "../utils/aggregation/archive";
 import { decrementCategoryCount, incrementCategoryCount } from "../utils/aggregation/category";
 
+// TODO: use transaction
+// ref: https://firebase.google.com/docs/firestore/manage-data/transactions?hl=ja
 module.exports = functions.runWith({
   memory: "256MB",
   timeoutSeconds: 30
