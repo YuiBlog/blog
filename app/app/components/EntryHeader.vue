@@ -3,9 +3,13 @@
     p.leading-normal.pb-1
       small {{formatDate("YYYY/MM/DD")}}
 
-    h2
+    h2.mb-2
       nuxt-link.link.text-black(:to="url")
         | {{title}}
+
+    ul.list-reset
+      li.inline.px-2.py-1.mr-1.text-xs.bg-grey-light.rounded(v-for="category in entry.categories")
+        nuxt-link.link.text-black(:to="`/archive/category/${category}`") {{category}}
 </template>
 
 <script lang="ts">
