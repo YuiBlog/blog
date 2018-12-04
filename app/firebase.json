@@ -20,9 +20,20 @@
       "**/.*",
       "**/node_modules/**"
     ],
+    "headers": [
+      {
+        "source": "/assets/**",
+        "headers": [
+          {
+            "key": "Cache-Control",
+            "value": "s-maxage=3600, max-age=300"
+          }
+        ]
+      }
+    ],
     "rewrites": [
       {
-        "source": "/assets/*",
+        "source": "/assets/**",
         "destination": "/assets/"
       },
       {

@@ -9,7 +9,7 @@ Personal blog software on Google Firebase.
 # install dependencies
 $ yarn
 
-# serve
+# serve for development
 $ yarn run dev
 
 # build for production
