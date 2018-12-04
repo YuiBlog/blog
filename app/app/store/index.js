@@ -14,9 +14,9 @@ files.keys().forEach(key => {
 Vue.use(Vuex);
 
 const actions = {
-  nuxtServerInit: async ({dispatch}, ctx) => {
-    dispatch("fetchCategories", ctx);
-    dispatch("fetchLatest5Entries", ctx);
+  async nuxtServerInit ({dispatch}, ctx) {
+    await dispatch("fetchCategories", ctx);
+    await dispatch("fetchLatest5Entries", ctx);
   }
 };
 
