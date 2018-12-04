@@ -1,14 +1,20 @@
 import * as functions from "firebase-functions";
 
 import { Entry } from "../shared/models/entry";
-import { up } from "../utils/categoryAggregation";
+import { incrementArchiveCount } from "../utils/aggregation/archive";
+import { incrementCategoryCount } from "../utils/aggregation/category";
 
 module.exports = functions.runWith({
   memory: "256MB",
   timeoutSeconds: 30
 }).firestore.document("entries/{entryId}").onCreate(async (snapshot) => {
   const entry = snapshot.data() as Entry;
+
+  // archive
+  await incrementArchiveCount(new Date(entry.created_at._seconds));
+
+  // category
   for (let category of entry.categories) {
-    await up(category);
+    await incrementCategoryCount(category);
   }
 });

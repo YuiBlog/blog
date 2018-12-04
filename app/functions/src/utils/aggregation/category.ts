@@ -1,7 +1,7 @@
 import * as admin from "firebase-admin";
-import { Category } from "../shared/models/category";
+import { Category } from "../../shared/models/category";
 
-export async function select(name: string): Promise<FirebaseFirestore.QueryDocumentSnapshot> {
+export async function selectCategory(name: string): Promise<FirebaseFirestore.QueryDocumentSnapshot> {
   let category;
 
   const categories = await admin.firestore().collection("categories")
@@ -11,8 +11,8 @@ export async function select(name: string): Promise<FirebaseFirestore.QueryDocum
   return category;
 }
 
-export async function up(name: string): Promise<void> {
-  const category = await select(name);
+export async function incrementCategoryCount(name: string): Promise<void> {
+  const category = await selectCategory(name);
 
   if (category) {
     // count up
@@ -29,8 +29,8 @@ export async function up(name: string): Promise<void> {
   }
 }
 
-export async function down(name: string): Promise<void> {
-  const category = await select(name);
+export async function decrementCategoryCount(name: string): Promise<void> {
+  const category = await selectCategory(name);
   if (category) {
     await category.ref.update({
       count: (category.data() as Category).count - 1
