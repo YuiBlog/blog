@@ -2,13 +2,9 @@ import * as admin from "firebase-admin";
 import { Archive } from "../../shared/models/archive";
 
 export async function selectArchive(date: Date): Promise<FirebaseFirestore.QueryDocumentSnapshot> {
-  let archive;
-
   const archives = await admin.firestore().collection("archives")
     .where("date", "==", `${date.getFullYear()}-${date.getMonth() + 1}`).limit(1).get();
-  archives.forEach(w => archive = w);
-
-  return archive;
+  return archives.docs.shift();
 }
 
 export async function incrementArchiveCount(date: Date): Promise<void> {
