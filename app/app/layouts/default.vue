@@ -28,9 +28,7 @@ import BlogTitle from "components/BlogTitle.vue";
     BlogTitle
   }
 })
-export default class extends Vue {
-  public async asyncData({}): Promise<void> {}
-}
+export default class extends Vue {}
 </script>
 
 <style>
