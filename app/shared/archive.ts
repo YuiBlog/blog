@@ -11,7 +11,11 @@ export async function all(): Promise<Archive[]> {
     .get();
   collection.forEach(archive => archives.push(archive.data() as Archive));
 
-  return archives.sort((a, b) => a.date > b.date ? -1 : (a.date < b.date ? 1 : 0));
+  return archives.sort((a, b) => {
+    const da = new Date(a.date);
+    const db = new Date(b.date);
+    return da > db ? -1 : (da < db ? 1 : 0);
+  });
 }
 
 export async function entries(year: number, month: number, offset: number): Promise<Entries> {
