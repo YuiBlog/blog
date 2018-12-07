@@ -32,8 +32,8 @@ export default class extends Vue {
   }
 
   public get body(): string {
-    const idx = this.entry.body.indexOf("<!-- more -->") || this.entry.body.length;
-    return this.entry.body.substring(0, idx);
+    const idx = this.entry.body.indexOf("<!-- more -->");
+    return this.entry.body.substring(0, idx < 0 ? this.entry.body.length : idx);
   }
 
   public get hasReadMore(): boolean {
