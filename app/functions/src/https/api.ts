@@ -24,6 +24,12 @@ app.get("/api/archives", cors(corsOptions), async (req, res) => {
   pack(res, archives);
 });
 
+app.get("/api/archives/:yyyy/:mm", cors(corsOptions), async (req, res) => {
+  const entries = await query.archive.entries(req.params.yyyy, req.params.mm, 0);
+
+  pack(res, entries);
+});
+
 app.get("/api/categories", cors(corsOptions), async (req, res) => {
   const categories = await query.category.all();
 

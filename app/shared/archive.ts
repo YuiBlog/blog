@@ -1,6 +1,7 @@
 import * as firebase from "firebase-admin";
 
 import { Archive } from "./models/archive";
+import { Entries, Entry } from "./models/entry";
 
 export async function all(): Promise<Archive[]> {
   const archives: Archive[] = [];
@@ -12,3 +13,23 @@ export async function all(): Promise<Archive[]> {
 
   return archives.sort((a, b) => a.date > b.date ? -1 : (a.date < b.date ? 1 : 0));
 }
+
+export async function entries(year: number, month: number, offset: number): Promise<Entries> {
+  const entries: Entry[] = [];
+  const collection = await firebase.firestore()
+    .collection("entries")
+    .where("created_at", ">=", new Date(year, month - 1))
+    .where("created_at", "<", new Date(year, month))
+    .orderBy("created_at", "desc")
+    .limit(6)
+    .offset(offset)
+    .get();
+  collection.forEach(entry => entries.push(entry.data() as Entry));
+
+  return {
+    entries,
+    offset,
+    hasPrev: offset > 0,
+    hasNext: entries.length > 5
+  } as Entries;
+} 
