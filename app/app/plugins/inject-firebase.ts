@@ -1,3 +1,5 @@
+// サーバーでのみ firebase-admin を inject しているけど、多分ダメだと思う
+// 動いてはいるけどね
 // tslint:disable
 import { Context } from "nuxt";
 
