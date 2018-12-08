@@ -1,7 +1,12 @@
 <template lang="pug">
   div
-    .border-b.pb-4.mb-8(v-for="entry in entries" :key="entry.id")
-      entry-overview(:entry="entry")
+    template(v-if="entries.length > 0")
+      .border-b.pb-4.mb-8(v-for="entry in entries" :key="entry.id")
+        entry-overview(:entry="entry")
+    template(v-else)
+      h2.pb-2 Category Not Found
+      p
+        | お探しのカテゴリーは見つかりませんでした。
 </template>
 
 <script lang="ts">
