@@ -30,9 +30,3 @@ import BlogTitle from "components/BlogTitle.vue";
 })
 export default class extends Vue {}
 </script>
-
-<style>
-.nuxt-progress {
-  background-color: #38c172;
-}
-</style>
