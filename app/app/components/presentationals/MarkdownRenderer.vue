@@ -33,11 +33,22 @@ export default class extends Vue {
     super();
     this.renderer = new Marked.Renderer();
     this.renderer.code = (code, lang, escaped) => {
+      let filename = "";
+      if (lang.indexOf(":") > 0) {
+        let _, fn;
+        [lang, filename, ..._] = lang.split(":");
+        if (_.length > 0) {
+          filename += ":" + _.join(":");
+        }
+      }
+
       if (lang && Prism.languages[lang]) {
         return (
-          `<pre class="language-${lang}"><code class="language-${lang}">` +
+          `<pre class="language-${lang}" ${filename ? `data-lang="${filename}"` : ""}>` +
+          `<code class="language-${lang}">` +
           Prism.highlight(code, Prism.languages[lang]) +
-          `</code></pre>`
+          `</code>` +
+          `</pre>`
         );
       } else {
         return `<pre class="language-plain"><code class="language-plain">${code}</pre></code>`;
@@ -60,3 +71,26 @@ export default class extends Vue {
   }
 }
 </script>
+
+<style lang="scss" scoped>
+/deep/ pre[class*="language-"] {
+  &[data-lang] {
+    position: relative;
+    padding: 2em 1em 1em 1em;
+  }
+
+  &::before {
+    background: #dae1e7;
+    color: #606f7b;
+    content: attr(data-lang);
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 2px 4px;
+
+    // reset
+    text-shadow: none;
+  }
+}
+</style>
