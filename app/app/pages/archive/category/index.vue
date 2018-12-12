@@ -6,21 +6,11 @@
 </template>
 
 <script lang="ts">
-import axios from "axios";
 import { Context } from "nuxt";
 import { Component, Vue } from "nuxt-property-decorator";
 
-import EntryOverview from "components/EntryOverview.vue";
-import { Entries } from "shared/models/entry";
-
-@Component({
-  components: {
-    EntryOverview
-  }
-})
+@Component
 export default class extends Vue {
-  public entries!: Entries;
-
   public async asyncData({ res }: Context): Promise<void> {
     res.statusCode = 404;
   }
