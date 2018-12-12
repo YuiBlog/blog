@@ -47,5 +47,5 @@ jobs:
       # run tests!
       - run: yarn run build
 
-      - run: yarn run deploy --silent --token "$FIREBASE_TOKEN"
+      - run: yarn run --silent deploy --token "$FIREBASE_TOKEN"
 
