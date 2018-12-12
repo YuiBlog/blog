@@ -34,7 +34,7 @@ export default class extends Vue {
     this.renderer = new Marked.Renderer();
     this.renderer.code = (code, lang, escaped) => {
       let filename = "";
-      if (lang.indexOf(":") > 0) {
+      if (lang && lang.indexOf(":") > 0) {
         let _, fn;
         [lang, filename, ..._] = lang.split(":");
         if (_.length > 0) {
