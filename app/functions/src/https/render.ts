@@ -12,9 +12,18 @@ const nuxt = new Nuxt({
   }
 });
 
-async function handleRequest(req, res) {
+async function handleRequest(req: express.Request, res) {
   // Hosting Cache is dead
   // res.set("Cache-Control", "public, max-age=300, s-maxage=600");
+
+  // NOTE: If url path ends with .css or .js, Nuxt / Vue Router interept url as assets path.
+  if (/\.(js|css)$/.test(req.url)) {
+    if (req.url.indexOf("?") > 0) {
+      req.url += "&assets=false";
+    } else {
+      req.url += "?assets=false";
+    }
+  }
   return await nuxt.render(req, res);
 }
 
