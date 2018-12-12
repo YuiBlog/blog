@@ -1,6 +1,6 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
-import { Request } from "express";
+import * as express from "express";
 
 // https://nuxtjs.org/api/context
 export declare class Context {
@@ -15,8 +15,8 @@ export declare class Context {
   env: any;
   params: any;
   query: any;
-  req: Request;
-  res: Response;
+  req: express.Request;
+  res: express.Response;
   redirect: Function;
   error: Function;
   nuxtState: any;
