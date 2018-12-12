@@ -74,6 +74,8 @@ export default class extends Vue {
 
 <style lang="scss" scoped>
 /deep/ pre[class*="language-"] {
+  border-radius: 0;
+
   &[data-lang] {
     position: relative;
     padding: 2em 1em 1em 1em;
