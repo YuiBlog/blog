@@ -19,21 +19,28 @@ jobs:
     steps:
       - checkout
 
+      # re-install yarnpkg
+      - run:
+          name: Upgrade Yarnpkg
+          command: |
+            npm uninstall -g yarn
+            npm install -g yarn@1.12.3
+
       - run: yarn --version
 
       # Download and cache dependencies
       - restore_cache:
           keys:
-          - v1-dependencies-{{ checksum "package.json" }}
+          - v1-dependencies-{{ checksum "yarn.lock" }}
           # fallback to using the latest cache if no exact match is found
           - v1-dependencies-
 
-      - run: yarn install
+      - run: yarn install --frozen-lockfile
 
       - save_cache:
           paths:
-            - node_modules
-          key: v1-dependencies-{{ checksum "package.json" }}
+            - ~/.cache/yarn
+          key: v1-dependencies-{{ checksum "yarn.lock" }}
         
       # run tests!
       - run: yarn run build
