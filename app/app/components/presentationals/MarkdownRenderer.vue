@@ -79,20 +79,20 @@ export default class extends Vue {
   &[data-lang] {
     position: relative;
     padding: 2em 1em 1em 1em;
-  }
 
-  &::before {
-    background: #dae1e7;
-    color: #606f7b;
-    content: attr(data-lang);
-    display: block;
-    position: absolute;
-    top: 0;
-    left: 0;
-    padding: 2px 4px;
+    &::before {
+      background: #dae1e7;
+      color: #606f7b;
+      content: attr(data-lang);
+      display: block;
+      position: absolute;
+      top: 0;
+      left: 0;
+      padding: 2px 4px;
 
-    // reset
-    text-shadow: none;
+      // reset
+      text-shadow: none;
+    }
   }
 }
 </style>
