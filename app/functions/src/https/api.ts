@@ -54,6 +54,10 @@ app.get("/api/entries/:yyyy/:mm/:slug", cors(corsOptions), async (req, res) => {
   pack(res, entry);
 });
 
+app.get("/api/status", cors(corsOptions), async (req, res) => {
+  res.status(200).send("OK");
+});
+
 module.exports = functions.runWith({
   memory: "256MB",
   timeoutSeconds: 10

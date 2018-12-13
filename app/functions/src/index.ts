@@ -22,3 +22,10 @@ if (!process.env.FUNCTION_NAME || process.env.FUNCTION_NAME === "https-api") {
 if (!process.env.FUNCTION_NAME || process.env.FUNCTION_NAME === "https-render") {
   exports.https.render = require("./https/render");
 }
+
+// == PubSub ===========================
+exports.pubsub = {};
+
+if (!process.env.FUNCTION_NAME || process.env.FUNCTION_NAME === "pubsub-warmup") {
+  exports.pubsub.warmup = require("./pubsub/warmup");
+}
