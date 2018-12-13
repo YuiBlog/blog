@@ -60,10 +60,4 @@
  * @import "utilities/background-patterns";
  * @import "utilities/skew-transforms";
  */
-.link {
-  @apply no-underline
-}
-
-.link:hover {
-  @apply underline;
-}
+@import "./components.scss";

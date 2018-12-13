@@ -38,7 +38,7 @@ module.exports = {
   ** Global CSS
   */
   css: [
-    "~/assets/css/tailwind.css",
+    "~/assets/css/tailwind.scss",
     "~/assets/css/prismjs.css",
   ],
 
