@@ -4,7 +4,7 @@
 
     markdown-renderer(:markdown="body")
     template(v-if="hasReadMore")
-      nuxt-link.link(:to="url") 続きを読む
+      nuxt-link(:to="url") 続きを読む
 </template>
 
 <script lang="ts">

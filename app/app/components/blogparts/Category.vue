@@ -2,7 +2,7 @@
   blog-parts(title="カテゴリー")
     ul.list-reset
       li.py-1(v-for="category in categories" :key="category.name")
-        router-link.link.text-black.text-sm(:to="url(category)") {{category.name}} ({{category.count}})
+        router-link.text-black.text-sm(:to="url(category)") {{category.name}} ({{category.count}})
 </template>
 
 

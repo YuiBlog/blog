@@ -2,7 +2,7 @@
   blog-parts(title="最新記事")
     ul.list-reset
       li.py-1(v-for="entry in entries" :key="entry.slug")
-        router-link.link.text-black.text-sm(:to="url(entry)") {{entry.title}}
+        router-link.text-black.text-sm(:to="url(entry)") {{entry.title}}
 </template>
 
 <script lang="ts">

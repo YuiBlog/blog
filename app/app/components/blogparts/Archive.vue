@@ -2,7 +2,7 @@
   blog-parts(title="月別アーカイブ")
     ul.list-reset
       li.py-1(v-for="archive in archives" :key="archive.date")
-        router-link.link.text-black.text-sm(:to="url(archive)") {{archive.date.replace(/-/g, "/")}} ({{archive.count}})
+        router-link.text-black.text-sm(:to="url(archive)") {{archive.date.replace(/-/g, "/")}} ({{archive.count}})
 </template>
 
 

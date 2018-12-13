@@ -1,7 +1,7 @@
 <template lang="pug">
   .pt-5.pb-10
     .py-5
-      nuxt-link.link.text-black(to="/")
+      nuxt-link.text-black(to="/")
         h1 みかづきメモ
     
     small.text-grey-darker
