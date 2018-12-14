@@ -20,6 +20,7 @@ a {
   }
 
   &[disabled] {
+    @apply bg-grey-lighter;
     @apply text-grey-darker;
     @apply cursor-default;
     @apply pointer-events-none;
