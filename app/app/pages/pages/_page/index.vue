@@ -30,7 +30,6 @@ export default class extends Vue {
 
   public async asyncData({ app, params, redirect }: Context): Promise<Entries> {
     const { page } = asTyped(params);
-    console.log(JSON.stringify(page));
     if (process.server) {
       return await app.$firebase.entry.list(page);
     } else {

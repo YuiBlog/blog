@@ -6,7 +6,7 @@ import { Component, Vue } from "nuxt-property-decorator";
 export default class extends Vue {
   public async fetch({ params, redirect }: Context): Promise<void> {
     const { category } = params;
-    redirect(`/archive/category/${category}`);
+    redirect(`/archive/category/${encodeURIComponent(category)}`);
   }
 }
 </script>

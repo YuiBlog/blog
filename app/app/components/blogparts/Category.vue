@@ -23,7 +23,7 @@ export default class extends Vue {
   public categories!: Category[];
 
   public url(category: Category): string {
-    return `/archive/category/${category.name}`;
+    return `/archive/category/${encodeURIComponent(category.name)}`;
   }
 }
 </script>
