@@ -10,7 +10,7 @@ export interface Entry {
 
 export interface Entries {
   entries: Entry[];
-  offset: number;
+  page: number;
   hasPrev: boolean;
   hasNext: boolean;
 }

@@ -15,21 +15,21 @@ export async function all(): Promise<Category[]> {
   return categories;
 }
 
-export async function entries(category: string, offset: number): Promise<Entries> {
+export async function entries(category: string, page: number = 1): Promise<Entries> {
   const entries: Entry[] = [];
   const collection = await firebase.firestore()
     .collection("entries")
     .where("categories", "array-contains", category)
     .orderBy("created_at", "desc")
     .limit(6)
-    .offset(offset)
+    .offset((page - 1) * 5)
     .get();
   collection.forEach(entry => entries.push(entry.data() as Entry));
 
   return {
     entries,
-    offset,
-    hasPrev: offset > 0,
+    page,
+    hasPrev: page > 1,
     hasNext: entries.length > 5
   } as Entries;
 }

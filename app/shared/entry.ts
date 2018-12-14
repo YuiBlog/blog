@@ -16,20 +16,21 @@ export async function show(year: number, month: number, slug: string): Promise<E
   return entry;
 }
 
-export async function list(offset: number): Promise<Entries> {
+export async function list(page: number = 1): Promise<Entries> {
+  console.log(page);
   const entries: Entry[] = [];
   const collection = await firebase.firestore()
     .collection("entries")
     .orderBy("created_at", "desc")
     .limit(6)
-    .offset(offset * 5)
+    .offset((page - 1) * 5)
     .get();
   collection.forEach(entry => entries.push(entry.data() as Entry));
 
   return {
     entries: entries.slice(0, 5),
-    offset,
-    hasPrev: offset > 0,
+    page,
+    hasPrev: page > 1,
     hasNext: entries.length > 5
   } as Entries;
 }

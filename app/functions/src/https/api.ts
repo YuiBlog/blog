@@ -4,6 +4,7 @@ import { Response } from "express";
 import * as functions from 'firebase-functions';
 
 import * as query from "../shared/query";
+import { asTyped } from "../shared/utils";
 
 const app = express();
 const corsOptions: cors.CorsOptions = {
@@ -25,7 +26,9 @@ app.get("/api/archives", cors(corsOptions), async (req, res) => {
 });
 
 app.get("/api/archives/:yyyy/:mm", cors(corsOptions), async (req, res) => {
-  const entries = await query.archive.entries(req.params.yyyy, req.params.mm, 0);
+  const { yyyy, mm } = asTyped(req.params);
+  const { page } = asTyped(req.query);
+  const entries = await query.archive.entries(yyyy, mm, page);
 
   pack(res, entries);
 });
@@ -37,19 +40,23 @@ app.get("/api/categories", cors(corsOptions), async (req, res) => {
 });
 
 app.get("/api/categories/:category", cors(corsOptions), async (req, res) => {
-  const entries = await query.category.entries(req.params.category, 0);
+  const { category } = asTyped(req.params);
+  const { page } = asTyped(req.query);
+  const entries = await query.category.entries(category, page);
 
   pack(res, entries);
 });
 
 app.get("/api/entries", cors(corsOptions), async (req, res) => {
-  const entries = await query.entry.list(0);
+  const { page } = asTyped(req.query);
+  const entries = await query.entry.list(page);
 
   pack(res, entries);
 });
 
 app.get("/api/entries/:yyyy/:mm/:slug", cors(corsOptions), async (req, res) => {
-  const entry = await query.entry.show(req.params.yyyy, req.params.mm, req.params.slug);
+  const { yyyy, mm, slug } = asTyped(req.params);
+  const entry = await query.entry.show(yyyy, mm, slug);
 
   pack(res, entry);
 });
