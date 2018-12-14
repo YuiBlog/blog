@@ -1,7 +1,8 @@
 <template lang="pug">
   .text-center.pb-8
-    nuxt-link.button.rounded-l(:to="prevUrl" :disabled="!hasPrev") Prev
-    nuxt-link.button.rounded-r(:to="nextUrl" :disabled="!hasNext") Next
+    .button.rounded-l(:is="hasPrev ? 'nuxt-link' : 'span'" :to="prevUrl" :disabled="!hasPrev") Prev
+    .button.rounded-r(:is="hasNext ? 'nuxt-link' : 'span'" :to="nextUrl" :disabled="!hasNext") Next
+
 </template>
 
 <script lang="ts">
