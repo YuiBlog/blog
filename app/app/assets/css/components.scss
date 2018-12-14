@@ -16,6 +16,7 @@ a {
 
   &:hover {
     @apply bg-grey;
+    @apply no-underline;
   }
 
   &[disabled] {
