@@ -31,7 +31,7 @@ export async function entries(year: number, month: number, page: number = 1): Pr
   collection.forEach(entry => entries.push(entry.data() as Entry));
 
   return {
-    entries,
+    entries: entries.slice(0, 5),
     page,
     hasPrev: page > 1,
     hasNext: entries.length > 5

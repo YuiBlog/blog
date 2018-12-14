@@ -27,7 +27,7 @@ export async function entries(category: string, page: number = 1): Promise<Entri
   collection.forEach(entry => entries.push(entry.data() as Entry));
 
   return {
-    entries,
+    entries: entries.slice(0, 5),
     page,
     hasPrev: page > 1,
     hasNext: entries.length > 5
