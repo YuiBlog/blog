@@ -9,6 +9,7 @@
   },
   "main": "lib/index.js",
   "dependencies": {
+    "@nuxtjs/google-analytics": "^2.0.2",
     "axios": "^0.18.0",
     "cors": "^2.8.5",
     "dayjs": "^1.7.7",

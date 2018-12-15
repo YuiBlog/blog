@@ -53,7 +53,10 @@ module.exports = {
   ** Nuxt.js modules
   */
   modules: [
-    "~/modules/typescript.js"
+    ["~/modules/typescript.js"],
+    ["@nuxtjs/google-analytics", {
+      id: "UA-68289020-1"
+    }]
   ],
 
   /*
