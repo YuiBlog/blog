@@ -17,7 +17,6 @@ export async function show(year: number, month: number, slug: string): Promise<E
 }
 
 export async function list(page: number = 1): Promise<Entries> {
-  console.log(page);
   const entries: Entry[] = [];
   const collection = await firebase.firestore()
     .collection("entries")
