@@ -37,3 +37,9 @@ export default class extends Vue {
   }
 }
 </script>
+
+<style lang="scss" scoped>
+h2 {
+  overflow-wrap: break-word;
+}
+</style>

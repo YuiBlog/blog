@@ -73,6 +73,10 @@ export default class extends Vue {
 </script>
 
 <style lang="scss" scoped>
+div {
+  overflow-wrap: break-word;
+}
+
 /deep/ pre[class*="language-"] {
   border-radius: 0;
 
