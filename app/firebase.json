@@ -33,10 +33,6 @@
     ],
     "rewrites": [
       {
-        "source": "/assets/**",
-        "destination": "/assets/"
-      },
-      {
         "source": "/api/**",
         "function": "https-api"
       },
