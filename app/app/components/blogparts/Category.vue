@@ -1,6 +1,6 @@
 <template lang="pug">
   blog-parts(title="カテゴリー")
-    ul.list-reset
+    ul.links
       li.py-1(v-for="category in categories" :key="category.name")
         router-link.text-black.text-sm(:to="url(category)") {{category.name}} ({{category.count}})
 </template>
@@ -27,15 +27,3 @@ export default class extends Vue {
   }
 }
 </script>
-
-<style lang="scss" scoped>
-ul {
-  li {
-    a {
-      &:before {
-        content: "\25B8 ";
-      }
-    }
-  }
-}
-</style>

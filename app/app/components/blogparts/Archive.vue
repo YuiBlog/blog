@@ -1,10 +1,9 @@
 <template lang="pug">
   blog-parts(title="月別アーカイブ")
-    ul.list-reset
+    ul.links
       li.py-1(v-for="archive in archives" :key="archive.date")
         router-link.text-black.text-sm(:to="url(archive)") {{archive.date.replace(/-/g, "/")}} ({{archive.count}})
 </template>
-
 
 <script lang="ts">
 import { Component, Vue } from "nuxt-property-decorator";
@@ -27,15 +26,3 @@ export default class extends Vue {
   }
 }
 </script>
-
-<style lang="scss" scoped>
-ul {
-  li {
-    a {
-      &:before {
-        content: "\25B8 ";
-      }
-    }
-  }
-}
-</style>

@@ -1,6 +1,6 @@
 <template lang="pug">
   blog-parts(title="最新記事")
-    ul.list-reset
+    ul.links
       li.py-1(v-for="entry in entries" :key="entry.slug")
         router-link.text-black.text-sm(:to="url(entry)") {{entry.title}}
 </template>
@@ -28,15 +28,3 @@ export default class extends Vue {
   }
 }
 </script>
-
-<style lang="scss" scoped>
-ul {
-  li {
-    a {
-      &:before {
-        content: "\25B8 ";
-      }
-    }
-  }
-}
-</style>

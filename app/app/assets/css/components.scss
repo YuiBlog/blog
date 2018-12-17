@@ -26,3 +26,13 @@ a {
     @apply pointer-events-none;
   }
 }
+
+ul.links {
+  @apply list-reset;
+
+  li a {
+    &:before {
+      content: "\25B8 ";
+    }
+  }
+}
