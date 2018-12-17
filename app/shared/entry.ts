@@ -47,3 +47,29 @@ export async function latest(): Promise<Entry[]> {
 
   return entries;
 }
+
+export async function previous(createdAt: number): Promise<Entry> {
+  let entry!: Entry;
+  const collection = await firebase.firestore()
+    .collection("entries")
+    .orderBy("created_at", "desc")
+    .startAfter(new Date(createdAt * 1000))
+    .limit(1)
+    .get();
+  collection.forEach(w => entry = w.data() as Entry);
+
+  return entry;
+}
+
+export async function next(createdAt: number): Promise<Entry> {
+  let entry!: Entry;
+  const collection = await firebase.firestore()
+    .collection("entries")
+    .orderBy("created_at", "asc")
+    .startAfter(new Date(createdAt * 1000))
+    .limit(1)
+    .get();
+  collection.forEach(w => entry = w.data() as Entry);
+
+  return entry;
+}
