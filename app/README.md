@@ -1,4 +1,4 @@
-# blog.mochizuki.moe - "Yui"
+# Yui
 
 Personal blog software on Google Firebase.
 

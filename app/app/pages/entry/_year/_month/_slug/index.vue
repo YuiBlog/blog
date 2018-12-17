@@ -35,7 +35,9 @@ export default class extends Vue {
     if (process.server) {
       entry = await app.$firebase.entry.show(year, month, slug);
     } else {
-      entry = await axios.get(`https://blog.mochizuki.moe/api/entries/${year}/${month}/${slug}`).then(w => w.data);
+      entry = await axios
+        .get(`${process.env.FIREBASE_HOSTING_URL}/api/entries/${year}/${month}/${slug}`)
+        .then(w => w.data);
     }
     return { entry };
   }

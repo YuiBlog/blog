@@ -6,7 +6,7 @@ export function initializeAppWithProjectId() {
   }
 
   firebase.initializeApp({
-    projectId: "blog-mochizuki-moe"
+    projectId: process.env.FIREBASE_CLIENT_PROJECT_ID
   });
   firebase.firestore().settings({
     timestampsInSnapshots: true,

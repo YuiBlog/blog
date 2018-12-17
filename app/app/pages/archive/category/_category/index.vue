@@ -35,7 +35,7 @@ export default class extends Vue {
       return await app.$firebase.category.entries(category);
     } else {
       return await axios
-        .get(`https://blog.mochizuki.moe/api/categories/${encodeURIComponent(category)}`)
+        .get(`${process.env.FIREBASE_HOSTING_URL}/api/categories/${encodeURIComponent(category)}`)
         .then(w => w.data);
     }
   }
