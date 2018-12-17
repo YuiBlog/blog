@@ -60,9 +60,7 @@
     // "emitDecoratorMetadata": true,         /* Enables experimental support for emitting type metadata for decorators. */
   },
   "exclude": [
-    "app/.nuxt",
-    "app/modules",
-    "app/*.js",
+    "app/**/*.js",
     "dist",
     "functions"
   ]
