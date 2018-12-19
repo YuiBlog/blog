@@ -15,7 +15,7 @@
     "cors": "^2.8.5",
     "dayjs": "^1.7.7",
     "express": "^4.16.4",
-    "firebase-admin": "^6.3.0",
+    "firebase-admin": "^6.4.0",
     "firebase-functions": "^2.1.0",
     "lodash": "^4.17.11",
     "marked": "^0.5.2",
@@ -32,7 +32,7 @@
     "@types/lodash": "^4.14.118",
     "@types/qs": "^6.5.1",
     "tslint": "~5.8.0",
-    "typescript": "~2.8.3"
+    "typescript": "^3.2.2"
   },
   "engines": {
     "node": "8"
