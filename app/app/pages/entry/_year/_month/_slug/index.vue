@@ -6,19 +6,20 @@
 
     .flex
       .flex-1.truncate.pr-2.previous(v-if="previous != null")
-        nuxt-link(to="/") {{previous.title}}
+        nuxt-link(:to="asEntryUrl(previous)") {{previous.title}}
       .flex-1.truncate.pl-2.next(v-if="next != null")
-        nuxt-link(to="/") {{next.title}}
+        nuxt-link(:to="asEntryUrl(next)") {{next.title}}
 </template>
 
 <script lang="ts">
 import axios from "axios";
+import dayjs from "dayjs";
 import { Context } from "nuxt";
 import { Component, Vue } from "nuxt-property-decorator";
 
 import EntryHeader from "components/EntryHeader.vue";
 import MarkdownRenderer from "components/presentationals/MarkdownRenderer.vue";
-import { Entry } from "shared/models/entry";
+import { Entry, EntryMinified } from "shared/models/entry";
 
 @Component({
   components: {
@@ -39,21 +40,22 @@ export default class extends Vue {
 
   public async asyncData({ app, params }: Context): Promise<any> {
     const { year, month, slug } = params;
-    let entry!: Entry, next!: Entry, previous!: Entry;
     if (process.server) {
-      entry = await app.$firebase.entry.show(year, month, slug);
-      next = await app.$firebase.entry.next(entry.created_at._seconds);
-      previous = await app.$firebase.entry.previous(entry.created_at._seconds);
+      return await app.$firebase.entry.show(year, month, slug);
     } else {
-      entry = await axios
+      return await axios
         .get(`${process.env.FIREBASE_HOSTING_URL}/api/entries/${year}/${month}/${slug}`)
         .then(w => w.data);
     }
-    return { entry, next, previous };
   }
 
   public get body(): string {
     return this.entry.body.replace(/\\r/g, "\n");
+  }
+
+  public asEntryUrl(entry: EntryMinified): string {
+    const date = new Date(entry.created_at._seconds * 1000);
+    return `/entry/${dayjs(date).format("YYYY/MM")}/${entry.slug}`;
   }
 }
 </script>

@@ -1,9 +1,34 @@
 import * as firebase from "firebase-admin";
 
-import { Entries, Entry } from "./models/entry";
+import { Entries, Entry, EntryCombined, EntryMinified } from "./models/entry";
+import { Nullable } from "./types";
+import { pick, single } from "./utils";
 
-export async function show(year: number, month: number, slug: string): Promise<Entry> {
-  let entry!: Entry;
+async function previous(createdAt: number): Promise<Nullable<EntryMinified>> {
+  const collection = await firebase.firestore()
+    .collection("entries")
+    .orderBy("created_at", "desc")
+    .startAfter(new Date(createdAt * 1000))
+    .limit(1)
+    .get();
+
+  const entry = single<Entry>(collection);
+  return entry ? pick(entry, "slug", "title", "created_at") : null;
+}
+
+async function next(createdAt: number): Promise<Nullable<EntryMinified>> {
+  const collection = await firebase.firestore()
+    .collection("entries")
+    .orderBy("created_at", "asc")
+    .startAfter(new Date(createdAt * 1000))
+    .limit(1)
+    .get();
+
+  const entry = single<Entry>(collection);
+  return entry ? pick(entry, "slug", "title", "created_at") : null;
+}
+
+export async function show(year: number, month: number, slug: string): Promise<EntryCombined> {
   const collection = await firebase.firestore()
     .collection("entries")
     .where("created_at", ">=", new Date(year, month - 1))
@@ -11,9 +36,16 @@ export async function show(year: number, month: number, slug: string): Promise<E
     .where("slug", "==", slug)
     .limit(1)
     .get();
-  collection.forEach(w => entry = w.data() as Entry);
+  const entry = single<Entry>(collection);
+  if (entry == null) {
+    throw new Error("404");
+  }
 
-  return entry;
+  return {
+    entry,
+    next: await next(entry.created_at._seconds),
+    previous: await previous(entry.created_at._seconds)
+  } as EntryCombined;
 }
 
 export async function list(page: number = 1): Promise<Entries> {
@@ -46,30 +78,4 @@ export async function latest(): Promise<Entry[]> {
   });
 
   return entries;
-}
-
-export async function previous(createdAt: number): Promise<Entry> {
-  let entry!: Entry;
-  const collection = await firebase.firestore()
-    .collection("entries")
-    .orderBy("created_at", "desc")
-    .startAfter(new Date(createdAt * 1000))
-    .limit(1)
-    .get();
-  collection.forEach(w => entry = w.data() as Entry);
-
-  return entry;
-}
-
-export async function next(createdAt: number): Promise<Entry> {
-  let entry!: Entry;
-  const collection = await firebase.firestore()
-    .collection("entries")
-    .orderBy("created_at", "asc")
-    .startAfter(new Date(createdAt * 1000))
-    .limit(1)
-    .get();
-  collection.forEach(w => entry = w.data() as Entry);
-
-  return entry;
 }
