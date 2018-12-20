@@ -1,16 +1,14 @@
 import "./bootstrap/initialize";
 
 // == Firestore ========================
-exports.firestore = {};
-
-if (!process.env.FUNCTION_NAME || process.env.FUNCTION_NAME === "firestore-onCreateEntry") {
-  exports.firestore.onCreateEntry = require("./firestore/onCreateEntry");
+if (!process.env.FUNCTION_NAME || process.env.FUNCTION_NAME === "onCreateEntry") {
+  exports.onCreateEntry = require("./firestore/onCreateEntry");
 }
-if (!process.env.FUNCTION_NAME || process.env.FUNCTION_NAME === "firestore-onUpdateEntry") {
-  exports.firestore.onUpdateEntry = require("./firestore/onUpdateEntry");
+if (!process.env.FUNCTION_NAME || process.env.FUNCTION_NAME === "onUpdateEntry") {
+  exports.onUpdateEntry = require("./firestore/onUpdateEntry");
 }
-if (!process.env.FUNCTION_NAME || process.env.FUNCTION_NAME === "firestore-onDeleteEntry") {
-  exports.firestore.onDeleteEntry = require("./firestore/onDeleteEntry");
+if (!process.env.FUNCTION_NAME || process.env.FUNCTION_NAME === "onDeleteEntry") {
+  exports.onDeleteEntry = require("./firestore/onDeleteEntry");
 }
 
 // == HTTPS ============================
