@@ -19,6 +19,7 @@ jobs:
     steps:
       - checkout
 
+      # re-install yarnpkg
       - run: yarn global add firebase-tools
 
       # Download and cache dependencies
