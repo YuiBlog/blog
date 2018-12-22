@@ -1,6 +1,6 @@
 import * as firebase from "firebase-admin";
 
-import { Archive, Entries, Entry } from "../types";
+import { Archive, Entries } from "../types";
 import * as _ from "./utils";
 
 export async function all(): Promise<Archive[]> {

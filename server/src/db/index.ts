@@ -1,9 +1,9 @@
-import * as archive from "./archive";
-import * as category from "./category";
-import * as entry from "./entry";
+import * as archives from "./archives";
+import * as categories from "./categories";
+import * as entries from "./entries";
 
 export {
-  archive,
-  category,
-  entry
+  archives,
+  categories,
+  entries
 };

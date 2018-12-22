@@ -2,7 +2,7 @@ import cors from "cors";
 import express, { Response } from "express";
 import * as functions from 'firebase-functions';
 
-import { archive, category, entry } from "../db";
+import { archives, categories, entries } from "../db";
 import { asTyped } from "../utils";
 
 const app = express();
@@ -19,44 +19,41 @@ function pack(res: Response, object: any): void {
 app.options("*", cors(corsOptions));
 
 app.get("/archives", cors(corsOptions), async (req, res) => {
-  const archives = await archive.all();
-
-  pack(res, archives);
+  pack(res, await archives.all());
 });
 
 app.get("/archives/:yyyy/:mm", cors(corsOptions), async (req, res) => {
   const { yyyy, mm } = asTyped(req.params);
   const { page } = asTyped(req.query);
-  const entries = await archive.entries(yyyy, mm, page);
 
-  pack(res, entries);
+  pack(res, await archives.entries(yyyy, mm, page));
 });
 
 app.get("/categories", cors(corsOptions), async (req, res) => {
-  pack(res, await category.all());
+  pack(res, await categories.all());
 });
 
 app.get("/categories/:category", cors(corsOptions), async (req, res) => {
   const { category } = asTyped(req.params);
   const { page } = asTyped(req.query);
 
-  pack(res, await category.entries(category, page));
+  pack(res, await categories.entries(category, page));
 });
 
 app.get("/entries", cors(corsOptions), async (req, res) => {
   const { page } = asTyped(req.query);
 
-  pack(res, await entry.list(page));
+  pack(res, await entries.list(page));
 });
 
 app.get("/entries/latest", cors(corsOptions), async (req, res) => {
-  pack(res, await entry.latest());
+  pack(res, await entries.latest());
 });
 
 app.get("/entries/:yyyy/:mm/:slug", cors(corsOptions), async (req, res) => {
   const { yyyy, mm, slug } = asTyped(req.params);
 
-  pack(res, await entry.show(yyyy, mm, slug));
+  pack(res, await entries.show(yyyy, mm, slug));
 });
 
 app.get("/status", cors(corsOptions), async (req, res) => {

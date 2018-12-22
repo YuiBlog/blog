@@ -67,3 +67,4 @@ node_modules/
 # build outputs
 lib/
 dist/
+.nuxt
