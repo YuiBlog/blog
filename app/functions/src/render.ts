@@ -15,6 +15,7 @@ const nuxt = new Nuxt({
 async function handleRequest(req: express.Request, res: express.Response) {
   // Hosting Cache is dead
   // res.set("Cache-Control", "public, max-age=300, s-maxage=600");
+  console.log("Handling Render Request. Pass to Nuxt.js.");
 
   // NOTE: If url path ends with .css or .js, Nuxt / Vue Router interept url as assets path.
   if (/\.(js|css)$/.test(req.url)) {

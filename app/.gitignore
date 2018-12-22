@@ -68,3 +68,4 @@ node_modules/
 lib/
 dist/
 .nuxt
+functions/lib/
