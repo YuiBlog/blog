@@ -34,11 +34,7 @@ export default class extends Vue {
     this.renderer.code = (code, lang, escaped) => {
       let filename = "";
       if (lang && lang.indexOf(":") > 0) {
-        let _, fn;
-        [lang, filename, ..._] = lang.split(":");
-        if (_.length > 0) {
-          filename += ":" + _.join(":");
-        }
+        [lang, filename] = lang.split(":");
       }
 
       if (lang && Prism.languages[lang]) {
