@@ -1,8 +1,0 @@
-## Compiled JavaScript files
-lib/
-
-# Typescript v1 declaration files
-typings/
-
-# Git for Windows convert symlinks to file
-shared

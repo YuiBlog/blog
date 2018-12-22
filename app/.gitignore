@@ -65,4 +65,6 @@ node_modules/
 .env
 
 # build outputs
+lib/
 dist/
+.nuxt

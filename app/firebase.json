@@ -14,6 +14,7 @@
     ]
   },
   "hosting": {
+    "target": "app",
     "public": "dist/client",
     "ignore": [
       "firebase.json",
@@ -33,16 +34,9 @@
     ],
     "rewrites": [
       {
-        "source": "/api/**",
-        "function": "https-api"
-      },
-      {
         "source": "**",
-        "function": "https-render"
+        "function": "renderNuxt"
       }
     ]
-  },
-  "storage": {
-    "rules": "storage.rules"
   }
 }

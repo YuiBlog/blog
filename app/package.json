@@ -1,31 +1,57 @@
 {
-  "name": "yui",
+  "name": "yui-app",
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "build": "yarn workspaces run build",
-    "postbuild": "rm -rf dist && mkdir dist && yarn run copy",
+    "build": "nuxt build && tsc --project ./functions/tsconfig.json",
+    "postbuild": "yarn run copy",
+    "precopy": "rm -rf dist && mkdir dist",
     "copy": "yarn run copy:client && yarn run copy:server",
-    "copy:client": "cp -R app/static/. dist/client && cp -R app/.nuxt/dist/client dist/client/assets",
-    "copy:server": "cp -R functions dist/server && cp -R app/.nuxt/ dist/server/lib/",
-    "clean": "rm -rf dist app/.nuxt functions/lib",
-    "dev": "yarn run dev:app",
-    "dev:app": "yarn --cwd app dev",
-    "dev:functions": "yarn --cwd functions dev",
-    "deploy": "firebase deploy"
+    "copy:client": "cp -R ./static/. dist/client && cp -R .nuxt/dist/client dist/client/assets",
+    "copy:server": "cp -R ./functions/ dist/server && cp -R .nuxt/ dist/server/lib && cp package.json dist/server",
+    "dev": "nuxt",
+    "start": "nuxt start",
+    "deploy": "firebase deploy --only functions:renderNuxt,hosting:app"
   },
-  "description": "Personal blog software on Google Firebase.",
-  "repository": "https://github.com/mika-f/blog.mochizuki.moe",
-  "author": "Mikazuki <mikazuki_fuyuno@outlook.com>",
-  "license": "MIT",
+  "main": "lib/index.js",
+  "dependencies": {
+    "@nuxtjs/dotenv": "^1.3.0",
+    "@nuxtjs/google-analytics": "^2.0.2",
+    "axios": "^0.18.0",
+    "dayjs": "^1.7.7",
+    "express": "^4.16.4",
+    "firebase-admin": "^6.4.0",
+    "firebase-functions": "^2.1.0",
+    "marked": "^0.5.2",
+    "nuxt": "^2.3.4",
+    "nuxt-class-component": "^1.2.1",
+    "nuxt-property-decorator": "^1.2.0",
+    "prismjs": "^1.15.0",
+    "qs": "^6.6.0",
+    "vuex-class": "^0.3.1",
+    "vuex-type-helper": "^1.2.0"
+  },
   "devDependencies": {
-    "npm-run-all": "^4.1.5",
-    "tslint": "^5.11.0",
-    "tslint-config-prettier": "^1.17.0",
-    "tslint-plugin-prettier": "^2.0.1"
+    "@types/express": "^4.16.0",
+    "@types/marked": "^0.4.2",
+    "@types/prismjs": "^1.9.0",
+    "@types/qs": "^6.5.1",
+    "autoprefixer": "^8.6.4",
+    "cross-env": "^5.2.0",
+    "eslint-config-prettier": "^3.1.0",
+    "eslint-plugin-prettier": "2.6.2",
+    "node-sass": "^4.10.0",
+    "nodemon": "^1.11.0",
+    "prettier": "1.14.3",
+    "pug": "^2.0.3",
+    "pug-plain-loader": "^1.0.0",
+    "sass-loader": "^7.1.0",
+    "tailwindcss": "~0.6.6",
+    "ts-loader": "^5.3.1",
+    "tsconfig-paths-webpack-plugin": "^3.2.0",
+    "typescript": "^3.2.2"
   },
-  "workspaces": [
-    "app",
-    "functions"
-  ]
+  "engines": {
+    "node": "8"
+  }
 }

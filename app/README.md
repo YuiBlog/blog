@@ -3,6 +3,17 @@
 Personal blog software on Google Firebase.
 
 
+# Setup
+
+```bash
+# install dependencies
+$ yarn
+
+# set project alias
+$ firebase target:apply hosting app <resource-name>
+```
+
+
 ## Build
 
 ```bash
