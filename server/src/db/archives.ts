@@ -8,7 +8,7 @@ export async function all(): Promise<Archive[]> {
     .collection("archives")
     .where("count", ">", 0)
     .get();
-  const archives = _.all<Archive>(collection);
+  const archives = _.all<Archive>(collection, "date");
 
   return archives.sort((a, b) => {
     const da = new Date(a.date);

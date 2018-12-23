@@ -10,7 +10,7 @@ export async function all(): Promise<Category[]> {
     .orderBy("count", "desc")
     .get();
 
-  return _.all(collection);
+  return _.all(collection, "name");
 }
 
 export async function entries(category: string, page: number = 1): Promise<Entries> {

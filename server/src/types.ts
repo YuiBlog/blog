@@ -12,6 +12,10 @@ export interface Categories {
   categories: Category[];
 }
 
+export interface Document {
+  id: string;
+}
+
 export interface EntryCombined {
   next: Nullable<EntryMinified>;
   entry: Entry;
@@ -23,7 +27,7 @@ export interface Entry extends EntryMinified {
   categories: string[];
 }
 
-export interface EntryMinified {
+export interface EntryMinified extends Document {
   slug: string;
   title: string;
   created_at: {
