@@ -13,7 +13,7 @@ async function previous(createdAt: number): Promise<Nullable<EntryMinified>> {
     .get();
 
   const entry = _.single<Entry>(collection);
-  return entry ? pick(entry, "slug", "title", "created_at") : null;
+  return entry ? toMinified(entry) : null;
 }
 
 async function next(createdAt: number): Promise<Nullable<EntryMinified>> {
@@ -25,7 +25,7 @@ async function next(createdAt: number): Promise<Nullable<EntryMinified>> {
     .get();
 
   const entry = _.single<Entry>(collection);
-  return entry ? pick(entry, "slug", "title", "created_at") : null;
+  return entry ? toMinified(entry) : null;
 }
 
 export async function show(year: number, month: number, slug: string): Promise<EntryCombined> {
@@ -55,22 +55,26 @@ export async function list(page: number = 1): Promise<Entries> {
     .limit(6)
     .offset((page - 1) * 5)
     .get();
-  const entries = _.all(collection);
+  const entries = _.all<Entry>(collection);
 
   return {
-    entries: entries.slice(0, 5),
+    entries: entries.slice(0, 5).map(w => _.truncate(w)),
     page,
     hasPrev: page > 1,
     hasNext: entries.length > 5
   } as Entries;
 }
 
-export async function latest(): Promise<Entry[]> {
+export async function latest(): Promise<EntryMinified[]> {
   const collection = await firebase.firestore()
     .collection("entries")
     .orderBy("created_at", "desc")
     .limit(5)
     .get();
 
-  return _.all(collection);
+  return _.all<Entry>(collection).map(w => toMinified(w));
+}
+
+function toMinified(entry: Entry): EntryMinified {
+  return pick(entry, "slug", "title", "created_at") as EntryMinified;
 }

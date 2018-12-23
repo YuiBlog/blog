@@ -1,6 +1,6 @@
 import * as firebase from "firebase-admin";
 
-import { Archive, Entries } from "../types";
+import { Archive, Entries, Entry } from "../types";
 import * as _ from "./utils";
 
 export async function all(): Promise<Archive[]> {
@@ -26,10 +26,10 @@ export async function entries(year: number, month: number, page: number = 1): Pr
     .limit(6)
     .offset((page - 1) * 5)
     .get();
-  const entries = _.all(collection);
+  const entries = _.all<Entry>(collection);
 
   return {
-    entries: entries.slice(0, 5),
+    entries: entries.slice(0, 5).map(w => _.truncate(w)),
     page,
     hasPrev: page > 1,
     hasNext: entries.length > 5

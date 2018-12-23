@@ -1,6 +1,6 @@
 import * as firebase from "firebase-admin";
 
-import { Category, Entries } from "../types";
+import { Category, Entries, Entry } from "../types";
 import * as _ from "./utils";
 
 export async function all(): Promise<Category[]> {
@@ -21,10 +21,10 @@ export async function entries(category: string, page: number = 1): Promise<Entri
     .limit(6)
     .offset((page - 1) * 5)
     .get();
-  const entries = _.all(collection);
+  const entries = _.all<Entry>(collection);
 
   return {
-    entries: entries.slice(0, 5),
+    entries: entries.slice(0, 5).map(w => _.truncate(w)),
     page,
     hasPrev: page > 1,
     hasNext: entries.length > 5

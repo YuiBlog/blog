@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "build": "rm -rf lib/ && tsc",
-    "dev": "npm run build && firebase serve --only functions",
+    "dev": "npm run build && firebase serve --only hosting,functions",
     "start": "npm run shell",
     "deploy": "node bin/deploy.js"
   },
