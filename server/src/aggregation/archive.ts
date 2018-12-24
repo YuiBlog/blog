@@ -1,6 +1,6 @@
 import { firestore } from "firebase-admin";
 
-import { Archive } from "../../types";
+import { Archive } from "../types";
 
 export async function selectArchive(date: Date): Promise<FirebaseFirestore.DocumentReference> {
   return await firestore().collection("archives").doc(`${date.getFullYear()}-${date.getMonth() + 1}`);

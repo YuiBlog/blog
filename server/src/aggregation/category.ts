@@ -1,5 +1,5 @@
 import * as admin from "firebase-admin";
-import { Category } from "../../types";
+import { Category } from "../types";
 
 export async function selectCategory(name: string): Promise<FirebaseFirestore.DocumentReference> {
   return await admin.firestore().collection("categories").doc(name);
