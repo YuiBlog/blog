@@ -3,7 +3,7 @@ import express, { Response } from "express";
 import * as functions from 'firebase-functions';
 
 import { archives, categories, entries } from "../db";
-import { asTyped } from "../utils";
+import { asTyped } from "../utils/type";
 
 const app = express();
 const corsOptions: cors.CorsOptions = {

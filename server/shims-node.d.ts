@@ -1,5 +1,6 @@
 declare namespace NodeJS {
   interface ProcessEnv {
+    FUNCTION_NAME: string | undefined;
     FIREBASE_CLIENT_API_KEY: string;
     FIREBASE_CLIENT_AUTH_DOMAIN: string;
     FIREBASE_CLIENT_DATABASE_URL: string;
