@@ -1,5 +1,4 @@
 // Utilty Functions for Cloud Functions
-
 import { firestore } from "firebase-admin";
 
 export async function alreadyTriggerd(eventId: string): Promise<boolean> {

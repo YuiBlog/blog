@@ -1,4 +1,5 @@
 import set from "lodash/set";
+
 import { Entry, Nullable } from "../types";
 
 type Indexer<T> = { [P in keyof T]: any };

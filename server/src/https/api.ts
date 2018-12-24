@@ -1,6 +1,6 @@
 import cors from "cors";
 import express, { Response } from "express";
-import * as functions from 'firebase-functions';
+import * as functions from "firebase-functions";
 
 import { archives, categories, entries } from "../db";
 import { asTyped } from "../utils/type";
@@ -57,7 +57,7 @@ app.get("/entries/:yyyy/:mm/:slug", cors(corsOptions), async (req, res) => {
 });
 
 app.get("/status", cors(corsOptions), async (req, res) => {
-  res.status(200).send("OK");
+  res.status(200).send({ status: "OK" });
 });
 
 module.exports = functions.runWith({
