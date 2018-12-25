@@ -3,6 +3,11 @@
     "tslint:recommended",
     "tslint-config-prettier"
   ],
+  "linterOptions": {
+    "exclude": [
+      "node_modules/**"
+    ]
+  },
   "rulesDirectory": [
     "tslint-plugin-prettier"
   ],
