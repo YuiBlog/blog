@@ -1,0 +1,8 @@
+a {
+  @apply no-underline;
+  @apply text-blue-dark;
+
+  &:hover {
+    @apply underline;
+  }
+}
