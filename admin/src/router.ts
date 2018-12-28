@@ -34,6 +34,11 @@ const router = new Router({
       component: () => import(/* webpackChunkName: "login" */ "./views/Login.vue"),
       name: "login",
       path: "/login"
+    },
+    {
+      component: () => import(/* webpackChunkname: "logout" */ "./views/Logout.vue"),
+      name: "logout",
+      path: "/logout"
     }
   ]
 });
@@ -41,12 +46,16 @@ const router = new Router({
 router.beforeResolve(async (to: Route, from: Route, next: (to?: RawLocation | false | ((vm: Vue) => any) | void) => void) => {
   NProgress.start();
 
+  if (to.name === "login") {
+    next();
+  }
+
   await store.dispatch("session/refresh");
   const session = await store.getters["session/state"];
-  if (to.path === "/login" || session === "enabled") {
+  if (session === "enabled") {
     next();
   } else {
-    next("/login");
+    next({ name: "login" });
   }
 
   NProgress.done();

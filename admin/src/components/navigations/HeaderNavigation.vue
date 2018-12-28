@@ -7,6 +7,8 @@
         .hidden(class="md:block")
           router-link(to="/edit")
             | 記事を書く
+          router-link(to="/logout")
+            | ログアウト
         div(class="md:hidden")
           button.text-grey-light(class="hover:no-underline")
             i.fas.fa-bars.fa-lg

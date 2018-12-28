@@ -18,7 +18,8 @@ export default class SideNavigation extends Vue {
     { icon: "far fa-newspaper", href: "/entries", text: "記事の管理" },
     { icon: "fas fa-tags", href: "/categories", text: "カテゴリー" },
     { icon: "far fa-images", href: "/media", text: "メディア" },
-    { icon: "fas fa-cog", href: "/settings", text: "ブログ設定" }
+    { icon: "fas fa-cog", href: "/settings", text: "ブログ設定" },
+    { icon: "fas fa-sign-out-alt", href: "/logout", text: "ログアウト" }
   ];
 }
 </script>
