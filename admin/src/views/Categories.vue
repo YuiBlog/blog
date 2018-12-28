@@ -3,15 +3,12 @@
     h2.mb-2
       i.fas.fa-tags.fa-fw.mr-2
       | カテゴリー一覧
-    table.w-full.border-t.border-b.border-grey
+    table.table-fixed.w-full.border-t.border-b.border-grey
       thead
         tr
-          th
-            | カテゴリー名
-          th
-            | スラッグ
-          th
-            | 記事数
+          th(class="w-2/6") カテゴリー名
+          th(class="w-2/5") スラッグ
+          th(class="w-1/5") 記事数
       tbody
         template(v-if="loading")
           tr
@@ -20,11 +17,11 @@
                 | 読み込み中...
         template(v-else)
           tr(v-for="category in categories" :key="category.name")
-            td 
+            td(class="w-2/6")
               a(:href="`/archive/categories/${encodeURIComponent(category.name)}`" target="_blank")
                 | {{category.name}}
-            td {{category.name}}
-            td {{category.count}}
+            td(class="w-2/5") {{category.name}}
+            td(class="w-1/5") {{category.count}}
 </template>
 
 <script lang="ts">
@@ -52,11 +49,13 @@ export default class Categories extends Vue {
 
 <style lang="postcss" scoped>
 table > thead > tr > th {
+  @apply truncate;
   @apply py-2;
   @apply text-grey-darker bg-grey-lightest;
 }
 
 table > tbody > tr > td {
+  @apply truncate;
   @apply px-2 py-4;
   @apply border-t border-grey-light;
 }
