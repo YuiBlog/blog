@@ -12,6 +12,15 @@ export default new Router({
       component: Home,
       name: "home",
       path: "/"
+      component: () => import(/* webpackChunkName: "dashboard" */ "./views/Dashboard.vue"),
+      path: "/",
+      // tslint:disable-next-line
+      children: [
+        {
+          component: () => import(/* webpackChunkName: "home" */ "./views/Home.vue"),
+          path: "/"
+        }
+      ]
     },
     {
       // route level code-splitting
@@ -23,3 +32,4 @@ export default new Router({
     }
   ]
 });
+export default router;
