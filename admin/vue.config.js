@@ -2,7 +2,7 @@ const DotEnv = require("dotenv-webpack");
 const MonacoEditor = require("monaco-editor-webpack-plugin");
 
 module.exports = {
-  baseUrl: process.env.NODE_ENV === "production" ? "/admin/" : "/",
+  baseUrl: "/admin/",
   chainWebpack: (config) => {
     config.module
       .rule('pug')
