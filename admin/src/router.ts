@@ -1,17 +1,18 @@
+import NProgress from "nprogress";
 import Vue from "vue";
-import Router from "vue-router";
+import Router, { RawLocation, Route } from "vue-router";
+
 import Home from "./views/Home.vue";
+
+import store from "./store";
 
 Vue.use(Router);
 
-export default new Router({
+const router = new Router({
   base: process.env.BASE_URL,
   mode: "history",
   routes: [
     {
-      component: Home,
-      name: "home",
-      path: "/"
       component: () => import(/* webpackChunkName: "dashboard" */ "./views/Dashboard.vue"),
       path: "/",
       // tslint:disable-next-line
@@ -26,10 +27,25 @@ export default new Router({
       // route level code-splitting
       // this generates a separate chunk (about.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
-      component: () => import(/* webpackChunkName: "about" */ "./views/About.vue"),
-      name: "about",
-      path: "/about"
+      component: () => import(/* webpackChunkName: "login" */ "./views/Login.vue"),
+      name: "login",
+      path: "/login"
     }
   ]
 });
+
+router.beforeResolve(async (to: Route, from: Route, next: (to?: RawLocation | false | ((vm: Vue) => any) | void) => void) => {
+  NProgress.start();
+
+  await store.dispatch("session/refresh");
+  const session = await store.getters["session/state"];
+  if (to.path === "/login" || session === "enabled") {
+    next();
+  } else {
+    next("/login");
+  }
+
+  NProgress.done();
+});
+
 export default router;
