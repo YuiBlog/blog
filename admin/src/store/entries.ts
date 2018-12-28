@@ -4,21 +4,16 @@ import { DefineActions, DefineMutations } from "vuex-type-helper";
 
 const firestore = firebase.firestore;
 
-interface ICategory {
-  name: string;
-  count: string;
-}
-
 interface IState {
-  rows: ICategory[];
+  rows: any[];
 }
 
 interface IAction {
-  fetch: {};
+  fetch: { page: number };
 }
 
 interface IMutations {
-  setCategories: { categories: ICategory[] };
+  setEntries: { entries: any[] };
 }
 
 const state: IState = {
@@ -26,20 +21,22 @@ const state: IState = {
 };
 
 const actions: DefineActions<IAction, IState, IMutations> = {
-  async fetch({ commit }) {
-    const categories: ICategory[] = [];
+  async fetch({ commit }, { page }) {
+    const entries: any[] = [];
     const collection = await firestore()
-      .collection("categories")
+      .collection("entries")
+      .orderBy("created_at", "desc")
+      .limit(20)
       .get();
-    collection.forEach(category => categories.push({ ...category.data(), name: category.id } as ICategory));
+    collection.forEach(entry => entries.push({ ...entry.data(), id: entry.id }));
 
-    commit("setCategories", { categories });
+    commit("setEntries", { entries });
   }
 };
 
 const mutations: DefineMutations<IMutations, IState> = {
-  setCategories(state, { categories }) {
-    state.rows = categories;
+  setEntries(state, { entries }) {
+    state.rows = entries;
   }
 };
 
