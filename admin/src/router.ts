@@ -20,6 +20,10 @@ const router = new Router({
         {
           component: () => import(/* webpackChunkName: "home" */ "./views/Home.vue"),
           path: "/"
+        },
+        {
+          component: () => import(/* webpackChunkName: "categories" */ "./views/Categories.vue"),
+          path: "/categories"
         }
       ]
     },
