@@ -13,12 +13,18 @@
           th
             | 記事数
       tbody
-        tr(v-for="category in categories" :key="category.name")
-          td 
-            a(:href="`/archive/categories/${encodeURIComponent(category.name)}`" target="_blank")
-              | {{category.name}}
-          td {{category.name}}
-          td {{category.count}}
+        template(v-if="loading")
+          tr
+            td(colspan="3")
+              .text-center
+                | 読み込み中...
+        template(v-else)
+          tr(v-for="category in categories" :key="category.name")
+            td 
+              a(:href="`/archive/categories/${encodeURIComponent(category.name)}`" target="_blank")
+                | {{category.name}}
+            td {{category.name}}
+            td {{category.count}}
 </template>
 
 <script lang="ts">
@@ -27,14 +33,19 @@ import { Action, State } from "vuex-class";
 
 @Component
 export default class Categories extends Vue {
+  // prettier-ignore
   @Action("categories/fetch")
   public fetch!: () => Promise<void>;
+
+  public loading: boolean = false;
 
   @State((state, getters) => state.categories.rows)
   public categories!: any[];
 
-  public async created(): Promise<void> {
+  public async mounted(): Promise<void> {
+    this.loading = true;
     await this.fetch();
+    this.loading = false;
   }
 }
 </script>
