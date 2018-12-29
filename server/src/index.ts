@@ -1,5 +1,13 @@
 import "./bootstrap/initialize";
 
+// == Authentication Triggers ===================
+if (!process.env.FUNCTION_NAME || process.env.FUNCTION_NAME === "onCreateUser") {
+  exports.onCreateUser = require("./auth/onCreateUser");
+}
+if (!process.env.FUNCTION_NAME || process.env.FUNCTION_NAME === "onDeleteUser") {
+  exports.onDeleteUser = require("./auth/onDeleteUser");
+}
+
 // == Firestore Triggers ========================
 if (!process.env.FUNCTION_NAME || process.env.FUNCTION_NAME === "onCreateEntry") {
   exports.onCreateEntry = require("./firestore/onCreateEntry");

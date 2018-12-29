@@ -43,3 +43,7 @@ export interface Entries {
 }
 
 export type Nullable<T> = T | null;
+
+export interface User {
+  admin: boolean;
+}
