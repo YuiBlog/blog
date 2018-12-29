@@ -47,7 +47,6 @@ function humanize(date: Date): string {
   filters: { asEntryUrl, humanize }
 })
 export default class Entries extends Vue {
-  // prettier-ignore
   @Action("entries/fetch")
   public fetch!: (page: number) => Promise<void>;
 

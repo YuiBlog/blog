@@ -30,7 +30,6 @@ import { Action, State } from "vuex-class";
 
 @Component
 export default class Categories extends Vue {
-  // prettier-ignore
   @Action("categories/fetch")
   public fetch!: () => Promise<void>;
 

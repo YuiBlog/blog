@@ -9,7 +9,6 @@ import { Action } from "vuex-class";
 
 @Component
 export default class Logout extends Vue {
-  // prettier-ignore
   @Action("session/logout")
   public logout!: () => Promise<void>;
 

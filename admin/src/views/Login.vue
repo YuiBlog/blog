@@ -9,11 +9,9 @@ import { Action, Getter } from "vuex-class";
 
 @Component
 export default class Login extends Vue {
-  // prettier-ignore
   @Action("session/login")
   public login!: () => Promise<void>;
 
-  // prettier-ignore
   @Getter("session/state")
   public state!: "enabled" | "disabled";
 
