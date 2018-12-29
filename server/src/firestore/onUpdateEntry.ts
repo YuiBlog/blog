@@ -2,8 +2,8 @@ import { firestore } from "firebase-admin";
 import * as functions from "firebase-functions";
 import difference from "lodash/difference";
 
-import { decrementArchiveCount, incrementArchiveCount } from "../aggregation/archive";
-import { decrementCategoryCount, incrementCategoryCount } from "../aggregation/category";
+import { decrementArchiveCount, incrementArchiveCount, selectArchive } from "../aggregation/archive";
+import { decrementCategoryCount, incrementCategoryCount, selectCategory } from "../aggregation/category";
 import { Entry } from "../types";
 import { alreadyTriggerd } from "../utils/cf";
 
@@ -19,24 +19,28 @@ module.exports = functions.runWith({
 
   const before = change.before.data() as Entry;
   const after = change.after.data() as Entry;
-  firestore().runTransaction(async transaction => {
+  await firestore().runTransaction(async transaction => {
+    const categories = {
+      before: difference(before.categories, after.categories).map(async w => await selectCategory(w, transaction)),
+      after: difference(after.categories, before.categories).map(async w => await selectCategory(w, transaction))
+    }
+
     if (before.created_at._seconds !== after.created_at._seconds) {
-      await decrementArchiveCount(transaction, new Date(before.created_at._seconds * 1000));
-      await incrementArchiveCount(transaction, new Date(after.created_at._seconds * 1000));
+      const archive = {
+        before: await selectArchive(new Date(before.created_at._seconds * 1000), transaction),
+        after: await selectArchive(new Date(after.created_at._seconds * 1000), transaction)
+      };
+
+      await decrementArchiveCount(archive.before, transaction);
+      await incrementArchiveCount(archive.after, transaction);
     }
 
-    {
-      const diff = difference(before.categories, after.categories);
-      for (let category of diff) {
-        await decrementCategoryCount(transaction, category);
-      }
+    for (let category of categories.before) {
+      await decrementCategoryCount(await category, transaction);
     }
 
-    {
-      const diff = difference(after.categories, before.categories);
-      for (let category of diff) {
-        await incrementCategoryCount(transaction, category);
-      }
+    for (let category of categories.after) {
+      await incrementCategoryCount(await category, transaction);
     }
   });
 });

@@ -1,8 +1,8 @@
 import { firestore } from "firebase-admin";
 import * as functions from "firebase-functions";
 
-import { decrementArchiveCount } from "../aggregation/archive";
-import { decrementCategoryCount } from "../aggregation/category";
+import { decrementArchiveCount, selectArchive } from "../aggregation/archive";
+import { decrementCategoryCount, selectCategory } from "../aggregation/category";
 import { Entry } from "../types";
 import { alreadyTriggerd } from "../utils/cf";
 
@@ -15,11 +15,13 @@ module.exports = functions.runWith({
   }
 
   const entry = snapshot.data() as Entry;
-  firestore().runTransaction(async transaction => {
-    await decrementArchiveCount(transaction, new Date(entry.created_at._seconds * 1000));
+  await firestore().runTransaction(async transaction => {
+    const archive = await selectArchive(new Date(entry.created_at._seconds * 1000));
+    const categories = entry.categories.map(async w => await selectCategory(w));
 
-    for (let category of entry.categories) {
-      await decrementCategoryCount(transaction, category);
+    await decrementArchiveCount(archive, transaction);
+    for (let category of categories) {
+      await decrementCategoryCount(await category, transaction);
     }
   });
 });

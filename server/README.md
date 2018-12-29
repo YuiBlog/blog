@@ -1,6 +1,7 @@
-# Yui Server
+# "Narumi" - Yui
 
-Personal Blog on Firebase
+Firebase Functions for Yui.  
+Narumi provides API for Server-Side Rendering and Client-Side Fetching.
 
 
 ## Setup

@@ -1,8 +1,8 @@
 import { firestore } from "firebase-admin";
 import * as functions from "firebase-functions";
 
-import { incrementArchiveCount } from "../aggregation/archive";
-import { incrementCategoryCount } from "../aggregation/category";
+import { incrementArchiveCount, selectArchive } from "../aggregation/archive";
+import { incrementCategoryCount, selectCategory } from "../aggregation/category";
 import { Entry } from "../types";
 import { alreadyTriggerd } from "../utils/cf";
 
@@ -15,11 +15,13 @@ module.exports = functions.runWith({
   }
 
   const entry = snapshot.data() as Entry;
-  firestore().runTransaction(async transaction => {
-    await incrementArchiveCount(transaction, new Date(entry.created_at._seconds * 1000));
+  await firestore().runTransaction(async transaction => {
+    const archive = await selectArchive(new Date(entry.created_at._seconds * 1000), transaction);
+    const categories = entry.categories.map(async w => await selectCategory(w, transaction));
 
-    for (let category of entry.categories) {
-      await incrementCategoryCount(transaction, category);
+    await incrementArchiveCount(archive, transaction);
+    for (let category of categories) {
+      await incrementCategoryCount(await category, transaction);
     }
   });
 });
