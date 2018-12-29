@@ -5,10 +5,12 @@
     markdown-renderer(:markdown="body")
 
     .flex
-      .flex-1.truncate.pr-2.previous(v-if="previous != null")
-        nuxt-link(:to="asEntryUrl(previous)") {{previous.title}}
-      .flex-1.truncate.pl-2.next(v-if="next != null")
-        nuxt-link(:to="asEntryUrl(next)") {{next.title}}
+      .flex-1.pr-4.truncate
+        .truncate.previous(v-if="previous != null")
+          nuxt-link(:to="asEntryUrl(previous)") {{previous.title}}
+      .flex-1.pl-6.truncate
+        .truncate.next(v-if="next != null")
+          nuxt-link(:to="asEntryUrl(next)") {{next.title}}
 </template>
 
 <script lang="ts">
