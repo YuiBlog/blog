@@ -27,12 +27,17 @@
             td(class="w-auto")
               a(:href="entry | asEntryUrl" target="_blank")
                 i.fas.fa-external-link-alt.fa-fw
+
+    .mt-8
+      pagination(:has-next="hasNext" :has-prev="hasPrev" @next="onNext" @prev="onPrev")
 </template>
 
 <script lang="ts">
 import dayjs from "dayjs";
 import { Component, Vue } from "vue-property-decorator";
 import { Action, State } from "vuex-class";
+
+import Pagination from "@/components/Pagination.vue";
 
 function asEntryUrl(entry: any): string {
   const date = dayjs(entry.created_at.toDate());
@@ -44,20 +49,39 @@ function humanize(date: Date): string {
 }
 
 @Component({
+  components: { Pagination },
   filters: { asEntryUrl, humanize }
 })
 export default class Entries extends Vue {
   @Action("entries/fetch")
-  public fetch!: (from?: string, to?: string) => Promise<void>;
-
-  @State((state, getters) => state.entries.loading)
-  public loading!: boolean;
+  public fetch!: ({ cursor }?: { cursor: "next" | "prev" }) => Promise<void>;
 
   @State((state, getters) => state.entries.rows)
   public entries!: any[];
 
+  @State((state, getters) => state.entries.loading)
+  public loading!: boolean;
+
+  @State((state, getters) => state.entries.pagination)
+  public pagination!: any;
+
+  public get hasNext(): boolean {
+    return this.loading ? false : this.pagination.hasNext;
+  }
+
+  public get hasPrev(): boolean {
+    return this.loading ? false : this.pagination.hasPrev;
+  }
+
   public async mounted(): Promise<void> {
     await this.fetch();
+  }
+
+  public async onNext(): Promise<void> {
+    await this.fetch({ cursor: "next" });
+  }
+  public async onPrev(): Promise<void> {
+    await this.fetch({ cursor: "prev" });
   }
 }
 </script>
