@@ -10,6 +10,7 @@ interface ICategory {
 }
 
 interface IState {
+  loading: boolean;
   rows: ICategory[];
 }
 
@@ -18,15 +19,19 @@ interface IAction {
 }
 
 interface IMutations {
+  setLoading: { loading: boolean };
   setCategories: { categories: ICategory[] };
 }
 
 const state: IState = {
+  loading: false,
   rows: []
 };
 
 const actions: DefineActions<IAction, IState, IMutations> = {
   async fetch({ commit }) {
+    commit("setLoading", { loading: true });
+
     const categories: ICategory[] = [];
     const collection = await firestore()
       .collection("categories")
@@ -34,10 +39,14 @@ const actions: DefineActions<IAction, IState, IMutations> = {
     collection.forEach(category => categories.push({ ...category.data(), name: category.id } as ICategory));
 
     commit("setCategories", { categories });
+    commit("setLoading", { loading: false });
   }
 };
 
 const mutations: DefineMutations<IMutations, IState> = {
+  setLoading(state, { loading }) {
+    state.loading = loading;
+  },
   setCategories(state, { categories }) {
     state.rows = categories;
   }

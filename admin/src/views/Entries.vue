@@ -19,7 +19,7 @@
         template(v-else)
           tr(v-for="entry in entries" :key="entry.slug")
             td(class="w-1/2")
-              | {{entry.title}}
+              router-link(:to="`/entries/${entry.id}/edit`") {{entry.title}}
             td(class="w-1/5")
               span.mr-2(v-for="category in entry.categories")
                 | {{category}}
@@ -48,17 +48,16 @@ function humanize(date: Date): string {
 })
 export default class Entries extends Vue {
   @Action("entries/fetch")
-  public fetch!: (page: number) => Promise<void>;
+  public fetch!: (from?: string, to?: string) => Promise<void>;
 
-  public loading: boolean = false;
+  @State((state, getters) => state.entries.loading)
+  public loading!: boolean;
 
   @State((state, getters) => state.entries.rows)
   public entries!: any[];
 
   public async mounted(): Promise<void> {
-    this.loading = true;
-    await this.fetch(0);
-    this.loading = false;
+    await this.fetch();
   }
 }
 </script>

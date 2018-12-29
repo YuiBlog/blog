@@ -33,15 +33,14 @@ export default class Categories extends Vue {
   @Action("categories/fetch")
   public fetch!: () => Promise<void>;
 
-  public loading: boolean = false;
+  @State((state, getters) => state.categories.loading)
+  public loading!: boolean;
 
   @State((state, getters) => state.categories.rows)
   public categories!: any[];
 
   public async mounted(): Promise<void> {
-    this.loading = true;
     await this.fetch();
-    this.loading = false;
   }
 }
 </script>
@@ -49,13 +48,15 @@ export default class Categories extends Vue {
 <style lang="postcss" scoped>
 table > thead > tr > th {
   @apply truncate;
-  @apply py-2;
+  @apply pl-2 py-2;
+  @apply text-left;
   @apply text-grey-darker bg-grey-lightest;
 }
 
 table > tbody > tr > td {
   @apply truncate;
   @apply px-2 py-4;
+  @apply text-xs;
   @apply border-t border-grey-light;
 }
 </style>
