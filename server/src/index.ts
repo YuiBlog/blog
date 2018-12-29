@@ -15,7 +15,3 @@ if (!process.env.FUNCTION_NAME || process.env.FUNCTION_NAME === "onDeleteEntry")
 if (!process.env.FUNCTION_NAME || process.env.FUNCTION_NAME === "api") {
   exports.api = require("./https/api");
 }
-
-if (!process.env.FUNCTION_NAME || process.env.FUNCTION_NAME === "renderNuxt") {
-  exports.renderNuxt = require("./https/renderNuxt");
-}

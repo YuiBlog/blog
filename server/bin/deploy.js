@@ -19,9 +19,6 @@ const functions = require("../lib");
 const args = [];
 
 for (let func in functions) {
-  if (func === "renderNuxt") {
-    continue;
-  }
   args.push(`functions:${func}`);
 }
 
