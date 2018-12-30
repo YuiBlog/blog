@@ -27,6 +27,16 @@ export default class Edit extends Vue {
   public body: string = "";
   public categories: string[] = [];
 
+  public beforeRouteLeave(to: any, from: any, next: any): void {
+    if (this.body !== "") {
+      const r = confirm("編集した内容が失われますがよろしいですか？");
+      if (!r) {
+        return;
+      }
+    }
+    next();
+  }
+
   public getClass(idx: number): string {
     return this.index === idx ? "active" : "";
   }
