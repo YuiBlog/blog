@@ -3,7 +3,7 @@
     ul.list-reset.flex.border-b
       li.mr-1(v-for="(tab, idx) in tabs" :class="getClass(idx)")
         a(@click.prevent="onClick(idx)") {{tab.name}}
-    .flex-1.py-2.overflow-hidden
+    .flex-1.py-2.overflow-hidden(:class="classes")
       div(:is="content" v-model="body" :markdown="body")
 </template>
 
@@ -21,7 +21,7 @@ import MarkdownPreviewer from "@/components/MarkdownPreviewer.vue";
 })
 export default class Edit extends Vue {
   public index: number = 0;
-  public tabs = [{ name: "編集", content: "markdown-editor" }, { name: "プレビュー", content: "markdown-previewer" }];
+  public tabs = [{ name: "編集", content: "markdown-editor", classes: "" }, { name: "プレビュー", content: "markdown-previewer", classes: "overflow-y-scroll" }];
 
   public title: string = "";
   public body: string = "";
@@ -37,6 +37,10 @@ export default class Edit extends Vue {
 
   public get content(): string {
     return this.tabs[this.index].content;
+  }
+
+  public get classes(): string {
+    return this.tabs[this.index].classes;
   }
 }
 </script>

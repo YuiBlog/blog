@@ -4,8 +4,9 @@
 
 <script lang="ts">
 import { editor } from "monaco-editor";
-import MonacoEditor from "vue-monaco";
 import { Component, Prop, Vue } from "vue-property-decorator";
+
+import MonacoEditor from "@/components/MonacoEditor.vue";
 
 @Component({ components: { MonacoEditor } })
 export default class MarkdownEditor extends Vue {
