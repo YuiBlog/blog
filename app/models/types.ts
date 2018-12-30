@@ -11,6 +11,7 @@ export declare module Settings {
 
   export interface User {
     bio: string;
+    icon: string;
     name: string;
   }
 }

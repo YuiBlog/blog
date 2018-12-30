@@ -1,7 +1,7 @@
 <template lang="pug">
   blog-parts(title="プロフィール")
     .py-2
-      avatar.w-16.h-16(src="https://static.mochizuki.moe/anna.png")
+      avatar.w-16.h-16(:src="settings.user.icon")
 
     p.text-sm.leading-normal {{settings.user.name}}
     p.my-2.text-sm.leading-normal
