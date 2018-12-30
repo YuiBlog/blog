@@ -25,7 +25,7 @@ import "prismjs/components/prism-typescript";
 import "prismjs/components/prism-yaml";
 
 @Component
-export default class extends Vue {
+export default class MarkdownPreviewer extends Vue {
   @Prop({ required: true })
   public markdown!: string;
 

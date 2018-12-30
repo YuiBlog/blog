@@ -28,6 +28,7 @@ export default class MarkdownEditor extends Vue {
   public mounted(): void {
     this.$nextTick(() => {
       this.editor = (this.$refs.monaco as any).getMonaco();
+      this.updateLayout();
     });
 
     window.addEventListener("resize", this.updateLayout);
