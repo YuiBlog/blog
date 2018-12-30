@@ -29,7 +29,7 @@ app.get("/archives/:yyyy/:mm", cors(corsOptions), async (req, res) => {
   pack(res, await archives.entries(yyyy, mm, page));
 });
 
-app.get("/blog", cors(corsOptions), async (req, res) => {
+app.get("/blog/settings", cors(corsOptions), async (req, res) => {
   pack(res, {
     blog: await settings.blog(),
     user: await settings.user()
