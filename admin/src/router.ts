@@ -22,8 +22,13 @@ const router = new Router({
           path: "/"
         },
         {
+          component: () => import(/* webpackChunkName: "edit" */ "./views/Edit.vue"),
+          path: "/edit"
+        },
+        {
           component: () => import(/* webpackChunkName: "entries" */ "./views/Entries.vue"),
           path: "/entries"
+        },
         {
           component: () => import(/* webpackChunkName: "categories" */ "./views/Categories.vue"),
           path: "/categories"

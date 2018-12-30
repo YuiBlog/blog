@@ -7,6 +7,7 @@ import router from "./router";
 import store from "./store";
 
 import "nprogress";
+import "./assets/prismjs.scss";
 import "./assets/tailwindcss.scss";
 
 Vue.config.productionTip = false;
