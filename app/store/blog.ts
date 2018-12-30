@@ -45,6 +45,7 @@ const state: IState = {
     },
     user: {
       bio: "Yui",
+      icon: "https://fakeimg.mochizuki.moe/256x256/",
       name: "YuiBlog"
     }
   }
