@@ -2,7 +2,7 @@ import cors from "cors";
 import express, { Response } from "express";
 import * as functions from "firebase-functions";
 
-import { archives, categories, entries } from "../db";
+import { archives, categories, entries, settings } from "../db";
 import { asTyped } from "../utils/type";
 
 const app = express();
@@ -27,6 +27,13 @@ app.get("/archives/:yyyy/:mm", cors(corsOptions), async (req, res) => {
   const { page } = asTyped(req.query);
 
   pack(res, await archives.entries(yyyy, mm, page));
+});
+
+app.get("/blog", cors(corsOptions), async (req, res) => {
+  pack(res, {
+    blog: await settings.blog(),
+    user: await settings.user()
+  });
 });
 
 app.get("/categories", cors(corsOptions), async (req, res) => {

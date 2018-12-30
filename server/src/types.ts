@@ -3,6 +3,19 @@ export interface Archive {
   count: number;
 }
 
+export declare module Settings {
+  export interface Blog {
+    descrpiton: string;
+    name: string;
+  }
+
+  export interface User {
+    bio: string;
+    name: string;
+  }
+}
+
+
 export interface Category {
   name: string;
   count: number;
