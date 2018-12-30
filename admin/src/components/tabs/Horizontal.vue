@@ -7,7 +7,6 @@
 </template>
 
 <script lang="ts">
-import { VNode } from "vue";
 import { Component, Prop, Vue } from "vue-property-decorator";
 
 import TabPane from "@/components/tabs/Pane.vue";
@@ -16,7 +15,7 @@ import TabPane from "@/components/tabs/Pane.vue";
 export default class TabHorizontal extends Vue {
   private tabs: TabPane[] = [];
 
-  public mounted() {
+  public mounted(): void {
     this.tabs = this.$children.map(w => w as TabPane);
     if (this.tabs.length > 0) {
       this.tabs[0].active = true;
