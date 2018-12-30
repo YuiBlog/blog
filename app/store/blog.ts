@@ -2,7 +2,7 @@ import axios from "axios";
 import { Context } from "nuxt";
 import { DefineActions, DefineGetters, DefineMutations } from "vuex-type-helper";
 
-import { Archive, Category, Entry } from "models/types";
+import { Archive, Category, Entry, Settings } from "models/types";
 
 // blog information such as categories, latest entries, monthly archives...
 
@@ -10,30 +10,44 @@ interface IState {
   archives: Archive[];
   categories: Category[];
   latestEntries: Entry[];
+  settings: Settings;
 }
 
 interface IActions {
   fetchArchives: Context;
   fetchCategories: Context;
   fetchLatest5Entries: Context;
+  fetchBlogSettings: Context;
 }
 
 interface IGetters {
   archives: Archive[];
   categories: Category[];
   latestEntries: Entry[];
+  settings: Settings;
 }
 
 interface IMutations {
   setArchives: { archives: Archive[] };
   setCategoeies: { categories: Category[] };
   setLatestEntries: { entries: Entry[] };
+  setBlogSettings: { settings: Settings };
 }
 
 const state: IState = {
   archives: [],
   categories: [],
-  latestEntries: []
+  latestEntries: [],
+  settings: {
+    blog: {
+      description: "This is a YuiBlog.",
+      name: "YuiBlog"
+    },
+    user: {
+      bio: "Yui",
+      name: "YuiBlog"
+    }
+  }
 };
 
 const actions: DefineActions<IActions, IState, IMutations, IGetters> = {
@@ -48,6 +62,10 @@ const actions: DefineActions<IActions, IState, IMutations, IGetters> = {
   async fetchLatest5Entries({ commit }) {
     const entries = await axios.get(`${process.env.FIREBASE_HOSTING_URL}/entries/latest`).then(w => w.data);
     commit("setLatestEntries", { entries });
+  },
+  async fetchBlogSettings({ commit }) {
+    const settings = await axios.get(`${process.env.FIREBASE_HOSTING_URL}/blog/settings`).then(w => w.data);
+    commit("setBlogSettings", { settings });
   }
 };
 
@@ -55,6 +73,7 @@ const getters: DefineGetters<IGetters, IState> = {
   archives: (state) => state.archives,
   categories: (state) => state.categories,
   latestEntries: (state) => state.latestEntries,
+  settings: (state) => state.settings,
 };
 
 const mutations: DefineMutations<IMutations, IState> = {
@@ -63,6 +82,9 @@ const mutations: DefineMutations<IMutations, IState> = {
   },
   setCategoeies(state, { categories }) {
     state.categories = categories;
+  },
+  setBlogSettings(state, { settings }) {
+    state.settings = settings;
   },
   setLatestEntries(state, { entries }) {
     state.latestEntries = entries.map(w => {

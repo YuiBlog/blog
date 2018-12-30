@@ -3,6 +3,18 @@ export interface Archive {
   count: number;
 }
 
+export declare module Settings {
+  export interface Blog {
+    description: string;
+    name: string;
+  }
+
+  export interface User {
+    bio: string;
+    name: string;
+  }
+}
+
 export interface Category {
   name: string;
   count: number;
@@ -36,6 +48,11 @@ export interface Entries {
   page: number;
   hasPrev: boolean;
   hasNext: boolean;
+}
+
+export interface Settings {
+  blog: Settings.Blog;
+  user: Settings.User;
 }
 
 export type Nullable<T> = T | null;

@@ -16,6 +16,7 @@ Vue.use(Vuex);
 const actions = {
   async nuxtServerInit ({dispatch}, ctx) {
     await dispatch("fetchArchives", ctx);
+    await dispatch("fetchBlogSettings", ctx);
     await dispatch("fetchCategories", ctx);
     await dispatch("fetchLatest5Entries", ctx);
   }

@@ -3,16 +3,18 @@
     .py-2
       avatar.w-16.h-16(src="https://static.mochizuki.moe/anna.png")
 
-    p.text-sm.leading-normal 三日月ふゆの
+    p.text-sm.leading-normal {{settings.user.name}}
     p.my-2.text-sm.leading-normal
-      | 文章を書くのは苦手ですが、いろいろカキマス。
+      | {{settings.user.bio}}
 </template>
 
 <script lang="ts">
 import { Component, Vue } from "nuxt-property-decorator";
+import { Getter } from "vuex-class";
 
 import Avatar from "components/presentationals/Avatar.vue";
 import BlogParts from "components/presentationals/BlogParts.vue";
+import { Settings } from "models/types";
 
 @Component({
   components: {
@@ -20,5 +22,7 @@ import BlogParts from "components/presentationals/BlogParts.vue";
     BlogParts
   }
 })
-export default class extends Vue {}
-</script>
+export default class Profile extends Vue {
+  @Getter("settings")
+  public settings!: Settings;
+}</script>
