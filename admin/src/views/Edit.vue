@@ -1,7 +1,7 @@
 <template lang="pug">
   tab-horizontal.h-full.max-h-screen.p-2
     tab-pane.flex-1.flex.pt-2(name="編集")
-      .flex-1.flex.flex-col
+      .flex-1.flex.flex-col.overflow-hidden
         .pb-2
           input.w-full.border.py-3.px-2(v-model="title" placeholder="タイトル")
         markdown-editor.flex-1(v-model="body")
