@@ -4,7 +4,8 @@
       li.h-12(v-for="(tab, idx) in tabs" :class="{active: tab.active}")
         a.block.w-12.px-4.py-4.text-grey-darker(@click.prevent="onClick(idx)")
           i.fa.fw.mr-2(:class="tab.cls")
-    slot.flex-1
+    .flex-1
+      slot
 </template>
 
 <script lang="ts">
