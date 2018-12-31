@@ -1,4 +1,4 @@
-declare module "vue-monaco" {
-  const MonacoEditor: any;
-  export default MonacoEditor;
+declare module "@johmun/vue-tags-input" {
+  const VueTagsInput: any;
+  export default VueTagsInput;
 }
