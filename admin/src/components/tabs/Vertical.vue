@@ -34,6 +34,7 @@ export default class TabVertical extends Vue {
 <style lang="postcss" scoped>
 li:hover {
   @apply bg-grey-lighter;
+  @apply cursor-pointer;
 }
 
 li.active {

@@ -5,10 +5,10 @@
         .pb-2
           input.w-full.border.py-3.px-2(v-model="title" placeholder="タイトル")
         markdown-editor.flex-1(v-model="body")
-      .w-64.px-2
+      .w-64.pl-2
         tab-vertical.h-full
           tab-pane(name="画像" cls="far fa-images")
-            p Hello, World
+            img(src="https://static.mochizuki.moe/busy_banner@2x.png")
           tab-pane(name="カテゴリー" cls="fas fa-tags")
           tab-pane(name="オプション" cls="fas fa-cog")
     tab-pane.flex-1.py-2.overflow-y-scroll(name="プレビュー")
@@ -61,7 +61,7 @@ input {
   @apply block;
   @apply w-full;
   @apply text-grey-darkest;
-  @apply border border-grey rounded;
+  @apply border border-grey;
   @apply py-3 px-4;
   @apply leading-tight;
 }
