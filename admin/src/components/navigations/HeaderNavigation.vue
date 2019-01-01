@@ -12,7 +12,6 @@
         div(class="md:hidden")
           button.text-grey-light(class="hover:no-underline")
             i.fas.fa-bars.fa-lg
-
 </template>
 
 <style lang="postcss" scoped>
