@@ -860,6 +860,13 @@
   dependencies:
     source-map "^0.6.1"
 
+"@types/vuelidate@^0.7.3":
+  version "0.7.3"
+  resolved "https://registry.yarnpkg.com/@types/vuelidate/-/vuelidate-0.7.3.tgz#cf8e448cdf2b60a7809e83264b88065fe7dbdaf5"
+  integrity sha512-iWeW7O6xX+b3kkmxTlz0lN61DrbWhB/nMTQQmqZxFWB8jUmpCt4LkSJPzYvAffgymYKrHwohR2QZTJaAJFgMog==
+  dependencies:
+    vue "^2.5.16"
+
 "@types/webpack-env@^1.13.6":
   version "1.13.6"
   resolved "https://registry.yarnpkg.com/@types/webpack-env/-/webpack-env-1.13.6.tgz#128d1685a7c34d31ed17010fc87d6a12c1de6976"
@@ -8363,6 +8370,11 @@ vue@^2.5.16, vue@^2.5.17:
   version "2.5.21"
   resolved "https://registry.yarnpkg.com/vue/-/vue-2.5.21.tgz#3d33dcd03bb813912ce894a8303ab553699c4a85"
   integrity sha512-Aejvyyfhn0zjVeLvXd70h4hrE4zZDx1wfZqia6ekkobLmUZ+vNFQer53B4fu0EjWBSiqApxPejzkO1Znt3joxQ==
+
+vuelidate@^0.7.4:
+  version "0.7.4"
+  resolved "https://registry.yarnpkg.com/vuelidate/-/vuelidate-0.7.4.tgz#5a0e54be09ac0192f1aa3387d74b92e0945bf8aa"
+  integrity sha512-QHZWYOL325Zo+2K7VBNEJTZ496Kd8Z31p85aQJFldKudUUGBmgw4zu4ghl4CyqPwjRCmqZ9lDdx4FSdMnu4fGg==
 
 vuex-class@^0.3.1:
   version "0.3.1"
