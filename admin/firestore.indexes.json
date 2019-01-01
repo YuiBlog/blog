@@ -1,0 +1,43 @@
+{
+  "indexes": [
+    {
+      "collectionId": "entries",
+      "fields": [
+        {
+          "fieldPath": "categories",
+          "mode": "ARRAY_CONTAINS"
+        },
+        {
+          "fieldPath": "created_at",
+          "mode": "DESCENDING"
+        }
+      ]
+    },
+    {
+      "collectionId": "entries",
+      "fields": [
+        {
+          "fieldPath": "status",
+          "mode": "ASCENDING"
+        },
+        {
+          "fieldPath": "created_at",
+          "mode": "ASCENDING"
+        }
+      ]
+    },
+    {
+      "collectionId": "entries",
+      "fields": [
+        {
+          "fieldPath": "status",
+          "mode": "ASCENDING"
+        },
+        {
+          "fieldPath": "created_at",
+          "mode": "DESCENDING"
+        }
+      ]
+    }
+  ]
+}
