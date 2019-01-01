@@ -3,7 +3,7 @@
     tab-pane.flex-1.flex.pt-2(name="編集")
       .flex-1.flex.flex-col.overflow-hidden
         .pb-2
-          input.w-full.border.py-3.px-2(v-model="title" placeholder="タイトル")
+          input.w-full.border(v-model="title" placeholder="タイトル")
         markdown-editor.flex-grow.overflow-hidden(v-model="body")
         .pt-2.flex-shrink
           button.px-3.py-2.mr-2.bg-blue.text-white(@click="onClickPublish")
@@ -97,20 +97,5 @@ export default class Edit extends Vue {
 <style lang="postcss" scoped>
 .h-full.max-h-screen {
   max-height: calc(100vh - 64px);
-}
-
-input {
-  @apply appearance-none;
-  @apply block;
-  @apply w-full;
-  @apply text-grey-darkest;
-  @apply border border-grey;
-  @apply py-3 px-4;
-  @apply leading-tight;
-}
-
-input:focus {
-  @apply outline-none;
-  @apply border-grey-darker;
 }
 </style>

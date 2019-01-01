@@ -6,3 +6,18 @@ a {
     @apply underline;
   }
 }
+
+input {
+  @apply appearance-none;
+  @apply block;
+  @apply w-full;
+  @apply text-grey-darkest;
+  @apply border border-grey;
+  @apply py-3 px-2;
+  @apply leading-tight;
+}
+
+input:focus {
+  @apply outline-none;
+  @apply border-grey-darker;
+}
