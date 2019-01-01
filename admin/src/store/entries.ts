@@ -7,9 +7,10 @@ const firestore = firebase.firestore;
 interface IEntry {
   body: string;
   categories: string[];
-  created_at: firebase.firestore.Timestamp;
+  created_at: Date | firebase.firestore.Timestamp;
   id: string;
   slug: string;
+  status: "publish" | "draft";
   title: string;
 }
 
@@ -25,6 +26,7 @@ interface IState {
 
 interface IAction {
   fetch: { cursor?: "next" | "prev" };
+  publish: { entry: IEntry };
 }
 
 interface IMutations {
@@ -65,6 +67,16 @@ const actions: DefineActions<IAction, IState, IMutations> = {
 
     commit("setEntries", { entries: entries.slice(0, 20) });
     commit("setPagination", { cursor, hasNext: entries.length > 20 });
+    commit("setLoading", { loading: false });
+  },
+  async publish({ commit }, { entry }) {
+    commit("setLoading", { loading: true });
+
+    await firestore()
+      .collection("entries")
+      .doc()
+      .set(entry);
+
     commit("setLoading", { loading: false });
   }
 };

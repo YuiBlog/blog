@@ -4,8 +4,13 @@
       .flex-1.flex.flex-col.overflow-hidden
         .pb-2
           input.w-full.border.py-3.px-2(v-model="title" placeholder="タイトル")
-        markdown-editor.flex-1(v-model="body")
-      .w-64.pl-2
+        markdown-editor.flex-grow.overflow-hidden(v-model="body")
+        .pt-2.flex-shrink
+          button.px-3.py-2.mr-2.bg-blue.text-white(@click="onClickPublish")
+            | 公開する
+          button.px-3.py-2.bg-grey.text-white(@click="onClickDraft")
+            | 下書き保存する
+      .w-80.pl-2
         tab-vertical.h-full
           tab-pane(name="画像" cls="far fa-images")
             img(src="https://static.mochizuki.moe/busy_banner@2x.png")
