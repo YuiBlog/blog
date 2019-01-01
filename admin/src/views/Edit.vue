@@ -10,12 +10,7 @@
           tab-pane(name="画像" cls="far fa-images")
             img(src="https://static.mochizuki.moe/busy_banner@2x.png")
           tab-pane(name="カテゴリー" cls="fas fa-tags")
-            .pl-2
-              h3 カテゴリー
-              small.text-grey-dark.text-sm
-                | カテゴリーを入力して Enter で確定するか、カテゴリーリストから選んでクリックで追加。
-              vue-tags-input.w-full.py-2(v-model="category" :tags="categories" placeholder="カテゴリー" @tags-changed="tags => categories = tags")
-              img(src="https://static.mochizuki.moe/busy_banner@2x.png")
+            editor-category(v-model="categories")
           tab-pane(name="オプション" cls="fas fa-cog")
             img(src="https://static.mochizuki.moe/busy_banner@2x.png")
     tab-pane.flex-1.py-2.overflow-y-scroll(name="プレビュー")
@@ -25,7 +20,9 @@
 <script lang="ts">
 import VueTagsInput from "@johmun/vue-tags-input";
 import { Component, Vue } from "vue-property-decorator";
+import { Action, State } from "vuex-class";
 
+import EditorCategory from "@/components/editor/Category.vue";
 import TabHorizontal from "@/components/tabs/Horizontal.vue";
 import TabPane from "@/components/tabs/Pane.vue";
 import TabVertical from "@/components/tabs/Vertical.vue";
@@ -35,6 +32,7 @@ import MarkdownPreviewer from "@/components/MarkdownPreviewer.vue";
 
 @Component({
   components: {
+    EditorCategory,
     MarkdownEditor,
     MarkdownPreviewer,
     TabHorizontal,
@@ -44,10 +42,40 @@ import MarkdownPreviewer from "@/components/MarkdownPreviewer.vue";
   }
 })
 export default class Edit extends Vue {
-  public title: string = "";
   public body: string = "";
-  public category: string = "";
   public categories: string[] = [];
+  public created_at!: Date;
+  public slug: string = "";
+  public title: string = "";
+
+  @Action("entries/publish")
+  public publish!: ({ entry }: { entry: any }) => Promise<void>;
+
+  public async onClickPublish(): Promise<void> {
+    this.publish({
+      entry: {
+        body: this.body,
+        categories: this.categories,
+        created_at: new Date(),
+        slug: this.slug,
+        status: "publish",
+        title: this.title
+      }
+    });
+  }
+
+  public async onClickDraft(): Promise<void> {
+    this.publish({
+      entry: {
+        body: this.body,
+        categories: this.categories,
+        created_at: new Date(),
+        slug: this.slug,
+        status: "draft",
+        title: this.title
+      }
+    });
+  }
 
   public beforeRouteLeave(to: any, from: any, next: any): void {
     if (this.body !== "") {
