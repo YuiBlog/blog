@@ -17,7 +17,9 @@
           tab-pane(name="カテゴリー" cls="fas fa-tags")
             editor-category(v-model="categories")
           tab-pane(name="オプション" cls="fas fa-cog")
-            img(src="https://static.mochizuki.moe/busy_banner@2x.png")
+            h3.pl-2.mb-2 編集オプション
+            editor-date(v-model="createdAt")
+            editor-slug(v-model="slug" :date="createdAt")
     tab-pane.flex-1.py-2.overflow-y-scroll(name="プレビュー")
       markdown-previewer(:markdown="body")
 </template>
@@ -28,6 +30,8 @@ import { Component, Vue } from "vue-property-decorator";
 import { Action, State } from "vuex-class";
 
 import EditorCategory from "@/components/editor/Category.vue";
+import EditorDate from "@/components/editor/Date.vue";
+import EditorSlug from "@/components/editor/Slug.vue";
 import TabHorizontal from "@/components/tabs/Horizontal.vue";
 import TabPane from "@/components/tabs/Pane.vue";
 import TabVertical from "@/components/tabs/Vertical.vue";
@@ -38,6 +42,8 @@ import MarkdownPreviewer from "@/components/MarkdownPreviewer.vue";
 @Component({
   components: {
     EditorCategory,
+    EditorDate,
+    EditorSlug,
     MarkdownEditor,
     MarkdownPreviewer,
     TabHorizontal,
@@ -49,7 +55,7 @@ import MarkdownPreviewer from "@/components/MarkdownPreviewer.vue";
 export default class Edit extends Vue {
   public body: string = "";
   public categories: string[] = [];
-  public created_at!: Date;
+  public createdAt: string = "";
   public slug: string = "";
   public title: string = "";
 
@@ -61,7 +67,7 @@ export default class Edit extends Vue {
       entry: {
         body: this.body,
         categories: this.categories,
-        created_at: new Date(),
+        created_at: this.createdAt !== "" ? new Date(this.createdAt) : new Date(),
         slug: this.slug,
         status: "publish",
         title: this.title
@@ -74,7 +80,7 @@ export default class Edit extends Vue {
       entry: {
         body: this.body,
         categories: this.categories,
-        created_at: new Date(),
+        created_at: this.createdAt !== "" ? new Date(this.createdAt) : new Date(),
         slug: this.slug,
         status: "draft",
         title: this.title

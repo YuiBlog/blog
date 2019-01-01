@@ -3,7 +3,7 @@
     h3.mb-2 カテゴリー
     small.text-grey-dark.text-sm
       | カテゴリーを入力して Enter で確定するか、カテゴリーリストから選んでクリックで追加します。
-    vue-tags-input.w-full.py-2(v-model="category" :tags="categories" @tags-changed="tags => categories = tags")
+    vue-tags-input.w-full.py-2(v-model="category" :tags="categories" @tags-changed="tags => categories = tags" placeholder="タグを追加...")
 </template>
 
 <script lang="ts">
