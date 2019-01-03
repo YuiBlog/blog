@@ -1,5 +1,5 @@
 <template lang="pug">
-  .container.p-4
+  .p-4
     h2.mb-2
       i.fas.fa-newspaper.fa-fw.mr-2
       | 記事一覧
@@ -8,8 +8,9 @@
         tr
           th(class="w-1/2") タイトル
           th(class="w-1/5") カテゴリー
-          th(class="w-1/5") 投稿日時
-          th(class="w-auto")
+          th(class="w-1/6") 投稿日時
+          th(class="w-auto") 状態
+          th(class="w-auto") 
       tbody
         template(v-if="loading")
           tr
@@ -23,9 +24,10 @@
             td(class="w-1/5")
               span.mr-2(v-for="category in entry.categories")
                 | {{category}}
-            td(class="w-1/5") {{entry.created_at.toDate() | humanize}}
+            td(class="w-auto") {{entry.created_at.toDate() | humanize}}
+            td(class="w-auto") {{entry.status}}
             td(class="w-auto")
-              a(:href="entry | asEntryUrl" target="_blank")
+              a(:href="`/entry/${entry.url}`" target="_blank")
                 i.fas.fa-external-link-alt.fa-fw
 
     .mt-8
@@ -39,18 +41,13 @@ import { Action, State } from "vuex-class";
 
 import Pagination from "@/components/Pagination.vue";
 
-function asEntryUrl(entry: any): string {
-  const date = dayjs(entry.created_at.toDate());
-  return `/entry/${date.format("YYYY/MM")}/${entry.slug}`;
-}
-
 function humanize(date: Date): string {
   return dayjs(date).format("YYYY/MM/DD HH:mm:ss");
 }
 
 @Component({
   components: { Pagination },
-  filters: { asEntryUrl, humanize }
+  filters: { humanize }
 })
 export default class Entries extends Vue {
   @Action("entries/fetch")
