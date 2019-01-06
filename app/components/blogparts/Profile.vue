@@ -25,4 +25,5 @@ import { Settings } from "models/types";
 export default class Profile extends Vue {
   @Getter("settings")
   public settings!: Settings;
-}</script>
+}
+</script>
