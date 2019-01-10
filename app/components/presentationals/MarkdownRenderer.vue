@@ -50,6 +50,7 @@ export default class extends Vue {
       }
     };
     this.renderer.codespan = code => `<code class="font-mono rounded bg-black text-white p-1">${code}</code>`;
+    this.renderer.link = (href, title, text) => `<a href="${href}" title="${title}" target="_blank" rel="noreferrer">${text}</a>`;
     this.renderer.listitem = text => `<li class="leading-normal">${text}</li>\n`;
     this.renderer.paragraph = text => `<p class="my-4 leading-normal">${text}</p>\n`;
 

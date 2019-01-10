@@ -6,10 +6,10 @@
           nuxt-link.text-white(to="/") {{settings.blog.name}}
           br
           | Powered by 
-          a.text-white(href="https://github.com/YuiBlog" target="_blank") Yui
+          a.text-white(href="https://github.com/YuiBlog" target="_blank" rel="noreferrer") Yui
           | .
           | The source code is licensed 
-          a.text-white(href="http://opensource.org/licenses/mit-license.php" target="_blank") MIT
+          a.text-white(href="http://opensource.org/licenses/mit-license.php" target="_blank" rel="noreferrer") MIT
           | .
 </template>
 
