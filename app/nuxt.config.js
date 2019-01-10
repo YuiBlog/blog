@@ -54,7 +54,8 @@ module.exports = {
     ["@nuxtjs/dotenv", {path: path.join(__dirname)}],
     ["@nuxtjs/google-analytics", {
       id: "UA-68289020-1"
-    }]
+    }],
+    ["@nuxtjs/pwa"]
   ],
 
   /*
@@ -79,5 +80,8 @@ module.exports = {
     FIREBASE_CLIENT_STORAGE_BUCKET: process.env.FIREBASE_CLIENT_STORAGE_BUCKET,
     FIREBASE_CLIENT_MESSAGING_SENDER_ID: process.env.FIREBASE_CLIENT_MESSAGING_SENDER_ID,
     FIREBASE_HOSTING_URL: process.env.FIREBASE_HOSTING_URL
+  },
+  workbox: {
+    // empty
   }
 }

@@ -69,3 +69,4 @@ lib/
 dist/
 .nuxt
 functions/lib/
+static/sw.js
