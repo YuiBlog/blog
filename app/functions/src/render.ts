@@ -33,4 +33,4 @@ app.use(handleRequest);
 module.exports = functions.runWith({
   memory: "256MB",
   timeoutSeconds: 20
-}).region("asia-northeast1").https.onRequest(app);
+}).https.onRequest(app);
