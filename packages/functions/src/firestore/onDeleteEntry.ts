@@ -1,15 +1,12 @@
+import { Entry } from "@yuiblog/types";
 import { firestore } from "firebase-admin";
 import * as functions from "firebase-functions";
 
 import { decrementArchiveCount, selectArchive } from "../aggregation/archive";
 import { decrementCategoryCount, selectCategory } from "../aggregation/category";
-import { Entry } from "../types";
 import { alreadyTriggerd } from "../utils/cf";
 
-module.exports = functions.runWith({
-  memory: "256MB",
-  timeoutSeconds: 30
-}).firestore.document("entries/{entryId}").onDelete(async (snapshot, { eventId }) => {
+async function onDelete(snapshot: firestore.DocumentSnapshot, { eventId }: functions.EventContext): Promise<void> {
   if (await alreadyTriggerd(eventId)) {
     return;
   }
@@ -20,8 +17,14 @@ module.exports = functions.runWith({
     const categories = entry.categories.map(async w => await selectCategory(w));
 
     await decrementArchiveCount(archive, transaction);
-    for (let category of categories) {
+    for (const category of categories) {
       await decrementCategoryCount(await category, transaction);
     }
   });
-});
+}
+
+// tslint:disable:prettier
+module.exports = functions.runWith({
+  memory: "256MB",
+  timeoutSeconds: 30
+}).firestore.document("entries/{entryId}").onDelete(onDelete);

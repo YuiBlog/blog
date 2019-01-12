@@ -1,9 +1,10 @@
+import { Archive } from "@yuiblog/types";
 import { firestore } from "firebase-admin";
 
-import { Archive } from "../types";
-
 export async function selectArchive(date: Date, tx?: FirebaseFirestore.Transaction): Promise<FirebaseFirestore.DocumentSnapshot> {
-  const ref = firestore().collection("archives").doc(`${date.getFullYear()}-${date.getMonth() + 1}`);
+  const ref = firestore()
+    .collection("archives")
+    .doc(`${date.getFullYear()}-${date.getMonth() + 1}`);
   return await (tx ? tx.get(ref) : ref.get());
 }
 

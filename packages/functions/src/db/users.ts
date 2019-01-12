@@ -1,6 +1,6 @@
+import { User } from "@yuiblog/types";
 import { firestore } from "firebase-admin";
 
-import { User } from "../types";
 import * as _ from "./utils";
 
 export async function administrators(tx?: FirebaseFirestore.Transaction): Promise<User[]> {
@@ -20,7 +20,9 @@ export async function create(user: FirebaseFirestore.DocumentSnapshot, tx?: Fire
 }
 
 export async function select(uid: string, tx?: FirebaseFirestore.DocumentSnapshot): Promise<FirebaseFirestore.DocumentSnapshot> {
-  const ref = firestore().collection("users").doc(uid);
+  const ref = firestore()
+    .collection("users")
+    .doc(uid);
   return await (tx ? tx.get(ref) : ref.get());
 }
 

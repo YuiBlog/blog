@@ -7,8 +7,8 @@ import { asTyped } from "../utils/type";
 
 const app = express();
 const corsOptions: cors.CorsOptions = {
-  origin: "*",
-  maxAge: 36000
+  maxAge: 36000,
+  origin: "*"
 };
 
 function pack(res: Response, object: any): void {
@@ -67,6 +67,7 @@ app.get("/status", cors(corsOptions), async (req, res) => {
   res.status(200).send({ status: "OK" });
 });
 
+// tslint:disable:prettier
 module.exports = functions.runWith({
   memory: "256MB",
   timeoutSeconds: 10

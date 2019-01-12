@@ -1,11 +1,10 @@
+import { Entry, Nullable } from "@yuiblog/types";
 import set from "lodash/set";
-
-import { Entry, Nullable } from "../types";
 
 type Indexer<T> = { [P in keyof T]: any };
 
 export function extract<T>(doc: FirebaseFirestore.DocumentSnapshot, id?: string): T {
-  const obj = { ...doc.data() as T } as Indexer<T>;
+  const obj = { ...(doc.data() as T) } as Indexer<T>;
   return id ? set(obj, id, doc.id) : obj;
 }
 

@@ -1,13 +1,10 @@
-import { firestore } from "firebase-admin";
+import { auth, firestore } from "firebase-admin";
 import * as functions from "firebase-functions";
 
 import { users } from "../db";
 import { alreadyTriggerd } from "../utils/cf";
 
-module.exports = functions.runWith({
-  memory: "256MB",
-  timeoutSeconds: 30
-}).auth.user().onDelete(async (snapshot, { eventId }) => {
+async function onDelete(snapshot: auth.UserRecord, { eventId }: functions.EventContext): Promise<void> {
   if (await alreadyTriggerd(eventId)) {
     return;
   }
@@ -22,4 +19,10 @@ module.exports = functions.runWith({
     const user = await users.select(snapshot.uid);
     await users.destroy(user, transaction);
   });
-});
+}
+
+// tslint:disable:prettier
+module.exports = functions.runWith({
+  memory: "256MB",
+  timeoutSeconds: 30
+}).auth.user().onDelete(onDelete);

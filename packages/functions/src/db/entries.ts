@@ -1,11 +1,12 @@
+import { Entries, Entry, EntryCombined, EntryMinified, Nullable } from "@yuiblog/types";
 import * as firebase from "firebase-admin";
 import pick from "lodash/pick";
 
-import { Entries, Entry, EntryCombined, EntryMinified, Nullable } from "../types";
 import * as _ from "./utils";
 
 async function previous(createdAt: number): Promise<Nullable<EntryMinified>> {
-  const collection = await firebase.firestore()
+  const collection = await firebase
+    .firestore()
     .collection("entries")
     .orderBy("created_at", "desc")
     .startAfter(new Date(createdAt * 1000))
@@ -17,7 +18,8 @@ async function previous(createdAt: number): Promise<Nullable<EntryMinified>> {
 }
 
 async function next(createdAt: number): Promise<Nullable<EntryMinified>> {
-  const collection = await firebase.firestore()
+  const collection = await firebase
+    .firestore()
     .collection("entries")
     .orderBy("created_at", "asc")
     .startAfter(new Date(createdAt * 1000))
@@ -29,7 +31,8 @@ async function next(createdAt: number): Promise<Nullable<EntryMinified>> {
 }
 
 export async function show(year: number, month: number, slug: string): Promise<EntryCombined> {
-  const collection = await firebase.firestore()
+  const collection = await firebase
+    .firestore()
     .collection("entries")
     .where("created_at", ">=", new Date(year, month - 1))
     .where("created_at", "<", new Date(year, month))
@@ -49,7 +52,8 @@ export async function show(year: number, month: number, slug: string): Promise<E
 }
 
 export async function list(page: number = 1): Promise<Entries> {
-  const collection = await firebase.firestore()
+  const collection = await firebase
+    .firestore()
     .collection("entries")
     .orderBy("created_at", "desc")
     .limit(6)
@@ -59,14 +63,15 @@ export async function list(page: number = 1): Promise<Entries> {
 
   return {
     entries: entries.slice(0, 5).map(w => _.truncate(w)),
-    page,
+    hasNext: entries.length > 5,
     hasPrev: page > 1,
-    hasNext: entries.length > 5
+    page
   } as Entries;
 }
 
 export async function latest(): Promise<EntryMinified[]> {
-  const collection = await firebase.firestore()
+  const collection = await firebase
+    .firestore()
     .collection("entries")
     .orderBy("created_at", "desc")
     .limit(5)

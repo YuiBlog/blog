@@ -1,9 +1,11 @@
+import { Category } from "@yuiblog/types";
 import * as admin from "firebase-admin";
 
-import { Category } from "../types";
-
 export async function selectCategory(name: string, tx?: FirebaseFirestore.Transaction): Promise<FirebaseFirestore.DocumentSnapshot> {
-  const ref = admin.firestore().collection("categories").doc(name);
+  const ref = admin
+    .firestore()
+    .collection("categories")
+    .doc(name);
   return await (tx ? tx.get(ref) : ref.get());
 }
 

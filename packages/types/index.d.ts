@@ -57,4 +57,8 @@ export interface Settings {
   user: Settings.User;
 }
 
+export interface User {
+  admin: boolean;
+}
+
 export type Nullable<T> = T | null;

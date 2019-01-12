@@ -2,8 +2,6 @@ import NProgress from "nprogress";
 import Vue from "vue";
 import Router, { RawLocation, Route } from "vue-router";
 
-import Home from "./views/Home.vue";
-
 import store from "./store";
 
 Vue.use(Router);
