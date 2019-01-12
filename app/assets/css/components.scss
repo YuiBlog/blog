@@ -1,0 +1,39 @@
+a {
+  @apply no-underline;
+  @apply text-blue-dark;
+
+  &:hover {
+    @apply underline;
+  }
+}
+
+.button {
+  @apply bg-grey-light;
+  @apply text-grey-darkest;
+  @apply font-bold;
+  @apply no-underline;
+  @apply px-4;
+  @apply py-2;
+
+  &:hover {
+    @apply bg-grey;
+    @apply no-underline;
+  }
+
+  &[disabled] {
+    @apply bg-grey-lighter;
+    @apply text-grey-darker;
+    @apply cursor-default;
+    @apply pointer-events-none;
+  }
+}
+
+ul.links {
+  @apply list-reset;
+
+  li a {
+    &:before {
+      content: "\25B8 ";
+    }
+  }
+}

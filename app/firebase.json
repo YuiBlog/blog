@@ -1,0 +1,38 @@
+{
+  "functions": {
+    "predeploy": [],
+    "source": "dist/server",
+    "ignore": [
+      "*.log",
+      "tsconfig.json",
+      "**/src/**",
+      "**/node_modules/**"
+    ]
+  },
+  "hosting": {
+    "target": "app",
+    "public": "dist/client",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ],
+    "headers": [
+      {
+        "source": "/assets/**",
+        "headers": [
+          {
+            "key": "Cache-Control",
+            "value": "max-age=2592000"
+          }
+        ]
+      }
+    ],
+    "rewrites": [
+      {
+        "source": "**",
+        "function": "renderNuxt"
+      }
+    ]
+  }
+}
