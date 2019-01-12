@@ -1,14 +1,16 @@
 const DotEnv = require("dotenv-webpack");
 const MonacoEditor = require("monaco-editor-webpack-plugin");
+const path = require("path");
 
 module.exports = {
-  baseUrl: "/admin/",
   chainWebpack: (config) => {
     config.module
       .rule('pug')
       .use('pug-plain-loader');
 
-    config.plugin("dotenv-webpack").use(DotEnv);
+    config.plugin("dotenv-webpack").use(DotEnv, [{
+      path: path.join(__dirname, "..", "..", ".env")
+    }]);
     config.plugin("monaco-editor").use(MonacoEditor, [{
       languages: [
         "!apex",
@@ -106,5 +108,15 @@ module.exports = {
         "!wordPartOperations"
       ]
     }]);
-  }
+  },
+  css: {
+    loaderOptions: {
+      postcss: {
+        config: {
+          path: path.join(__dirname, "postcss.config.js")
+        }
+      }
+    }
+  },
+  publicPath: "/admin/",
 }
