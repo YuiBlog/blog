@@ -1,6 +1,6 @@
 <template lang="pug">
   blog-parts(title="Happy Busy")
-    img(src="https://static.mochizuki.moe/busy_banner.png")
+    img(src="https://static.mochizuki.moe/busy_banner.png" alt="happy busy")
 </template>
 
 <script lang="ts">

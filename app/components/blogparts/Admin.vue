@@ -1,6 +1,6 @@
 <template lang="pug">
   blog-parts(title="管理コンソール")
-    img(src="https://static.mochizuki.moe/busy_banner.png")
+    a(href="/admin/")
 </template>
 
 <script lang="ts">
