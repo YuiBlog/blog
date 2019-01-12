@@ -1,6 +1,6 @@
-# "Ohtsuki" - Yui
+# @yuiblog/admin
 
-Administration Console of Yui.
+Administration Console for Desktop.
 
 
 ## Project setup

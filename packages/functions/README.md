@@ -1,4 +1,4 @@
-# "Narumi" - Yui
+# @yuiblog/functions
 
 Firebase Functions for Yui.  
 Narumi provides API for Server-Side Rendering and Client-Side Fetching.

@@ -1,6 +1,6 @@
-# "Funami" - Yui
+# @yuiblog/app
 
-Personal blog software on Google Firebase.
+Frontend (App) and Server-Side Rendering.
 
 
 # Setup
