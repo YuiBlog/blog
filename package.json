@@ -7,7 +7,7 @@
   "author": "Fuyuno Mikazuki",
   "license": "MIT",
   "private": true,
-  "workspaces": [
-    "packages/*"
-  ]
+  "devDependencies": {
+    "lerna": "^3.10.5"
+  }
 }
