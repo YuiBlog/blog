@@ -1,0 +1,13 @@
+{
+  "name": "@yuiblog/blog",
+  "version": "1.0.0",
+  "description": "Serverless Personal Blog System on Firebase",
+  "main": "index.js",
+  "repository": "https://github.com/YuiBlog/blog",
+  "author": "Fuyuno Mikazuki",
+  "license": "MIT",
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ]
+}
