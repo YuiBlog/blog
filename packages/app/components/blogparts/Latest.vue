@@ -9,9 +9,9 @@
 import dayjs from "dayjs";
 import { Component, Prop, Vue } from "nuxt-property-decorator";
 import { Getter } from "vuex-class";
+import { Entries, Entry } from "@yuiblog/types";
 
 import BlogParts from "components/presentationals/BlogParts.vue";
-import { Entries, Entry } from "models/types";
 
 @Component({
   components: {

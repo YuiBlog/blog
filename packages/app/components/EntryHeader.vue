@@ -15,8 +15,7 @@
 <script lang="ts">
 import dayjs from "dayjs";
 import { Component, Prop, Vue } from "nuxt-property-decorator";
-
-import { Entry } from "models/types";
+import { Entry } from "@yuiblog/types";
 
 @Component
 export default class extends Vue {
@@ -24,7 +23,7 @@ export default class extends Vue {
   public entry!: Entry;
 
   public get url(): string {
-    return `/entry/${this.formatDate("YYYY/MM")}/${this.entry.slug}`;
+    return `/entry/${this.entry.url}`;
   }
 
   public get title(): string {

@@ -1,8 +1,8 @@
+// tslint:disable:no-shadowed-variable
+import { Archive, Category, Entry, Settings } from "@yuiblog/types";
 import axios from "axios";
 import { Context } from "nuxt";
 import { DefineActions, DefineGetters, DefineMutations } from "vuex-type-helper";
-
-import { Archive, Category, Entry, Settings } from "models/types";
 
 // blog information such as categories, latest entries, monthly archives...
 
@@ -71,10 +71,10 @@ const actions: DefineActions<IActions, IState, IMutations, IGetters> = {
 };
 
 const getters: DefineGetters<IGetters, IState> = {
-  archives: (state) => state.archives,
-  categories: (state) => state.categories,
-  latestEntries: (state) => state.latestEntries,
-  settings: (state) => state.settings,
+  archives: state => state.archives,
+  categories: state => state.categories,
+  latestEntries: state => state.latestEntries,
+  settings: state => state.settings
 };
 
 const mutations: DefineMutations<IMutations, IState> = {
@@ -97,6 +97,6 @@ const mutations: DefineMutations<IMutations, IState> = {
 export default {
   actions,
   getters,
-  state,
   mutations,
+  state
 };

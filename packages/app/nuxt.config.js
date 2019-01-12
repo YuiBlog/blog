@@ -52,7 +52,7 @@ module.exports = {
   */
   modules: [
     ["~/modules/typescript.js"],
-    ["@nuxtjs/dotenv", {path: path.join(__dirname)}],
+    ["@nuxtjs/dotenv", {path: path.join(__dirname, "..", "..")}],
     ["@nuxtjs/google-analytics", {
       id: "UA-68289020-1"
     }],

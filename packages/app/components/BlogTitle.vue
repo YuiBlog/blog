@@ -11,7 +11,7 @@
 <script lang="ts">
 import { Component, Vue } from "nuxt-property-decorator";
 import { Getter } from "vuex-class";
-import { Settings } from "models/types";
+import { Settings } from "@yuiblog/types";
 
 @Component
 export default class BlogTitle extends Vue {

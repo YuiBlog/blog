@@ -1,0 +1,8 @@
+{
+  "name": "@yuiblog/types",
+  "version": "1.0.0",
+  "private": true,
+  "main": "index.js",
+  "license": "MIT",
+  "typings": "index.d.ts"
+}

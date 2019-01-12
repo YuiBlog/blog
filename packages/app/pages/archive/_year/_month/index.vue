@@ -8,9 +8,9 @@
 import axios from "axios";
 import { Context } from "nuxt";
 import { Component, Vue } from "nuxt-property-decorator";
+import { Entries } from "@yuiblog/types";
 
 import EntryOverview from "components/EntryOverview.vue";
-import { Entries } from "models/types";
 
 @Component({
   components: {

@@ -10,10 +10,10 @@
 <script lang="ts">
 import dayjs from "dayjs";
 import { Component, Prop, Vue } from "nuxt-property-decorator";
+import { Entry } from "@yuiblog/types";
 
 import EntryHeader from "components/EntryHeader.vue";
 import MarkdownRenderer from "components/presentationals/MarkdownRenderer.vue";
-import { Entry } from "models/types";
 
 @Component({
   components: {

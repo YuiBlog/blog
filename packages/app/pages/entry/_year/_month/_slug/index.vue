@@ -18,11 +18,11 @@ import axios from "axios";
 import dayjs from "dayjs";
 import { Context } from "nuxt";
 import { Component, Vue } from "nuxt-property-decorator";
+import { Entry, EntryMinified } from "@yuiblog/types";
 
 import EntryHeader from "components/EntryHeader.vue";
 import MarkdownRenderer from "components/presentationals/MarkdownRenderer.vue";
 
-import { Entry, EntryMinified } from "models/types";
 
 @Component({
   components: {

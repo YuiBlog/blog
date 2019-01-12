@@ -9,9 +9,9 @@
 <script lang="ts">
 import { Component, Vue } from "nuxt-property-decorator";
 import { Getter } from "vuex-class";
+import { Category } from "@yuiblog/types";
 
 import BlogParts from "components/presentationals/BlogParts.vue";
-import { Category } from "models/types";
 
 @Component({
   components: {

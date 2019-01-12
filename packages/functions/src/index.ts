@@ -1,3 +1,4 @@
+// tslint:disable:no-var-requires
 import "./bootstrap/initialize";
 
 // == Authentication Triggers ===================

@@ -14,10 +14,10 @@
 import axios from "axios";
 import { Context } from "nuxt";
 import { Component, Vue } from "nuxt-property-decorator";
+import { Entries } from "@yuiblog/types";
 
 import EntryOverview from "components/EntryOverview.vue";
 import Paginator from "components/presentationals/Paginator.vue";
-import { Entries } from "models/types";
 
 @Component({
   components: {
@@ -30,9 +30,7 @@ export default class extends Vue {
 
   public async asyncData({ app, params }: Context): Promise<Entries> {
     const { category } = params;
-    return await axios
-      .get(`${process.env.FIREBASE_HOSTING_URL}/categories/${encodeURIComponent(category)}`)
-      .then(w => w.data);
+    return await axios.get(`${process.env.FIREBASE_HOSTING_URL}/categories/${encodeURIComponent(category)}`).then(w => w.data);
   }
 }
 </script>

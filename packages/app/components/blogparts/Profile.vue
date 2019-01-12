@@ -11,10 +11,10 @@
 <script lang="ts">
 import { Component, Vue } from "nuxt-property-decorator";
 import { Getter } from "vuex-class";
+import { Settings } from "@yuiblog/types";
 
 import Avatar from "components/presentationals/Avatar.vue";
 import BlogParts from "components/presentationals/BlogParts.vue";
-import { Settings } from "models/types";
 
 @Component({
   components: {

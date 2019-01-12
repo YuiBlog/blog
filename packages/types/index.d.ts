@@ -38,6 +38,7 @@ export interface Entry extends EntryMinified {
 
 export interface EntryMinified {
   slug: string;
+  url: string;
   title: string;
   created_at: {
     _seconds: number;
