@@ -1,0 +1,17 @@
+{
+  "projects": {
+    "default": "blog-mochizuki-moe"
+  },
+  "targets": {
+    "blog-mochizuki-moe": {
+      "hosting": {
+        "cf-api-blog-mochizuki-moe": [
+          "api"
+        ],
+        "api": [
+          "cf-api-blog-mochizuki-moe"
+        ]
+      }
+    }
+  }
+}
