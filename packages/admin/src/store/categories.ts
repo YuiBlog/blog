@@ -1,17 +1,13 @@
 // tslint:disable:no-shadowed-variable
+import { Category } from "@yuiblog/types";
 import * as firebase from "firebase";
 import { DefineActions, DefineMutations } from "vuex-type-helper";
 
 const firestore = firebase.firestore;
 
-interface ICategory {
-  name: string;
-  count: string;
-}
-
 interface IState {
   loading: boolean;
-  rows: ICategory[];
+  rows: Category[];
 }
 
 interface IAction {
@@ -20,7 +16,7 @@ interface IAction {
 
 interface IMutations {
   setLoading: { loading: boolean };
-  setCategories: { categories: ICategory[] };
+  setCategories: { categories: Category[] };
 }
 
 const state: IState = {
@@ -32,11 +28,11 @@ const actions: DefineActions<IAction, IState, IMutations> = {
   async fetch({ commit }) {
     commit("setLoading", { loading: true });
 
-    const categories: ICategory[] = [];
+    const categories: Category[] = [];
     const collection = await firestore()
       .collection("categories")
       .get();
-    collection.forEach(category => categories.push({ ...category.data(), name: category.id } as ICategory));
+    collection.forEach(category => categories.push({ ...category.data(), name: category.id } as Category));
 
     commit("setCategories", { categories });
     commit("setLoading", { loading: false });

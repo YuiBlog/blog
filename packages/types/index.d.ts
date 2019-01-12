@@ -34,15 +34,17 @@ export interface EntryCombined {
 export interface Entry extends EntryMinified {
   body: string;
   categories: string[];
+  id: string;
+  status: "public" | "draft";
 }
 
 export interface EntryMinified {
-  slug: string;
-  url: string;
-  title: string;
   created_at: {
     _seconds: number;
   }
+  slug: string;
+  title: string;
+  url: string;
 }
 
 export interface Entries {

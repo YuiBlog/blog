@@ -1,18 +1,9 @@
 // tslint:disable:no-shadowed-variable
+import { Entry } from "@yuiblog/types";
 import * as firebase from "firebase";
 import { DefineActions, DefineMutations } from "vuex-type-helper";
 
 const firestore = firebase.firestore;
-
-interface IEntry {
-  body: string;
-  categories: string[];
-  created_at: Date | firebase.firestore.Timestamp;
-  id: string;
-  slug: string;
-  status: "publish" | "draft";
-  title: string;
-}
 
 interface IState {
   loading: boolean;
@@ -21,16 +12,16 @@ interface IState {
     hasNext: boolean;
     hasPrev: boolean;
   };
-  rows: IEntry[];
+  rows: Entry[];
 }
 
 interface IAction {
   fetch: { cursor?: "next" | "prev" };
-  publish: { entry: IEntry };
+  publish: { entry: Entry };
 }
 
 interface IMutations {
-  setEntries: { entries: IEntry[] };
+  setEntries: { entries: Entry[] };
   setLoading: { loading: boolean };
   setPagination: { cursor?: "next" | "prev"; hasNext: boolean };
 }
