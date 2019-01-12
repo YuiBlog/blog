@@ -1,5 +1,5 @@
 {
-  "name": "yui-server",
+  "name": "@yuiblog/functions",
   "version": "0.1.0",
   "private": true,
   "scripts": {

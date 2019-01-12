@@ -1,8 +1,13 @@
 {
+  "firestore": {
+    "rules": "firestore.rules",
+    "indexes": "firestore.indexes.json"
+  },
   "functions": {
     "predeploy": [],
     "source": "dist/server",
     "ignore": [
+      ".*",
       "*.log",
       "tsconfig.json",
       "**/src/**",
@@ -10,7 +15,6 @@
     ]
   },
   "hosting": {
-    "target": "app",
     "public": "dist/client",
     "ignore": [
       "firebase.json",
@@ -30,9 +34,20 @@
     ],
     "rewrites": [
       {
+        "source": "/admin/**",
+        "destination": "/admin/index.html"
+      },
+      {
+        "source": "/api/**",
+        "function": "api"
+      },
+      {
         "source": "**",
         "function": "renderNuxt"
       }
     ]
+  },
+  "storage": {
+    "rules": "storage.rules"
   }
 }
