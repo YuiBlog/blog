@@ -8,12 +8,12 @@
 </template>
 
 <script lang="ts">
+import { Entry } from "@yuiblog/types";
+import MarkdownRenderer from "@yuiblog/markdown";
 import dayjs from "dayjs";
 import { Component, Prop, Vue } from "nuxt-property-decorator";
-import { Entry } from "@yuiblog/types";
 
 import EntryHeader from "components/EntryHeader.vue";
-import MarkdownRenderer from "components/presentationals/MarkdownRenderer.vue";
 
 @Component({
   components: {
@@ -26,8 +26,7 @@ export default class extends Vue {
   public entry!: Entry;
 
   public get url(): string {
-    const date = new Date(this.entry.created_at._seconds * 1000);
-    return `/entry/${dayjs(date).format("YYYY/MM")}/${this.entry.slug}`;
+    return `/entry/${this.entry.url}`;
   }
 
   public get body(): string {

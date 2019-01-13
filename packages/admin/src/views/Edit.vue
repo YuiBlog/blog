@@ -21,11 +21,12 @@
             editor-date(v-model="createdAt")
             editor-slug(v-model="slug" :date="createdAt")
     tab-pane.flex-1.py-2.overflow-y-scroll(name="プレビュー")
-      markdown-previewer(:markdown="body")
+      markdown-renderer(:markdown="body")
 </template>
 
 <script lang="ts">
 import VueTagsInput from "@johmun/vue-tags-input";
+import MarkdownRenderer from "@yuiblog/markdown";
 import { Component, Vue } from "vue-property-decorator";
 import { Action, State } from "vuex-class";
 
@@ -35,9 +36,7 @@ import EditorSlug from "@/components/editor/Slug.vue";
 import TabHorizontal from "@/components/tabs/Horizontal.vue";
 import TabPane from "@/components/tabs/Pane.vue";
 import TabVertical from "@/components/tabs/Vertical.vue";
-
 import MarkdownEditor from "@/components/MarkdownEditor.vue";
-import MarkdownPreviewer from "@/components/MarkdownPreviewer.vue";
 
 @Component({
   components: {
@@ -45,7 +44,7 @@ import MarkdownPreviewer from "@/components/MarkdownPreviewer.vue";
     EditorDate,
     EditorSlug,
     MarkdownEditor,
-    MarkdownPreviewer,
+    MarkdownRenderer,
     TabHorizontal,
     TabPane,
     TabVertical,

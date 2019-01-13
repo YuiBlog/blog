@@ -3,7 +3,7 @@ export interface Archive {
   count: number;
 }
 
-export declare module Settings {
+export declare namespace Settings {
   export interface Blog {
     description: string;
     name: string;

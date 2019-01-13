@@ -14,15 +14,14 @@
 </template>
 
 <script lang="ts">
+import { Entry, EntryMinified } from "@yuiblog/types";
+import MarkdownRenderer from "@yuiblog/markdown";
 import axios from "axios";
 import dayjs from "dayjs";
 import { Context } from "nuxt";
 import { Component, Vue } from "nuxt-property-decorator";
-import { Entry, EntryMinified } from "@yuiblog/types";
 
 import EntryHeader from "components/EntryHeader.vue";
-import MarkdownRenderer from "components/presentationals/MarkdownRenderer.vue";
-
 
 @Component({
   components: {
@@ -51,8 +50,7 @@ export default class extends Vue {
   }
 
   public asEntryUrl(entry: EntryMinified): string {
-    const date = new Date(entry.created_at._seconds * 1000);
-    return `/entry/${dayjs(date).format("YYYY/MM")}/${entry.slug}`;
+    return `/entry/${entry.url}`;
   }
 }
 </script>

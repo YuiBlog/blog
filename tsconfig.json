@@ -12,7 +12,7 @@
     "removeComments": true,
     "importHelpers": true,
     "strict": true,
-    "noImplicitAny": true,
+    "noImplicitAny": false,
     "noImplicitReturns": true,
     "strictNullChecks": true,
     "strictPropertyInitialization": true,

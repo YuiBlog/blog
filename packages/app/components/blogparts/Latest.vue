@@ -2,7 +2,7 @@
   blog-parts(title="最新記事")
     ul.links
       li.py-1(v-for="entry in entries" :key="entry.slug")
-        router-link.text-black.text-sm(:to="url(entry)") {{entry.title}}
+        router-link.text-black.text-sm(:to="`/entry/${entry.url}`") {{entry.title}}
 </template>
 
 <script lang="ts">
@@ -21,10 +21,5 @@ import BlogParts from "components/presentationals/BlogParts.vue";
 export default class extends Vue {
   @Getter("latestEntries")
   public entries!: Entry[];
-
-  public url(entry: Entry): string {
-    const date = new Date(entry.created_at._seconds * 1000);
-    return `/entry/${dayjs(date).format("YYYY/MM")}/${entry.slug}`;
-  }
 }
 </script>
