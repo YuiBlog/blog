@@ -24,9 +24,6 @@ export default class CategoryEditor extends Vue {
   }
 
   public set categories(value: any[]) {
-    if (value.every((w, idx) => w.text === this.value[idx])) {
-      return;
-    }
     this.$emit("input", value.map(w => w.text));
   }
 }
