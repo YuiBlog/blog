@@ -58,9 +58,9 @@ app.get("/entries/latest", cors(corsOptions), async (req, res) => {
 });
 
 app.get("/entries/:yyyy/:mm/:slug", cors(corsOptions), async (req, res) => {
-  const { yyyy, mm, slug } = asTyped(req.params);
+  const { yyyy, mm, slug } = req.params;
 
-  pack(res, await entries.show(yyyy, mm, slug));
+  pack(res, await entries.show(`${yyyy}/${mm}/${slug}`));
 });
 
 app.get("/status", cors(corsOptions), async (req, res) => {

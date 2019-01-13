@@ -5,6 +5,7 @@ import * as functions from "firebase-functions";
 import { incrementArchiveCount, selectArchive } from "../aggregation/archive";
 import { incrementCategoryCount, selectCategory } from "../aggregation/category";
 import { alreadyTriggerd } from "../utils/cf";
+import { createUrl } from "../utils/url";
 
 async function onCreate(snapshot: firestore.DocumentSnapshot, { eventId }: functions.EventContext): Promise<void> {
   if (await alreadyTriggerd(eventId)) {
@@ -12,9 +13,18 @@ async function onCreate(snapshot: firestore.DocumentSnapshot, { eventId }: funct
   }
 
   const entry = snapshot.data() as Entry;
+  if (entry.status !== "publish") {
+    return;
+  }
+
   await firestore().runTransaction(async transaction => {
     const archive = await selectArchive(new Date(entry.created_at._seconds * 1000), transaction);
     const categories = entry.categories.map(async w => await selectCategory(w, transaction));
+
+    // create a url
+    transaction.update(snapshot.ref, {
+      url: createUrl(entry)
+    });
 
     await incrementArchiveCount(archive, transaction);
     for (const category of categories) {

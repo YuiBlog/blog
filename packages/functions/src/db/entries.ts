@@ -8,6 +8,7 @@ async function previous(createdAt: number): Promise<Nullable<EntryMinified>> {
   const collection = await firebase
     .firestore()
     .collection("entries")
+    .where("status", "==", "publish")
     .orderBy("created_at", "desc")
     .startAfter(new Date(createdAt * 1000))
     .limit(1)
@@ -21,6 +22,7 @@ async function next(createdAt: number): Promise<Nullable<EntryMinified>> {
   const collection = await firebase
     .firestore()
     .collection("entries")
+    .where("status", "==", "publish")
     .orderBy("created_at", "asc")
     .startAfter(new Date(createdAt * 1000))
     .limit(1)
@@ -30,13 +32,12 @@ async function next(createdAt: number): Promise<Nullable<EntryMinified>> {
   return entry ? toMinified(entry) : null;
 }
 
-export async function show(year: number, month: number, slug: string): Promise<EntryCombined> {
+export async function show(url: string): Promise<EntryCombined> {
   const collection = await firebase
     .firestore()
     .collection("entries")
-    .where("created_at", ">=", new Date(year, month - 1))
-    .where("created_at", "<", new Date(year, month))
-    .where("slug", "==", slug)
+    .where("url", "==", url)
+    .where("status", "==", "publish")
     .limit(1)
     .get();
   const entry = _.single<Entry>(collection);
@@ -55,6 +56,7 @@ export async function list(page: number = 1): Promise<Entries> {
   const collection = await firebase
     .firestore()
     .collection("entries")
+    .where("status", "==", "publish")
     .orderBy("created_at", "desc")
     .limit(6)
     .offset((page - 1) * 5)
@@ -81,5 +83,5 @@ export async function latest(): Promise<EntryMinified[]> {
 }
 
 function toMinified(entry: Entry): EntryMinified {
-  return pick(entry, "slug", "title", "created_at") as EntryMinified;
+  return pick(entry, "slug", "title", "created_at", "url") as EntryMinified;
 }

@@ -22,6 +22,7 @@ export async function entries(year: number, month: number, page: number = 1): Pr
   const collection = await firebase
     .firestore()
     .collection("entries")
+    .where("status", "==", "publish")
     .where("created_at", ">=", new Date(year, month - 1))
     .where("created_at", "<", new Date(year, month))
     .orderBy("created_at", "desc")

@@ -18,6 +18,7 @@ export async function entries(category: string, page: number = 1): Promise<Entri
   const collection = await firebase
     .firestore()
     .collection("entries")
+    .where("status", "==", "publish")
     .where("categories", "array-contains", category)
     .orderBy("created_at", "desc")
     .limit(6)

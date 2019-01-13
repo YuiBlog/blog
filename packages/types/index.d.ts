@@ -35,7 +35,7 @@ export interface Entry extends EntryMinified {
   body: string;
   categories: string[];
   id: string;
-  status: "public" | "draft";
+  status: "publish" | "draft";
 }
 
 export interface EntryMinified {
