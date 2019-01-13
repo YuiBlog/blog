@@ -13,10 +13,6 @@ async function onDelete(snapshot: firestore.DocumentSnapshot, { eventId }: funct
 
   const entry = snapshot.data() as Entry;
 
-  if (entry.status !== "publish") {
-    return;
-  }
-
   await firestore().runTransaction(async transaction => {
     const archive = await selectArchive(new Date(entry.created_at._seconds * 1000));
     const categories = entry.categories.map(async w => await selectCategory(w));
