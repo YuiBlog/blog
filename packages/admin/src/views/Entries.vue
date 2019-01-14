@@ -18,9 +18,9 @@
               .text-center
                 | 読み込み中
         template(v-else)
-          tr(v-for="entry in entries" :key="entry.slug")
+          tr(v-for="entry in entries" :key="entry.url")
             td(class="w-1/2")
-              router-link(:to="`/entries/${entry.id}/edit`") {{entry.title}}
+              router-link(:to="`/edit?id=${entry.id}`") {{entry.title}}
             td(class="w-1/5")
               span.mr-2(v-for="category in entry.categories")
                 | {{category}}

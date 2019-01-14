@@ -7,7 +7,10 @@
         markdown-editor.flex-grow.overflow-hidden(v-model="body")
         .pt-2.flex-shrink
           button.px-3.py-2.mr-2.bg-blue.text-white(@click="onClickPublish")
-            | 公開する
+            template(v-if="id")
+              | 更新する
+            template(v-else)
+              | 公開する
           button.px-3.py-2.bg-grey.text-white(@click="onClickDraft")
             | 下書き保存する
       .w-80.pl-2
@@ -27,6 +30,8 @@
 <script lang="ts">
 import VueTagsInput from "@johmun/vue-tags-input";
 import MarkdownRenderer from "@yuiblog/markdown";
+import { Entry } from "@yuiblog/types";
+import dayjs from "dayjs";
 import { Component, Vue } from "vue-property-decorator";
 import { Action, State } from "vuex-class";
 
@@ -52,14 +57,35 @@ import MarkdownEditor from "@/components/MarkdownEditor.vue";
   }
 })
 export default class Edit extends Vue {
+  public id: string = "";
   public body: string = "";
   public categories: string[] = [];
   public createdAt: string = "";
   public slug: string = "";
   public title: string = "";
 
+  @Action("entry/fetch")
+  public fetchEntry!: ({ id: string }) => Promise<void>;
+
   @Action("entries/publish")
   public publish!: ({ entry }: { entry: any }) => Promise<void>;
+
+  @State((state, getters) => state.entry.row)
+  public entry!: Entry;
+
+  public async created(): Promise<void> {
+    if (this.$route.query.id) {
+      await this.fetchEntry({ id: this.$route.query.id as string });
+      if (this.entry) {
+        this.id = this.entry.id;
+        this.body = this.entry.body;
+        this.categories = this.entry.categories;
+        this.createdAt = dayjs((this.entry.created_at as any).toDate()).format("YYYY/MM/DD HH:mm:ss");
+        this.slug = this.entry.slug;
+        this.title = this.entry.title;
+      }
+    }
+  }
 
   public async onClickPublish(): Promise<void> {
     this.publish({
@@ -67,6 +93,7 @@ export default class Edit extends Vue {
         body: this.body,
         categories: this.categories,
         created_at: this.createdAt !== "" ? new Date(this.createdAt) : new Date(),
+        id: this.id,
         slug: this.slug,
         status: "publish",
         title: this.title
@@ -80,6 +107,7 @@ export default class Edit extends Vue {
         body: this.body,
         categories: this.categories,
         created_at: this.createdAt !== "" ? new Date(this.createdAt) : new Date(),
+        id: this.id,
         slug: this.slug,
         status: "draft",
         title: this.title
@@ -88,7 +116,7 @@ export default class Edit extends Vue {
   }
 
   public beforeRouteLeave(to: any, from: any, next: any): void {
-    if (this.body !== "") {
+    if (this.body !== "" && (this.entry && this.entry.body !== this.body)) {
       const r = confirm("編集した内容が失われますがよろしいですか？");
       if (!r) {
         return;

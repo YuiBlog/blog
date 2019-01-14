@@ -63,10 +63,17 @@ const actions: DefineActions<IAction, IState, IMutations> = {
   async publish({ commit }, { entry }) {
     commit("setLoading", { loading: true });
 
-    await firestore()
-      .collection("entries")
-      .doc()
-      .set(entry);
+    if (entry.id) {
+      await firestore()
+        .collection("entries")
+        .doc(entry.id)
+        .update(entry);
+    } else {
+      await firestore()
+        .collection("entries")
+        .doc()
+        .set(entry);
+    }
 
     commit("setLoading", { loading: false });
   }
