@@ -4,7 +4,7 @@
 
 <script lang="ts">
 import * as monaco from "monaco-editor";
-import { Component, Prop, Vue } from "vue-property-decorator";
+import { Component, Prop, Vue, Watch } from "vue-property-decorator";
 
 @Component
 export default class MonacoEditor extends Vue {
@@ -21,6 +21,13 @@ export default class MonacoEditor extends Vue {
   public options!: any;
 
   private editor!: monaco.editor.IStandaloneCodeEditor;
+
+  @Watch("value")
+  public onChangeValue(newValue) {
+    if (newValue !== this.editor.getValue()) {
+      this.editor.setValue(newValue);
+    }
+  }
 
   public mounted(): void {
     this.editor = monaco.editor.create(

@@ -15,13 +15,6 @@ export default class MarkdownEditor extends Vue {
   @Prop({ required: true })
   public value!: string;
 
-  @Watch("value")
-  public onValueChanged(newValue: string, oldValue: string): void {
-    if (oldValue === "") {
-      this.editor.setValue(newValue);
-    }
-  }
-
   public get markdown() {
     return this.value;
   }
