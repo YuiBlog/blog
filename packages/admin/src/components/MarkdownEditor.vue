@@ -4,7 +4,7 @@
 
 <script lang="ts">
 import { editor } from "monaco-editor";
-import { Component, Prop, Vue } from "vue-property-decorator";
+import { Component, Prop, Vue, Watch } from "vue-property-decorator";
 
 import MonacoEditor from "@/components/MonacoEditor.vue";
 
@@ -14,6 +14,13 @@ export default class MarkdownEditor extends Vue {
 
   @Prop({ required: true })
   public value!: string;
+
+  @Watch("value")
+  public onValueChanged(newValue: string, oldValue: string): void {
+    if (oldValue === "") {
+      this.editor.setValue(newValue);
+    }
+  }
 
   public get markdown() {
     return this.value;
