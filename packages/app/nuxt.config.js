@@ -9,7 +9,7 @@ module.exports = {
   */
   head: {
     titleTemplate: (title) => {
-      return title ? `${title} - みかづきメモ` : `みかづきメモ`;
+      return title;
     },
     meta: [
       {charset: "utf-8"},

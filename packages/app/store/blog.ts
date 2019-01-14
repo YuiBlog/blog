@@ -25,6 +25,7 @@ interface IGetters {
   categories: Category[];
   latestEntries: Entry[];
   settings: Settings;
+  title: (str: string) => string;
 }
 
 interface IMutations {
@@ -74,7 +75,8 @@ const getters: DefineGetters<IGetters, IState> = {
   archives: state => state.archives,
   categories: state => state.categories,
   latestEntries: state => state.latestEntries,
-  settings: state => state.settings
+  settings: state => state.settings,
+  title: state => str => str ? `${str} - ${state.settings.blog.name}` : state.settings.blog.name
 };
 
 const mutations: DefineMutations<IMutations, IState> = {

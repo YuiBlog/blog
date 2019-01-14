@@ -7,19 +7,20 @@
     .flex
       .flex-1.pr-4.truncate
         .truncate.previous(v-if="previous != null")
-          nuxt-link(:to="asEntryUrl(previous)") {{previous.title}}
+          nuxt-link(:to="`/entry/${previous.url}`") {{previous.title}}
       .flex-1.pl-6.truncate
         .truncate.next(v-if="next != null")
-          nuxt-link(:to="asEntryUrl(next)") {{next.title}}
+          nuxt-link(:to="`/entry/${next.url}`") {{next.title}}
 </template>
 
 <script lang="ts">
-import { Entry, EntryMinified } from "@yuiblog/types";
+import { Entry, EntryMinified, Settings } from "@yuiblog/types";
 import MarkdownRenderer from "@yuiblog/markdown";
 import axios from "axios";
 import dayjs from "dayjs";
 import { Context } from "nuxt";
 import { Component, Vue } from "nuxt-property-decorator";
+import { Getter } from "vuex-class";
 
 import EntryHeader from "components/EntryHeader.vue";
 
@@ -34,9 +35,12 @@ export default class extends Vue {
   public next!: Entry;
   public previous!: Entry;
 
+  @Getter("title")
+  public title!: (str: string) => string;
+
   public head(): any {
     return {
-      title: this.entry.title
+      title: this.title(this.entry.title)
     };
   }
 
