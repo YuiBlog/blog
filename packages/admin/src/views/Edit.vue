@@ -1,30 +1,40 @@
 <template lang="pug">
-  tab-horizontal.h-full.max-h-screen.p-2
-    tab-pane.flex-1.flex.pt-2(name="編集")
-      .flex-1.flex.flex-col.overflow-hidden
-        .pb-2
-          input.w-full.border(v-model="title" placeholder="タイトル")
-        markdown-editor.flex-grow.overflow-hidden(v-model="body")
-        .pt-2.flex-shrink
-          button.px-3.py-2.mr-2.bg-blue.text-white(@click="onClickPublish")
-            template(v-if="id")
-              | 更新する
-            template(v-else)
-              | 公開する
-          button.px-3.py-2.bg-grey.text-white(@click="onClickDraft")
-            | 下書き保存する
-      .w-80.pl-2
-        tab-vertical.h-full
-          tab-pane(name="画像" cls="far fa-images")
-            img(src="https://static.mochizuki.moe/busy_banner@2x.png")
-          tab-pane(name="カテゴリー" cls="fas fa-tags")
-            editor-category(v-model="categories")
-          tab-pane(name="オプション" cls="fas fa-cog")
-            h3.pl-2.mb-2 編集オプション
-            editor-date(v-model="createdAt")
-            editor-slug(v-model="slug" :date="createdAt")
-    tab-pane.flex-1.py-2.overflow-y-scroll(name="プレビュー")
-      markdown-renderer(:markdown="body")
+  div.h-full.max-h-screen
+    template(v-if="!published")
+      tab-horizontal.h-full.p-2
+        tab-pane.flex-1.flex.pt-2(name="編集")
+          .flex-1.flex.flex-col.overflow-hidden
+            .pb-2
+              input.w-full.border(v-model="title" placeholder="タイトル")
+            markdown-editor.flex-grow.overflow-hidden(v-model="body")
+            .pt-2.flex-shrink
+              button.px-3.py-2.mr-2.bg-blue.text-white(@click="onClickPublish")
+                template(v-if="id")
+                  | 更新する
+                template(v-else)
+                  | 公開する
+              button.px-3.py-2.bg-grey.text-white(@click="onClickDraft")
+                | 下書き保存する
+          .w-80.pl-2
+            tab-vertical.h-full
+              tab-pane(name="画像" cls="far fa-images")
+                img(src="https://static.mochizuki.moe/busy_banner@2x.png")
+              tab-pane(name="カテゴリー" cls="fas fa-tags")
+                editor-category(v-model="categories")
+              tab-pane(name="オプション" cls="fas fa-cog")
+                h3.pl-2.mb-2 編集オプション
+                editor-date(v-model="createdAt")
+                editor-slug(v-model="slug" :date="createdAt")
+        tab-pane.flex-1.py-2.overflow-y-scroll(name="プレビュー")
+          markdown-renderer(:markdown="body")
+    template(v-else)
+      .container.p-4
+        .border-l-4.border-blue.bg-blue-lightest.p-4
+          | ブログを更新しました
+
+        .text-center.m-4
+          a.border.rounded.bg-grey-lighter.p-2.m-2.text-black(@click="onClickRepub")
+            | 続けて投稿する
 </template>
 
 <script lang="ts">
@@ -63,6 +73,7 @@ export default class Edit extends Vue {
   public createdAt: string = "";
   public slug: string = "";
   public title: string = "";
+  public published: boolean = false;
 
   @Action("entry/fetch")
   public fetchEntry!: ({ id: string }) => Promise<void>;
@@ -99,6 +110,7 @@ export default class Edit extends Vue {
         title: this.title
       }
     });
+    this.published = true;
   }
 
   public async onClickDraft(): Promise<void> {
@@ -113,6 +125,17 @@ export default class Edit extends Vue {
         title: this.title
       }
     });
+    this.published = true;
+  }
+
+  public onClickRepub(): void {
+    this.id = "";
+    this.body = "";
+    this.categories = [];
+    this.createdAt = "";
+    this.slug = "";
+    this.title = "";
+    this.published = false;
   }
 
   public beforeRouteLeave(to: any, from: any, next: any): void {
