@@ -26,7 +26,7 @@ export default class extends Vue {
 
   public async asyncData({ app, params, redirect }: Context): Promise<any> {
     const { page } = params;
-    return await axios.get(`${process.env.FIREBASE_HOSTING_URL}/entries?page=${page}`).then(w => w.data);
+    return await axios.get(`${process.env.FIREBASE_HOSTING_URL}/api/entries?page=${page}`).then(w => w.data);
   }
 }
 </script>

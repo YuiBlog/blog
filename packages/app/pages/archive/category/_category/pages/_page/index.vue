@@ -44,7 +44,7 @@ export default class extends Vue {
   public async asyncData({ app, params }: Context): Promise<Entries> {
     const { category, page } = params;
     return {
-      ...(await axios.get(`${process.env.FIREBASE_HOSTING_URL}/categories/${encodeURIComponent(category)}?page=${page}`).then(w => w.data)),
+      ...(await axios.get(`${process.env.FIREBASE_HOSTING_URL}/api/categories/${encodeURIComponent(category)}?page=${page}`).then(w => w.data)),
       category
     };
   }

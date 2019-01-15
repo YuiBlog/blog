@@ -54,19 +54,19 @@ const state: IState = {
 
 const actions: DefineActions<IActions, IState, IMutations, IGetters> = {
   async fetchArchives({ commit }) {
-    const archives = await axios.get(`${process.env.FIREBASE_HOSTING_URL}/archives`).then(w => w.data);
+    const archives = await axios.get(`${process.env.FIREBASE_HOSTING_URL}/api/archives`).then(w => w.data);
     commit("setArchives", { archives });
   },
   async fetchCategories({ commit }) {
-    const categories = await axios.get(`${process.env.FIREBASE_HOSTING_URL}/categories`).then(w => w.data);
+    const categories = await axios.get(`${process.env.FIREBASE_HOSTING_URL}/api/categories`).then(w => w.data);
     commit("setCategoeies", { categories });
   },
   async fetchLatest5Entries({ commit }) {
-    const entries = await axios.get(`${process.env.FIREBASE_HOSTING_URL}/entries/latest`).then(w => w.data);
+    const entries = await axios.get(`${process.env.FIREBASE_HOSTING_URL}/api/entries/latest`).then(w => w.data);
     commit("setLatestEntries", { entries });
   },
   async fetchBlogSettings({ commit }) {
-    const settings = await axios.get(`${process.env.FIREBASE_HOSTING_URL}/blog/settings`).then(w => w.data);
+    const settings = await axios.get(`${process.env.FIREBASE_HOSTING_URL}/api/blog/settings`).then(w => w.data);
     commit("setBlogSettings", { settings });
   }
 };

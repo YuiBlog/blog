@@ -21,7 +21,7 @@ import Paginator from "components/presentationals/Paginator.vue";
 })
 export default class extends Vue {
   public async asyncData({ app }: Context): Promise<any> {
-    return await axios.get(`${process.env.FIREBASE_HOSTING_URL}/entries`).then(w => w.data);
+    return await axios.get(`${process.env.FIREBASE_HOSTING_URL}/api/entries`).then(w => w.data);
   }
 }
 </script>

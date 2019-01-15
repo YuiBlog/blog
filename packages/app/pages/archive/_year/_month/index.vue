@@ -50,7 +50,7 @@ export default class extends Vue {
   public async asyncData({ app, params }: Context): Promise<Entries> {
     const { year, month } = params;
     return {
-      ...(await axios.get(`${process.env.FIREBASE_HOSTING_URL}/archives/${year}/${month}`).then(w => w.data)),
+      ...(await axios.get(`${process.env.FIREBASE_HOSTING_URL}/api/archives/${year}/${month}`).then(w => w.data)),
       month,
       year
     };
