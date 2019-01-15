@@ -9,7 +9,8 @@
   "private": true,
   "scripts": {
     "bootstrap": "lerna bootstrap",
-    "build": "lerna run build",
+    "build:client": "lerna run build --scope @yuiblog/{app,admin}",
+    "build:server": "lerna run build --scope @yuiblog/functions",
     "deploy:firestore": "firebase deploy --only firestore",
     "deploy:storage": "firebase deploy --only storage"
   },
