@@ -1,0 +1,13 @@
+{
+  "functions": {
+    "predeploy": [],
+    "source": "./",
+    "ignore": [
+      ".*",
+      "*.log",
+      "tsconfig.json",
+      "**/src/**",
+      "**/node_modules/**"
+    ]
+  }
+}
