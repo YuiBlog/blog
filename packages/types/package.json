@@ -1,8 +1,20 @@
 {
   "name": "@yuiblog/types",
-  "version": "1.0.0",
-  "private": true,
+  "version": "0.0.1",
+  "description": "Typings for YuiBlog",
+  "repository": {
+    "url": "YuiBlog/blog",
+    "type": "git"
+  },
   "main": "index.js",
+  "files": [
+    "index.d.ts"
+  ],
+  "author": {
+    "name": "Mikazuki Fuyuno",
+    "email": "mikazuki_fuyuno@outlook.com",
+    "url": "https://mochizuki.moe"
+  },
   "license": "MIT",
   "typings": "index.d.ts"
 }
