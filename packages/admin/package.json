@@ -30,7 +30,7 @@
     "@vue/cli-plugin-typescript": "^3.2.0",
     "@vue/cli-service": "^3.2.0",
     "@vue/eslint-config-prettier": "^4.0.1",
-    "@yuiblog/types": "^1.0.0",
+    "@yuiblog/types": "^0.1.0",
     "dotenv": "^6.2.0",
     "dotenv-webpack": "^1.5.7",
     "monaco-editor-webpack-plugin": "^1.7.0",

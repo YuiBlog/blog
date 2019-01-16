@@ -22,7 +22,7 @@
     "@types/cors": "^2.8.4",
     "@types/lodash": "^4.14.118",
     "@types/qs": "^6.5.1",
-    "@yuiblog/types": "^1.0.0",
+    "@yuiblog/types": "^0.1.0",
     "tslint": "~5.8.0",
     "typescript": "^3.2.2"
   },
