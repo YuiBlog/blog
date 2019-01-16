@@ -75,6 +75,7 @@ export async function latest(): Promise<EntryMinified[]> {
   const collection = await firebase
     .firestore()
     .collection("entries")
+    .where("status", "==", "publish")
     .orderBy("created_at", "desc")
     .limit(5)
     .get();
