@@ -1,6 +1,6 @@
 <template lang="pug">
   blog-parts(title="管理コンソール")
-    a(href="/admin/")
+    a(href="/admin/") ログイン
 </template>
 
 <script lang="ts">
