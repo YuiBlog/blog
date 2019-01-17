@@ -8,4 +8,4 @@ mkdir -p dist/server
 cp -r packages/admin/dist/ dist/client/admin/
 
 # copy app
-cp -r packages/app/dist/ dist/
+cp -r packages/app/dist/. dist/
