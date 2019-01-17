@@ -1,7 +1,8 @@
 // tslint:disable:no-shadowed-variable
 import { Category } from "@yuiblog/types";
 import * as firebase from "firebase";
-import { DefineActions, DefineMutations } from "vuex-type-helper";
+import { ActionTree, MutationTree } from "vuex";
+// import { DefineActions, DefineMutations } from "vuex-type-helper";
 
 const firestore = firebase.firestore;
 
@@ -10,6 +11,7 @@ interface IState {
   rows: Category[];
 }
 
+/*
 interface IAction {
   fetch: {};
 }
@@ -18,13 +20,14 @@ interface IMutations {
   setLoading: { loading: boolean };
   setCategories: { categories: Category[] };
 }
+*/
 
 const state: IState = {
   loading: false,
   rows: []
 };
 
-const actions: DefineActions<IAction, IState, IMutations> = {
+const actions: ActionTree<IState, any> = {
   async fetch({ commit }) {
     commit("setLoading", { loading: true });
 
@@ -36,10 +39,10 @@ const actions: DefineActions<IAction, IState, IMutations> = {
 
     commit("setCategories", { categories });
     commit("setLoading", { loading: false });
-  }
+  },
 };
 
-const mutations: DefineMutations<IMutations, IState> = {
+const mutations: MutationTree<IState> = {
   setLoading(state, { loading }) {
     state.loading = loading;
   },

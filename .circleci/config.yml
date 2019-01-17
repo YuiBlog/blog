@@ -39,3 +39,11 @@ jobs:
           command: |
             yarn run build:client
             yarn run build:server
+
+      - run:
+          name: Deployment
+          command: |
+            yarn run deploy:client
+            yarn run deploy:server
+            yarn run deploy:firestore
+            yarn run deploy:storage

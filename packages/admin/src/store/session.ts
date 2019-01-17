@@ -1,6 +1,7 @@
 // tslint:disable:no-shadowed-variable
 import * as firebase from "firebase";
-import { DefineActions, DefineGetters, DefineMutations } from "vuex-type-helper";
+import { ActionTree, GetterTree, MutationTree } from "vuex";
+// import { DefineActions, DefineGetters, DefineMutations } from "vuex-type-helper";
 
 const auth = firebase.auth;
 
@@ -8,6 +9,7 @@ interface IState {
   user: firebase.User | null;
 }
 
+/*
 interface IAction {
   refresh: {};
   login: {};
@@ -21,14 +23,15 @@ interface IGetters {
 interface IMutations {
   setUser: { user: firebase.User | null };
 }
+*/
 
 const state: IState = {
   user: null
 };
 
-const actions: DefineActions<IAction, IState, IMutations, IGetters> = {
+const actions: ActionTree<IState, any> = {
   async refresh({ commit }) {
-    return new Promise((resolve, reject) => {
+    return new Promise((resolve, _reject) => {
       auth().onAuthStateChanged(user => {
         commit("setUser", { user });
         resolve();
@@ -49,11 +52,11 @@ const actions: DefineActions<IAction, IState, IMutations, IGetters> = {
   }
 };
 
-const getters: DefineGetters<IGetters, IState> = {
+const getters: GetterTree<IState, any> = {
   state: state => (state.user ? "enabled" : "disabled")
 };
 
-const mutations: DefineMutations<IMutations, IState> = {
+const mutations: MutationTree<IState> = {
   setUser(state, { user }) {
     state.user = user;
   }
