@@ -3,11 +3,14 @@
 Serverless Personal Blog System on Firebase.
 
 
-## Directory Structure
+## Packages
 
 * `admin`
   * Administration Console for Desktop
 * `app` 
   * Frontend (App) and Server-Side Rendering
-* `server`
+* `functions`
   * Firebase Functions for statistics, registration and others.
+* `types`
+  * Type Definitions for YuiBlog.
+
