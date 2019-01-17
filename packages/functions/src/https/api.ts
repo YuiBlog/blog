@@ -18,52 +18,52 @@ function pack(res: Response, object: any): void {
 
 app.options("*", cors(corsOptions));
 
-app.get("/archives", cors(corsOptions), async (req, res) => {
+app.get("/api/archives", cors(corsOptions), async (req, res) => {
   pack(res, await archives.all());
 });
 
-app.get("/archives/:yyyy/:mm", cors(corsOptions), async (req, res) => {
+app.get("/api/archives/:yyyy/:mm", cors(corsOptions), async (req, res) => {
   const { yyyy, mm } = asTyped(req.params);
   const { page } = asTyped(req.query);
 
   pack(res, await archives.entries(yyyy, mm, page));
 });
 
-app.get("/blog/settings", cors(corsOptions), async (req, res) => {
+app.get("/api/blog/settings", cors(corsOptions), async (req, res) => {
   pack(res, {
     blog: await settings.blog(),
     user: await settings.user()
   });
 });
 
-app.get("/categories", cors(corsOptions), async (req, res) => {
+app.get("/api/categories", cors(corsOptions), async (req, res) => {
   pack(res, await categories.all());
 });
 
-app.get("/categories/:category", cors(corsOptions), async (req, res) => {
+app.get("/api/categories/:category", cors(corsOptions), async (req, res) => {
   const { category } = asTyped(req.params);
   const { page } = asTyped(req.query);
 
   pack(res, await categories.entries(category, page));
 });
 
-app.get("/entries", cors(corsOptions), async (req, res) => {
+app.get("/api/entries", cors(corsOptions), async (req, res) => {
   const { page } = asTyped(req.query);
 
   pack(res, await entries.list(page));
 });
 
-app.get("/entries/latest", cors(corsOptions), async (req, res) => {
+app.get("/api/entries/latest", cors(corsOptions), async (req, res) => {
   pack(res, await entries.latest());
 });
 
-app.get("/entries/:yyyy/:mm/:slug", cors(corsOptions), async (req, res) => {
+app.get("/api/entries/:yyyy/:mm/:slug", cors(corsOptions), async (req, res) => {
   const { yyyy, mm, slug } = req.params;
 
   pack(res, await entries.show(`${yyyy}/${mm}/${slug}`));
 });
 
-app.get("/status", cors(corsOptions), async (req, res) => {
+app.get("/api/status", cors(corsOptions), async (req, res) => {
   res.status(200).send({ status: "OK" });
 });
 

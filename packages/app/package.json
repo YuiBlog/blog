@@ -8,7 +8,7 @@
     "precopy": "rm -rf dist && mkdir dist",
     "copy": "yarn run copy:client && yarn run copy:server",
     "copy:client": "cp -R ./static/. dist/client && cp -R .nuxt/dist/client dist/client/assets",
-    "copy:server": "cp -R ./functions/ dist/server && cp -R .nuxt/ dist/server/lib && cp package.json dist/server",
+    "copy:server": "cp -R ./functions/ dist/server && cp -R .nuxt/ dist/server/lib && cp package.json dist/server && cp yarn.lock dist/server",
     "dev": "nuxt",
     "start": "nuxt start",
     "deploy": "firebase deploy --only functions:renderNuxt,hosting:app"
