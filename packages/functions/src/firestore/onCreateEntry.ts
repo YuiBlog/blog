@@ -12,7 +12,7 @@ async function onCreate(snapshot: firestore.DocumentSnapshot, { eventId }: funct
     return;
   }
 
-  const entry = snapshot.data() as Entry;
+  const entry = { ...snapshot.data(), id: snapshot.id } as Entry;
   if (entry.status !== "publish") {
     return;
   }
