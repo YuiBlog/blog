@@ -1,6 +1,7 @@
 const DotEnv = require("dotenv-webpack");
 const MonacoEditor = require("monaco-editor-webpack-plugin");
 const path = require("path");
+const webpack = require("webpack");
 
 module.exports = {
   chainWebpack: (config) => {
@@ -11,6 +12,17 @@ module.exports = {
     config.plugin("dotenv-webpack").use(DotEnv, [{
       path: path.join(__dirname, "..", "..", ".env")
     }]);
+
+    config.plugin("environment").use(webpack.EnvironmentPlugin, [{
+      FIREBASE_CLIENT_API_KEY: "",
+      FIREBASE_CLIENT_AUTH_DOMAIN: "",
+      FIREBASE_CLIENT_DATABASE_URL: "",
+      FIREBASE_CLIENT_PROJECT_ID: "",
+      FIREBASE_CLIENT_STORAGE_BUCKET: "",
+      FIREBASE_CLIENT_MESSAGING_SENDER_ID: "",
+      FIREBASE_HOSTING_URL: ""
+    }]);
+
     config.plugin("monaco-editor").use(MonacoEditor, [{
       languages: [
         "!apex",
