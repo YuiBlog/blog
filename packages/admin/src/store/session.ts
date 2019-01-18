@@ -1,5 +1,5 @@
 // tslint:disable:no-shadowed-variable
-import * as firebase from "firebase";
+import firebase from "firebase";
 import { ActionTree, GetterTree, MutationTree } from "vuex";
 // import { DefineActions, DefineGetters, DefineMutations } from "vuex-type-helper";
 
