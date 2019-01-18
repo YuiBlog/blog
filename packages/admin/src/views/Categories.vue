@@ -18,7 +18,7 @@
         template(v-else)
           tr(v-for="category in categories" :key="category.name")
             td(class="w-2/6")
-              a(:href="`/archive/categories/${encodeURIComponent(category.name)}`" target="_blank")
+              a(:href="`/archive/category/${encodeURIComponent(category.name)}`" target="_blank")
                 | {{category.name}}
             td(class="w-2/5") {{category.name}}
             td(class="w-1/5") {{category.count}}
