@@ -1,16 +1,19 @@
 <template lang="pug">
   .pb-10
-    entry-header(:entry="entry")
+    template(v-if="entry")
+      entry-header(:entry="entry")
 
-    markdown-renderer(:markdown="body")
+      markdown-renderer(:markdown="body")
 
-    .flex
-      .flex-1.pr-4.truncate
-        .truncate.previous(v-if="previous != null")
-          nuxt-link(:to="`/entry/${previous.url}`") {{previous.title}}
-      .flex-1.pl-6.truncate
-        .truncate.next(v-if="next != null")
-          nuxt-link(:to="`/entry/${next.url}`") {{next.title}}
+      .flex
+        .flex-1.pr-4.truncate
+          .truncate.previous(v-if="previous != null")
+            nuxt-link(:to="`/entry/${previous.url}`") {{previous.title}}
+        .flex-1.pl-6.truncate
+          .truncate.next(v-if="next != null")
+            nuxt-link(:to="`/entry/${next.url}`") {{next.title}}
+    template(v-else)
+      error(title="Entry Not Found" description="お探しのエントリーは見つかりませんでした。")
 </template>
 
 <script lang="ts">
@@ -23,10 +26,12 @@ import { Component, Vue } from "nuxt-property-decorator";
 import { Getter } from "vuex-class";
 
 import EntryHeader from "components/EntryHeader.vue";
+import Error from "components/presentationals/Error.vue";
 
 @Component({
   components: {
     EntryHeader,
+    Error,
     MarkdownRenderer
   }
 })
@@ -40,7 +45,7 @@ export default class extends Vue {
 
   public head(): any {
     return {
-      title: this.title(this.entry.title)
+      title: this.title(this.entry ? this.entry.title : "")
     };
   }
 

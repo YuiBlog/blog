@@ -7,9 +7,7 @@
         entry-overview(:entry="entry")
       paginator(:has-next="hasNext" :has-prev="hasPrev" :page="page")
     template(v-else)
-      h2.mb-2 Category Not Found
-      p
-        | お探しのカテゴリーは見つかりませんでした。
+      error(title="Category Not Found" description="お探しのカテゴリーは見つかりませんでした。")
 </template>
 
 <script lang="ts">
@@ -20,11 +18,13 @@ import { Component, Vue } from "nuxt-property-decorator";
 import { Getter } from "vuex-class";
 
 import EntryOverview from "components/EntryOverview.vue";
+import Error from "components/presentationals/Error.vue";
 import Paginator from "components/presentationals/Paginator.vue";
 
 @Component({
   components: {
     EntryOverview,
+    Error,
     Paginator
   }
 })

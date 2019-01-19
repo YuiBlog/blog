@@ -8,9 +8,7 @@
         entry-overview(:entry="entry")
       paginator(:has-next="hasNext" :has-prev="hasPrev" :page="page")
     template(v-else)
-      h2.mb-2 Archive Not Found
-      p
-        | お探しのアーカイブは見つかりませんでした。
+      error(title="Archive Not Found" description="お探しのアーカイブは見つかりませんでした。")
 </template>
 
 <script lang="ts">
@@ -21,11 +19,13 @@ import { Component, Vue } from "nuxt-property-decorator";
 import { Getter } from "vuex-class";
 
 import EntryOverview from "components/EntryOverview.vue";
+import Error from "components/presentationals/Error.vue";
 import Paginator from "components/presentationals/Paginator.vue";
 
 @Component({
   components: {
     EntryOverview,
+    Error,
     Paginator
   }
 })
@@ -47,13 +47,18 @@ export default class extends Vue {
     return `${this.year}/${this.month}`;
   }
 
-  public async asyncData({ app, params }: Context): Promise<Entries> {
+  public async asyncData({ app, params, res }: Context): Promise<any> {
     const { year, month } = params;
-    return {
-      ...(await axios.get(`${process.env.FIREBASE_HOSTING_URL}/api/archives/${year}/${month}`).then(w => w.data)),
-      month,
-      year
-    };
+    const entry = await axios.get(`${process.env.FIREBASE_HOSTING_URL}/api/archives/${year}/${month}`).then(w => w.data);
+    if (entry) {
+      return {
+        ...entry,
+        month,
+        year
+      };
+    } else {
+      res.statusCode = 404;
+    }
   }
 }
 </script>
