@@ -11,7 +11,7 @@
     "bootstrap": "lerna bootstrap",
     "build:client": "lerna run build --scope @yuiblog/{app,admin}",
     "build:server": "lerna run build --scope @yuiblog/functions",
-    "deploy:client": "chmod +x bin/copy-assets.sh && bin/copy-assets.sh && firebase deploy --only hosting,functions:renderNuxt",
+    "deploy:client": "bin/copy-assets.sh && firebase deploy --only hosting,functions:renderNuxt",
     "deploy:server": "lerna run deploy --scope @yuiblog/functions",
     "deploy:firestore": "firebase deploy --only firestore",
     "deploy:storage": "firebase deploy --only storage"
