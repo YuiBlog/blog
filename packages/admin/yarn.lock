@@ -1262,11 +1262,6 @@
     vue-class-component "^6.3.2"
     vue-property-decorator "^7.3.0"
 
-"@yuiblog/types@^0.1.0":
-  version "0.1.0"
-  resolved "https://registry.yarnpkg.com/@yuiblog/types/-/types-0.1.0.tgz#994b0a45d96b25f61c3a5518a2c5c374c0c20fbf"
-  integrity sha512-A+q/ieqNzDMt/afMK8uBhaDauygN/JxL8/iIK6Zl1S1ZnTADQSpAUg26peWKnWsN0apYEja99JxyJYwvhCaPUA==
-
 abbrev@1:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/abbrev/-/abbrev-1.1.1.tgz#f8f2c887ad10bf67f634f005b6987fed3179aac8"
