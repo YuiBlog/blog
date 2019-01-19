@@ -33,7 +33,7 @@
           | ブログを更新しました
 
         .text-center.m-4
-          a.border.rounded.bg-grey-lighter.p-2.m-2.text-black(@click="onClickRepub")
+          a.border.rounded.bg-grey-lighter.p-2.m-2.text-black(@click="published = false")
             | 続けて投稿する
 </template>
 
@@ -111,6 +111,7 @@ export default class Edit extends Vue {
       }
     });
     this.published = true;
+    this.reset();
   }
 
   public async onClickDraft(): Promise<void> {
@@ -126,16 +127,16 @@ export default class Edit extends Vue {
       }
     });
     this.published = true;
+    this.reset();
   }
 
-  public onClickRepub(): void {
+  public reset(): void {
     this.id = "";
     this.body = "";
     this.categories = [];
     this.createdAt = "";
     this.slug = "";
     this.title = "";
-    this.published = false;
   }
 
   public beforeRouteLeave(to: any, from: any, next: any): void {
