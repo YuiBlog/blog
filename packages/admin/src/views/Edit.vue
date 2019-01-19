@@ -8,12 +8,12 @@
               input.w-full.border(v-model="title" placeholder="タイトル")
             markdown-editor.flex-grow.overflow-hidden(v-model="body")
             .pt-2.flex-shrink
-              button.px-3.py-2.mr-2.bg-blue.text-white(@click="onClickPublish")
+              button.px-3.py-2.mr-2.bg-blue.text-white(@click.prevent="onClickPublish")
                 template(v-if="id")
                   | 更新する
                 template(v-else)
                   | 公開する
-              button.px-3.py-2.bg-grey.text-white(@click="onClickDraft")
+              button.px-3.py-2.bg-grey.text-white(@click.prevent="onClickDraft")
                 | 下書き保存する
           .w-80.pl-2
             tab-vertical.h-full
@@ -33,7 +33,7 @@
           | ブログを更新しました
 
         .text-center.m-4
-          a.border.rounded.bg-grey-lighter.p-2.m-2.text-black(@click="published = false")
+          button.border.rounded.bg-grey-lighter.p-2.m-2.text-black(@click="published = false")
             | 続けて投稿する
 </template>
 
@@ -78,11 +78,11 @@ export default class Edit extends Vue {
   @Action("entry/fetch")
   public fetchEntry!: ({ id: string }) => Promise<void>;
 
-  @Action("entries/publish")
+  @Action("entry/publish")
   public publish!: ({ entry }: { entry: any }) => Promise<void>;
 
   @State((state, getters) => state.entry.row)
-  public entry!: Entry;
+  public entry!: Entry | null;
 
   public async created(): Promise<void> {
     if (this.$route.query.id) {
@@ -107,7 +107,7 @@ export default class Edit extends Vue {
         id: this.id,
         slug: this.slug,
         status: "publish",
-        title: this.title
+        title: this.title || "無題"
       }
     });
     this.published = true;
@@ -123,7 +123,7 @@ export default class Edit extends Vue {
         id: this.id,
         slug: this.slug,
         status: "draft",
-        title: this.title
+        title: this.title || "無題"
       }
     });
     this.published = true;

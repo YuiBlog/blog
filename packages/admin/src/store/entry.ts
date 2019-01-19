@@ -38,6 +38,24 @@ const actions: ActionTree<IState, any> = {
 
     commit("setEntry", { entry: { ...entry.data(), id: entry.id } as Entry });
     commit("setLoading", { loading: false });
+  },
+  async publish({ commit }, { entry }) {
+    commit("setLoading", { loading: true });
+
+    if (entry.id) {
+      await firestore()
+        .collection("entries")
+        .doc(entry.id)
+        .update(entry);
+    } else {
+      await firestore()
+        .collection("entries")
+        .doc()
+        .set(entry);
+    }
+
+    commit("setEntry", { entry: null });
+    commit("setLoading", { loading: false });
   }
 };
 

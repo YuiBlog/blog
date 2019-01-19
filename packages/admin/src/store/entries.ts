@@ -62,23 +62,6 @@ const actions: ActionTree<IState, any> = {
     commit("setEntries", { entries: entries.slice(0, 20) });
     commit("setPagination", { cursor, hasNext: entries.length > 20 });
     commit("setLoading", { loading: false });
-  },
-  async publish({ commit }, { entry }) {
-    commit("setLoading", { loading: true });
-
-    if (entry.id) {
-      await firestore()
-        .collection("entries")
-        .doc(entry.id)
-        .update(entry);
-    } else {
-      await firestore()
-        .collection("entries")
-        .doc()
-        .set(entry);
-    }
-
-    commit("setLoading", { loading: false });
   }
 };
 
