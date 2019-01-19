@@ -14,6 +14,9 @@ async function onCreate(snapshot: firestore.DocumentSnapshot, { eventId }: funct
 
   const entry = { ...snapshot.data(), id: snapshot.id } as Entry;
   if (entry.status !== "publish") {
+    snapshot.ref.update({
+      url: createUrl(entry)
+    });
     return;
   }
 
