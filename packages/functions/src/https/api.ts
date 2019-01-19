@@ -60,7 +60,12 @@ app.get("/api/entries/latest", cors(corsOptions), async (req, res) => {
 app.get("/api/entries/:yyyy/:mm/:slug", cors(corsOptions), async (req, res) => {
   const { yyyy, mm, slug } = req.params;
 
-  pack(res, await entries.show(`${yyyy}/${mm}/${slug}`));
+  try {
+    pack(res, await entries.show(`${yyyy}/${mm}/${slug}`));
+  } catch (err) {
+    // 404
+    pack(res, { next: null, previous: null, entry: null });
+  }
 });
 
 app.get("/api/status", cors(corsOptions), async (req, res) => {
