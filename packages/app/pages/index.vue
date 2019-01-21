@@ -9,6 +9,7 @@
 import axios from "axios";
 import { Context } from "nuxt";
 import { Component, Vue } from "nuxt-property-decorator";
+import { Getter } from "vuex-class";
 
 import EntryOverview from "components/EntryOverview.vue";
 import Paginator from "components/presentationals/Paginator.vue";
@@ -20,6 +21,15 @@ import Paginator from "components/presentationals/Paginator.vue";
   }
 })
 export default class extends Vue {
+  @Getter("title")
+  public title!: (str?: string) => string;
+
+  public head(): any {
+    return {
+      title: this.title()
+    };
+  }
+
   public async asyncData({ app }: Context): Promise<any> {
     return await axios.get(`${process.env.FIREBASE_HOSTING_URL}/api/entries`).then(w => w.data);
   }
