@@ -1,6 +1,8 @@
 # YuiBlog
 
-Serverless Personal Blog System on Firebase.
+Serverless Personal Blog System on Firebase.  
+_This application is not yet in the practical stage._
+_Many releases contains breaking changes._
 
 
 ## Requirements
