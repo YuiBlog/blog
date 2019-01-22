@@ -12,7 +12,7 @@ const corsOptions: cors.CorsOptions = {
 };
 
 function pack(res: Response, object: any): void {
-  res.set("Cache-Control", "public, max-age=60, s-maxage=300");
+  res.set("Cache-Control", "public, max-age=60, s-maxage=120");
   res.status(200).send(object);
 }
 
