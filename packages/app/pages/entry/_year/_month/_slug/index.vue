@@ -5,6 +5,8 @@
 
       markdown-renderer(:markdown="body")
 
+      hr.border.my-4
+
       .flex
         .flex-1.pr-4.truncate
           .truncate.previous(v-if="previous != null")
