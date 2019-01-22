@@ -72,8 +72,12 @@ app.get("/api/status", cors(corsOptions), async (req, res) => {
   res.status(200).send({ status: "OK" });
 });
 
-// tslint:disable:prettier
-module.exports = functions.runWith({
-  memory: "256MB",
-  timeoutSeconds: 10
-}).https.onRequest(app);
+if (process.env.NODE_ENV === "development") {
+  app.listen(3001);
+} else {
+  // tslint:disable:prettier
+  module.exports = functions.runWith({
+    memory: "256MB",
+    timeoutSeconds: 10
+  }).https.onRequest(app);
+}

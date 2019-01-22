@@ -5,6 +5,7 @@
   "scripts": {
     "build": "rm -rf lib/ && tsc",
     "dev": "npm run build && firebase serve --only hosting,functions",
+    "dev:express": "NODE_ENV=development nodemon --watch ./src --ext .ts --exec ts-node src/dev.ts",
     "start": "npm run shell",
     "deploy": "node bin/deploy.js"
   },
@@ -23,6 +24,9 @@
     "@types/lodash": "^4.14.118",
     "@types/qs": "^6.5.1",
     "@yuiblog/types": "^0.1.0",
+    "dotenv": "^6.2.0",
+    "nodemon": "^1.18.9",
+    "ts-node": "^8.0.1",
     "tslint": "~5.8.0",
     "typescript": "^3.2.2"
   },

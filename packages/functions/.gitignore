@@ -1,1 +1,4 @@
 lib
+
+# Firebase AMI credentials
+credentials.json
