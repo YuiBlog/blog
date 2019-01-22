@@ -21,8 +21,9 @@ export async function incrementCategoryCount(category: FirebaseFirestore.Documen
 
 export async function decrementCategoryCount(category: FirebaseFirestore.DocumentSnapshot, tx: FirebaseFirestore.Transaction): Promise<void> {
   if (category.exists) {
+    const count = (category.data() as Category).count - 1;
     await tx.update(category.ref, {
-      count: (category.data() as Category).count - 1
+      count: count < 0 ? 0 : count
     } as Category);
   }
 }

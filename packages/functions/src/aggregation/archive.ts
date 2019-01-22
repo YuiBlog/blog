@@ -20,8 +20,9 @@ export async function incrementArchiveCount(archive: FirebaseFirestore.DocumentS
 
 export async function decrementArchiveCount(archive: FirebaseFirestore.DocumentSnapshot, tx: FirebaseFirestore.Transaction): Promise<void> {
   if (archive.exists) {
+    const count = (archive.data() as Archive).count - 1;
     await tx.update(archive.ref, {
-      count: (archive.data() as Archive).count - 1
+      count: count < 0 ? 0 : count,
     } as Archive);
   }
 }
