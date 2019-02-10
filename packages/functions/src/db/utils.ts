@@ -21,7 +21,7 @@ export function all<T>(snapshot: FirebaseFirestore.QuerySnapshot, id?: keyof T):
 }
 
 export function truncate(entry: Entry): Entry {
-  const index = entry.body.indexOf("<!-- more -->");
+  const index = entry.body ? entry.body.indexOf("<!-- more -->") : -1;
   if (index < 0) {
     return entry;
   }

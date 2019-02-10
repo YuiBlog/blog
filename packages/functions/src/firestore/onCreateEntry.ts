@@ -24,8 +24,9 @@ async function onCreate(snapshot: firestore.DocumentSnapshot, { eventId }: funct
     const archive = await selectArchive(new Date(entry.created_at._seconds * 1000), transaction);
     const categories = entry.categories.map(async w => await selectCategory(w, transaction));
 
-    // create a url
+    // attach properties
     transaction.update(snapshot.ref, {
+      has_passphrase: !!entry.passphrase,
       url: createUrl(entry)
     });
 

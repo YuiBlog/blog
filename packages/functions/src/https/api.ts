@@ -1,3 +1,4 @@
+import bodyParser from "body-parser";
 import cors from "cors";
 import express, { Response } from "express";
 import * as functions from "firebase-functions";
@@ -62,6 +63,18 @@ app.get("/api/entries/:yyyy/:mm/:slug", cors(corsOptions), async (req, res) => {
 
   try {
     pack(res, await entries.show(`${yyyy}/${mm}/${slug}`));
+  } catch (err) {
+    // 404
+    pack(res, { next: null, previous: null, entry: null });
+  }
+});
+
+app.post("/api/entries/:yyyy/:mm/:slug", cors(corsOptions), bodyParser.json(), async (req, res) => {
+  const { yyyy, mm, slug } = req.params;
+  const { passphrase } = req.body;
+
+  try {
+    pack(res, await entries.verify(`${yyyy}/${mm}/${slug}`, passphrase));
   } catch (err) {
     // 404
     pack(res, { next: null, previous: null, entry: null });

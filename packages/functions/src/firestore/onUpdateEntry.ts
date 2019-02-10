@@ -70,6 +70,7 @@ async function onUpdate(change: functions.Change<firestore.DocumentSnapshot>, { 
 
     // update url
     transaction.update(change.after.ref, {
+      has_passphrase: !!after.passphrase,
       url: createUrl(after)
     });
   });

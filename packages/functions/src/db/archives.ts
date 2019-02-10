@@ -2,6 +2,7 @@ import { Archive, Entries, Entry } from "@yuiblog/types";
 import * as firebase from "firebase-admin";
 
 import * as _ from "./utils";
+import { without } from '../utils/object';
 
 export async function all(): Promise<Archive[]> {
   const collection = await firebase
@@ -30,7 +31,7 @@ export async function entries(year: number, month: number, page: number = 1): Pr
     .offset((page - 1) * 5)
     .get();
   // tslint:disable-next-line:no-shadowed-variable
-  const entries = _.all<Entry>(collection);
+  const entries = _.all<Entry>(collection).map(w => without(w, "passphrase"));
 
   return {
     entries: entries.slice(0, 5).map(w => _.truncate(w)),
