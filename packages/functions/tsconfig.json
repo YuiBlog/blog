@@ -4,9 +4,10 @@
     "outDir": "lib",
   },
   "exclude": [
-    "lib/**/*.js"
+    "lib/**/*.js",
+    "__tests__"
   ],
   "include": [
-    "src"
+    "src",
   ]
 }
