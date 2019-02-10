@@ -30,7 +30,11 @@ const router = new Router({
         {
           component: () => import(/* webpackChunkName: "categories" */ "./views/Categories.vue"),
           path: "/categories"
-        }
+        },
+        {
+          component: () => import(/* webpackChunkName: "settings" */ "./views/Settings.vue"),
+          path: "/settings"
+        },
       ]
     },
     {
