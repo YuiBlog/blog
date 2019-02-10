@@ -11,7 +11,7 @@ import VueTagsInput from "@johmun/vue-tags-input";
 import { Component, Prop, Vue } from "vue-property-decorator";
 
 @Component({ components: { VueTagsInput } })
-export default class CategoryEditor extends Vue {
+export default class EditorCategory extends Vue {
   @Prop()
   public value!: string[];
 

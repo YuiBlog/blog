@@ -34,6 +34,8 @@ export interface EntryCombined {
 export interface Entry extends EntryMinified {
   body: string;
   categories: string[];
+  has_passphrase: string;
+  passphrase: Nullable<string>;
   id: string;
   status: "publish" | "draft";
 }

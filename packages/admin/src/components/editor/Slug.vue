@@ -34,7 +34,7 @@ const validations = {
   mixins: [validationMixin],
   validations
 })
-export default class EditorOptions extends Vue {
+export default class EditorSlug extends Vue {
   @Prop({ required: true })
   public date!: string;
 

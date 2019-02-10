@@ -25,6 +25,7 @@
                 h3.pl-2.mb-2 編集オプション
                 editor-date(v-model="createdAt")
                 editor-slug(v-model="slug" :date="createdAt")
+                editor-passphrase(v-model="passphrase")
         tab-pane.flex-1.py-2.overflow-y-scroll(name="プレビュー")
           markdown-renderer(:markdown="body")
     template(v-else)
@@ -47,6 +48,7 @@ import { Action, State } from "vuex-class";
 
 import EditorCategory from "@/components/editor/Category.vue";
 import EditorDate from "@/components/editor/Date.vue";
+import EditorPassphrase from "@/components/editor/Passphrase.vue";
 import EditorSlug from "@/components/editor/Slug.vue";
 import TabHorizontal from "@/components/tabs/Horizontal.vue";
 import TabPane from "@/components/tabs/Pane.vue";
@@ -57,6 +59,7 @@ import MarkdownEditor from "@/components/MarkdownEditor.vue";
   components: {
     EditorCategory,
     EditorDate,
+    EditorPassphrase,
     EditorSlug,
     MarkdownEditor,
     MarkdownRenderer,
@@ -71,6 +74,7 @@ export default class Edit extends Vue {
   public body: string = "";
   public categories: string[] = [];
   public createdAt: string = "";
+  public passphrase: string = "";
   public slug: string = "";
   public title: string = "";
   public published: boolean = false;
@@ -92,6 +96,7 @@ export default class Edit extends Vue {
         this.body = this.entry.body;
         this.categories = this.entry.categories;
         this.createdAt = dayjs((this.entry.created_at as any).toDate()).format("YYYY/MM/DD HH:mm:ss");
+        this.passphrase = this.entry.passphrase || "";
         this.slug = this.entry.slug;
         this.title = this.entry.title;
       }
@@ -105,6 +110,7 @@ export default class Edit extends Vue {
         categories: this.categories,
         created_at: this.createdAt !== "" ? new Date(this.createdAt) : new Date(),
         id: this.id,
+        passphrase: this.passphrase,
         slug: this.slug,
         status: "publish",
         title: this.title || "無題"
@@ -121,6 +127,7 @@ export default class Edit extends Vue {
         categories: this.categories,
         created_at: this.createdAt !== "" ? new Date(this.createdAt) : new Date(),
         id: this.id,
+        passphrase: this.passphrase,
         slug: this.slug,
         status: "draft",
         title: this.title || "無題"
@@ -135,6 +142,7 @@ export default class Edit extends Vue {
     this.body = "";
     this.categories = [];
     this.createdAt = "";
+    this.passphrase = "";
     this.slug = "";
     this.title = "";
   }
