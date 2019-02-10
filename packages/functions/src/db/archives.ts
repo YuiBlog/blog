@@ -31,7 +31,9 @@ export async function entries(year: number, month: number, page: number = 1): Pr
     .offset((page - 1) * 5)
     .get();
   // tslint:disable-next-line:no-shadowed-variable
-  const entries = _.all<Entry>(collection).map(w => without(w, "passphrase"));
+  const entries = _.all<Entry>(collection)
+    .map(w => w.passphrase ? without(w, "body") : w)
+    .map(w => without(w, "passphrase"));
 
   return {
     entries: entries.slice(0, 5).map(w => _.truncate(w)),
