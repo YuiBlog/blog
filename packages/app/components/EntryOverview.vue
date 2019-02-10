@@ -30,12 +30,19 @@ export default class extends Vue {
   }
 
   public get body(): string {
+    if (this.isProtectedByPassphrase) {
+      return "この記事は合言葉によって保護されています。閲覧するには合言葉の入力が必要です。";
+    }
     const idx = this.entry.body.indexOf("<!-- more -->");
     return this.entry.body.substring(0, idx < 0 ? this.entry.body.length : idx);
   }
 
   public get hasReadMore(): boolean {
-    return this.entry.body.indexOf("<!-- more -->") > 0;
+    return this.isProtectedByPassphrase ? true : this.entry.body.indexOf("<!-- more -->") > 0;
+  }
+
+  public get isProtectedByPassphrase(): boolean {
+    return this.entry.has_passphrase && !this.entry.body;
   }
 }
 </script>
