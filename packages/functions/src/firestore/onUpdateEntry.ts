@@ -22,8 +22,8 @@ async function onUpdate(change: functions.Change<firestore.DocumentSnapshot>, { 
   }
 
   await firestore().runTransaction(async transaction => {
-    if (before.status === "draft" && after.status === "publish") {
-      // draft -> publish
+    if (before.status === "publish" && after.status === "draft") {
+      // publish -> draft
       const categories = before.categories.map(async w => await selectCategory(w, transaction));
       const archive = await selectArchive(new Date(before.created_at._seconds * 1000), transaction);
 
@@ -31,8 +31,8 @@ async function onUpdate(change: functions.Change<firestore.DocumentSnapshot>, { 
         await decrementCategoryCount(await category, transaction);
       }
       await decrementArchiveCount(archive, transaction);
-    } else if (before.status === "publish" && after.status === "draft") {
-      // publish -> draft
+    } else if (before.status === "draft" && after.status === "publish") {
+      // draft -> publish
       const categories = after.categories.map(async w => await selectCategory(w, transaction));
       const archive = await selectArchive(new Date(after.created_at._seconds * 1000), transaction);
 
