@@ -17,7 +17,8 @@ import { Component, Prop, Vue } from "vue-property-decorator";
 export default class EditorPassphrase extends Vue {
   @Prop({ required: true })
   public value!: string;
-  public model: string = "";
+
+  public model: string = this.value;
 
   public get passphrase(): string {
     return this.model;
