@@ -13,7 +13,6 @@ jobs:
       # CircleCI maintains a library of pre-built images
       # documented at https://circleci.com/docs/2.0/circleci-images/
       # - image: circleci/mongo:3.4.4
-
     working_directory: ~/repo
 
     steps:
@@ -40,6 +39,20 @@ jobs:
             yarn run build:client
             yarn run build:server
 
+      - persist_to_workspace:
+          root: .
+          paths:
+            - .
+  deploy:
+    docker:
+        - image: circleci/node:0.12.0
+
+    working_directory: ~/repo
+
+    steps:
+      - attach_workspace:
+          at: .
+
       - run: yarn global add firebase-tools
 
       - run:
@@ -49,3 +62,17 @@ jobs:
             yarn run deploy:server
             yarn run deploy:firestore
             yarn run deploy:storage
+
+workflows:
+  version: 2
+  build-and-deploy:
+    jobs:
+      - build
+      - deploy:
+          requires:
+            - build
+          filters:
+            branches:
+              only:
+                - develop
+
