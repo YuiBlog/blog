@@ -148,7 +148,8 @@ export default class Edit extends Vue {
   }
 
   public beforeRouteLeave(to: any, from: any, next: any): void {
-    if (this.body !== "" && (this.entry && this.entry.body !== this.body)) {
+    const isEdited = this.entry ? this.entry.body !== this.body : this.body !== "";
+    if (isEdited) {
       const r = confirm("編集した内容が失われますがよろしいですか？");
       if (!r) {
         return;
