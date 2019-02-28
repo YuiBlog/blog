@@ -2,7 +2,7 @@ import * as path from "path";
 
 const TsConfigPathsPlugin = require("tsconfig-paths-webpack-plugin");
 
-export default function() {
+export default function () {
   this.extendBuild(config => {
     const tsLoader = {
       loader: "ts-loader",
@@ -25,7 +25,7 @@ export default function() {
 
     for (let rule of config.module.rules) {
       if (rule.loader === "vue-loader") {
-        rule.options.loaders = {ts: tsLoader};
+        rule.options.loaders = { ts: tsLoader };
       }
     }
   });
