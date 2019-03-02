@@ -64,7 +64,7 @@ module.exports = {
   ** Build configuration
   */
   build: {
-    publicPath: `${process.env.FIREBASE_HOSTING_URL}/assets/`,
+    publicPath: "/assets/",
     extractCSS: true,
 
     /*
