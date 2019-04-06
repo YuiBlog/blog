@@ -20,7 +20,7 @@
     "@nuxtjs/pwa": "2.6.0",
     "@yuiblog/markdown": "0.1.5",
     "axios": "0.18.0",
-    "dayjs": "1.7.8",
+    "dayjs": "1.8.12",
     "express": "4.16.4",
     "firebase-admin": "6.5.0",
     "firebase-functions": "2.1.0",

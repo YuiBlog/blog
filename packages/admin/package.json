@@ -10,7 +10,7 @@
   "dependencies": {
     "@johmun/vue-tags-input": "2.0.0",
     "@yuiblog/markdown": "0.1.5",
-    "dayjs": "1.7.8",
+    "dayjs": "1.8.12",
     "firebase": "5.7.3",
     "monaco-editor": "0.15.6",
     "nprogress": "0.2.0",
