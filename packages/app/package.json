@@ -42,7 +42,7 @@
     "autoprefixer": "8.6.5",
     "cross-env": "5.2.0",
     "eslint-config-prettier": "3.3.0",
-    "eslint-plugin-prettier": "2.6.2",
+    "eslint-plugin-prettier": "2.7.0",
     "node-sass": "4.11.0",
     "nodemon": "1.18.9",
     "prettier": "1.14.3",
