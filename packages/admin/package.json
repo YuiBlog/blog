@@ -39,7 +39,7 @@
     "pug-plain-loader": "1.0.0",
     "sass-loader": "7.1.0",
     "tailwindcss": "0.7.3",
-    "tslint-config-prettier": "1.17.0",
+    "tslint-config-prettier": "1.18.0",
     "tslint-plugin-prettier": "2.0.1",
     "typescript": "3.2.2",
     "vue-template-compiler": "2.5.22"
