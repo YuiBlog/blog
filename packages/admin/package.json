@@ -11,7 +11,7 @@
     "@johmun/vue-tags-input": "2.0.0",
     "@yuiblog/markdown": "0.1.5",
     "dayjs": "1.8.12",
-    "firebase": "5.7.3",
+    "firebase": "5.11.1",
     "monaco-editor": "0.16.2",
     "nprogress": "0.2.0",
     "vue": "2.5.22",
