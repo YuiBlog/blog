@@ -23,7 +23,7 @@
     "dayjs": "1.8.12",
     "express": "4.16.4",
     "firebase-admin": "6.5.0",
-    "firebase-functions": "2.1.0",
+    "firebase-functions": "2.3.1",
     "marked": "0.5.2",
     "nuxt": "2.3.4",
     "nuxt-class-component": "1.2.1",
