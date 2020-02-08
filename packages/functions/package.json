@@ -23,7 +23,7 @@
   },
   "devDependencies": {
     "@types/cors": "2.8.4",
-    "@types/jest": "24.0.0",
+    "@types/jest": "24.9.1",
     "@types/lodash": "4.14.119",
     "@types/qs": "6.5.2",
     "@yuiblog/types": "^0.1.0",
