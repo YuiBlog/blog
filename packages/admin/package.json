@@ -35,7 +35,7 @@
     "dotenv-webpack": "1.7.0",
     "monaco-editor-webpack-plugin": "1.7.0",
     "node-sass": "4.11.0",
-    "pug": "2.0.3",
+    "pug": "3.0.1",
     "pug-plain-loader": "1.0.0",
     "sass-loader": "7.1.0",
     "tailwindcss": "0.7.3",
