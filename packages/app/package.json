@@ -36,7 +36,7 @@
   "devDependencies": {
     "@types/express": "4.16.0",
     "@types/marked": "0.4.2",
-    "@types/prismjs": "1.9.0",
+    "@types/prismjs": "1.26.0",
     "@types/qs": "6.5.2",
     "@yuiblog/types": "^0.1.0",
     "autoprefixer": "8.6.5",
